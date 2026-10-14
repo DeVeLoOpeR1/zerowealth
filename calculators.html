@@ -1,0 +1,842 @@
+<!doctype html>
+<html lang="en" data-theme="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Free Zero Wealth financial calculators for investing, savings, loans and planning in India."><title>Financial Calculators — Zero Wealth</title>
+<style>
+:root{--bg:#f6f8f5;--surface:#fff;--surface2:#f0f4ef;--text:#14251f;--muted:#66766f;--line:#e1e9e2;--green:#16764a;--green2:#0d5737;--mint:#dff4e8;--lime:#c9f36b;--shadow:0 12px 35px #163c2810;--radius:20px}[data-theme=dark]{color-scheme:dark;--bg:#111612;--surface:#191f1b;--surface2:#222a24;--text:#f0f4f1;--muted:#a8b2aa;--line:#343e36;--green:#55c58b;--green2:#36a66f;--mint:#263a2e;--lime:#d3f58b;--shadow:0 12px 35px #0004}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}a{color:inherit;text-decoration:none}button,input,select{font:inherit}.wrap{width:min(1160px,calc(100% - 32px));margin:auto}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:850;letter-spacing:-.6px}.mark{width:38px;height:38px;display:grid;place-items:center;border-radius:13px;background:var(--green);color:white}.navright{display:flex;gap:10px;align-items:center}.btn,.iconbtn{border:1px solid var(--line);border-radius:99px;padding:10px 16px;background:var(--surface);color:var(--text);font-weight:750;cursor:pointer}.btn.primary{background:var(--green);color:white;border-color:var(--green)}.hero{padding:30px 0 22px}.kicker{font-size:11px;letter-spacing:1.5px;color:var(--green);font-weight:850;text-transform:uppercase}.hero h1{font-size:clamp(32px,4vw,48px);line-height:1.08;letter-spacing:-2px;margin:10px 0}.hero p{color:var(--muted);max-width:720px;margin:0}.layout{display:grid;grid-template-columns:260px 1fr;gap:20px;align-items:start;padding:16px 0 50px}.sidebar,.panel,.resultcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.sidebar{padding:14px;position:sticky;top:14px}.sidehead{font-size:11px;color:var(--muted);font-weight:850;letter-spacing:1px;text-transform:uppercase;padding:9px 10px}.toolbtn{width:100%;display:flex;gap:11px;align-items:center;text-align:left;padding:11px 10px;border:0;border-radius:12px;background:transparent;color:var(--text);cursor:pointer}.toolbtn:hover,.toolbtn.active{background:var(--mint)}.toolbtn .ico{width:32px;height:32px;display:grid;place-items:center;background:var(--surface2);border-radius:10px;color:var(--green);font-size:17px}.toolbtn.active .ico{background:var(--green);color:white}.toolbtn strong{font-size:13px;display:block}.toolbtn small{font-size:11px;color:var(--muted)}.main{min-width:0}.panel{padding:24px}.panelhead{display:flex;justify-content:space-between;align-items:start;gap:16px;margin-bottom:20px}.panelhead h2{font-size:24px;letter-spacing:-.8px;margin:3px 0}.panelhead p{color:var(--muted);font-size:13px;margin:0}.pill{background:var(--mint);color:var(--green);font-size:11px;font-weight:800;padding:6px 9px;border-radius:99px;white-space:nowrap}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.field label{display:block;font-size:12px;font-weight:750;margin-bottom:7px}.control{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface2);border-radius:12px;padding:0 12px;min-width:0}.control:focus-within{border-color:var(--green);box-shadow:0 0 0 3px #16764a18}.control span{color:var(--muted);font-size:13px;font-weight:750}.control input,.control select{width:100%;min-width:0;padding:12px 0;border:0;outline:0;background:transparent;color:var(--text);font-weight:700}
+/* Theme-aware native dropdowns (e.g. Compounding frequency) */
+.control:has(select){position:relative;cursor:pointer;padding-right:38px;min-height:48px}
+.control select{appearance:none;-webkit-appearance:none;cursor:pointer;min-height:46px;padding-right:4px;line-height:1.4;color:var(--text);color-scheme:inherit}
+.control:has(select)::after{content:"";position:absolute;right:15px;top:50%;width:8px;height:8px;border-right:2px solid var(--green);border-bottom:2px solid var(--green);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.control select:focus-visible{outline:2px solid var(--green);outline-offset:2px;border-radius:5px}
+.control select option{background:var(--surface);color:var(--text)}
+[data-theme=dark] .control select{color-scheme:dark}
+[data-theme=dark] .control:has(select)::after{border-color:var(--green)}
+.hint{font-size:11px;color:var(--muted);margin-top:5px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.resultgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}.metric{padding:17px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}.metric.primary{background:linear-gradient(135deg,#16764a,#0d5737);color:#fff;border-color:transparent}.metric label{display:block;font-size:11px;color:var(--muted);font-weight:750}.metric.primary label{color:#e1f4e7}.metric strong{display:block;font-size:clamp(19px,2.3vw,27px);letter-spacing:-.8px;margin:6px 0 2px;overflow-wrap:anywhere}.metric small{font-size:11px;color:var(--muted)}.metric.primary small{color:#e1f4e7}.breakdown{margin-top:18px;border:1px solid var(--line);border-radius:16px;overflow:hidden}.breakdown h3{font-size:13px;margin:0;padding:15px 17px;background:var(--surface2)}.rows{padding:4px 17px}.row{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}.row:last-child{border-bottom:0}.row span{color:var(--muted)}.chartbox{padding:14px 17px 10px;border-top:1px solid var(--line)}canvas{display:block;width:100%;height:180px}.note{font-size:11px;color:var(--muted);margin:15px 2px 0}.foot{padding:24px 0 34px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}.hide{display:none!important}
+[data-theme=dark] body{background:radial-gradient(ellipse at 85% 0%,#24352a 0,transparent 32%),var(--bg)}
+[data-theme=dark] .mark{color:#092016}
+[data-theme=dark] .btn.primary{background:var(--green);color:#071b11;border-color:var(--green)}
+[data-theme=dark] .btn:not(.primary){background:var(--surface);color:var(--text)}
+[data-theme=dark] .metric.primary{background:linear-gradient(135deg,#286847,#1d4d35);color:#f4fff7}
+[data-theme=dark] .metric.primary label,[data-theme=dark] .metric.primary small{color:#d7f1df}
+[data-theme=dark] .toolbtn:hover,[data-theme=dark] .toolbtn.active{background:#2a3b2f}
+[data-theme=dark] .toolbtn.active .ico{background:#55c58b;color:#092016}
+[data-theme=dark] .control:focus-within{box-shadow:0 0 0 3px #55c58b24}
+[data-theme=dark] .iconbtn{background:var(--surface)}
+html{color-scheme:light}html[data-theme=dark]{color-scheme:dark}
+body,.panel,.sidebar,.metric,.breakdown,.control,.btn,.iconbtn{transition:background-color .22s ease,color .22s ease,border-color .22s ease}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.sidebar{position:static;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px}.sidehead{grid-column:1/-1}.toolbtn{padding:9px 7px}.toolbtn small{display:none}.toolbtn strong{font-size:11px}.toolbtn .ico{width:28px;height:28px}.panel{padding:19px}}
+@media(max-width:540px){.wrap{width:calc(100% - 24px)}.nav{height:auto;min-height:65px;flex-wrap:wrap;padding:8px 0;gap:8px}.brand{font-size:17px}.navright{gap:6px;margin-left:auto}.navright .btn{font-size:12px;padding:8px 9px}.navright .iconbtn{width:40px;height:40px;padding:0;display:grid;place-items:center;flex:none}.hero{padding-top:22px}.hero h1{font-size:36px}.sidebar{grid-template-columns:repeat(2,minmax(0,1fr));padding:9px}.toolbtn{gap:7px}.fields{grid-template-columns:1fr}.resultgrid{grid-template-columns:1fr}.metric{padding:14px}.metric strong{font-size:24px}.panelhead{flex-direction:column}.layout{padding-top:8px}.row{font-size:12px}}
+/* Dark theme is derived from the same emerald identity as the light theme. */
+[data-theme="dark"]{color-scheme:dark;--bg:#07110c;--surface:#0e1b14;--surface2:#14251b;--text:#edf7f0;--muted:#a3b8aa;--line:#263e2e;--green:#35c989;--green2:#10a76a;--mint:#193b29;--lime:#b9f078;--shadow:0 16px 40px #0005}
+[data-theme="dark"] body{background:radial-gradient(ellipse at 82% 0%,#123a27 0,transparent 38%),var(--bg)}
+[data-theme="dark"] .mark{background:linear-gradient(145deg,#10b981 0%,#08754a 52%,#063d2b 100%);color:#fff;box-shadow:0 7px 22px #10b98125}
+[data-theme="dark"] .btn.primary{background:linear-gradient(135deg,#10b981,#08754a);color:#fff;border-color:transparent}
+[data-theme="dark"] .btn.primary:hover{background:linear-gradient(135deg,#34d399,#0b8d58)}
+[data-theme="dark"] .metric.primary{background:linear-gradient(135deg,#0c6842,#073d29);color:#f4fff7}
+[data-theme="dark"] .metric.primary label,[data-theme="dark"] .metric.primary small{color:#d7f1df}
+[data-theme="dark"] .toolbtn:hover,[data-theme="dark"] .toolbtn.active{background:#193b29}
+[data-theme="dark"] .toolbtn .ico{background:#14251b;color:#73e4a9}
+[data-theme="dark"] .toolbtn.active .ico{background:#08754a;color:#fff}
+[data-theme="dark"] .control:focus-within{border-color:#35c989;box-shadow:0 0 0 3px #35c98922}
+[data-theme="dark"] .iconbtn{background:#14251b;border-color:#263e2e;color:#edf7f0}
+[data-theme="dark"] .pill{background:#193b29;color:#73e4a9}
+[data-theme="dark"] .control{background:#0b1810}
+[data-theme="dark"] .breakdown h3{background:#14251b}
+[data-theme="dark"] .breakdown{border-color:#263e2e}
+[data-theme="dark"] .chartbox{border-color:#263e2e}
+[data-theme="dark"] .row{border-color:#263e2e}
+/* Integrated SIP calculator: scoped styles preserve the shared calculator UI */
+#sipView{margin-top:0;color:var(--text);--bg:#f6f8f5;--surface:#fff;--surface-2:#f0f4ef;--text:#14251f;--muted:#66766f;--border:#e1e9e2;--accent:#16764a;--accent-dark:#0d5737;--accent-soft:rgba(22,118,74,.12);--invested:#91a49a;--invested-soft:rgba(145,164,154,.18);--shadow:0 8px 26px rgba(22,60,40,.07);--danger:#dc4545}
+html[data-theme="dark"] #sipView{--bg:#07110c;--surface:#0e1b14;--surface-2:#14251b;--text:#edf7f0;--muted:#a3b8aa;--border:#263e2e;--accent:#35c989;--accent-dark:#73e4a9;--accent-soft:rgba(53,201,137,.15);--invested:#688675;--invested-soft:rgba(104,134,117,.22);--shadow:0 10px 30px rgba(0,0,0,.42)}
+#sipView .sip-heading{display:flex;align-items:start;justify-content:space-between;gap:16px;margin:0 0 16px;padding:4px 0 2px}
+#sipView .sip-heading h2{font-size:24px;letter-spacing:-.8px;margin:3px 0}
+#sipView .sip-heading p{color:var(--muted);font-size:13px;margin:0}
+#sipView .sip-head-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#sipView .toggle-pill{display:inline-flex;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:4px;gap:2px}
+#sipView .toggle-pill button{border:0;background:transparent;color:var(--muted);cursor:pointer;padding:7px 12px;border-radius:999px;font-size:12px;font-weight:750}
+#sipView .toggle-pill button.active{background:var(--accent);color:#fff}
+html[data-theme="dark"] #sipView .toggle-pill button.active{background:#08754a;color:#fff}
+#sipView .grid{display:grid;grid-template-columns:340px minmax(0,1fr);gap:16px;align-items:start}
+#sipView .grid>*{min-width:0}
+#sipView .card{background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow)}
+#sipView .panel{padding:20px;position:sticky;top:14px}
+#sipView .panel h2,#sipView .section-title{font-size:12px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);font-weight:800;margin-bottom:15px}
+#sipView .field{margin-bottom:14px}
+#sipView .field>label{display:block;font-size:12px;font-weight:750;margin-bottom:7px}
+#sipView .input-shell{display:flex;align-items:center;gap:8px;background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:0 11px;min-width:0}
+#sipView .input-shell:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+#sipView .input-shell .prefix,#sipView .input-shell .suffix{color:var(--muted);font-size:13px;font-weight:700;flex:none}
+#sipView .input-shell input,#sipView .input-shell select{border:0;background:transparent;color:var(--text);font:inherit;font-size:14px;font-weight:700;padding:11px 0;width:100%;min-width:0;outline:none}
+#sipView .row2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+#sipView .hint,#sipView .footnote{font-size:11px;color:var(--muted)}
+#sipView .lump-row{display:grid;grid-template-columns:1fr 1.2fr auto;gap:8px;margin-bottom:8px;align-items:center;min-width:0}
+#sipView .lump-row .input-shell{padding:0 7px}
+#sipView .lump-row .input-shell input,#sipView .lump-row .input-shell select{font-size:12px}
+#sipView .del-btn{width:32px;height:32px;border-radius:9px;border:1px solid var(--border);background:var(--surface-2);color:var(--muted);cursor:pointer}
+#sipView .add-btn,#sipView .export-btn{border:1px solid var(--border);border-radius:11px;background:var(--surface-2);color:var(--accent-dark);font-weight:750;cursor:pointer;padding:10px 12px}
+#sipView .add-btn{width:100%;border-style:dashed;margin-top:5px}
+#sipView hr.div{border:0;border-top:1px solid var(--border);margin:18px 0}
+#sipView .results{display:flex;flex-direction:column;gap:14px;min-width:0}
+#sipView .mode-banner{display:flex;align-items:center;gap:10px;font-size:12px;padding:12px 14px;border-radius:13px;border:1px solid var(--border);background:var(--accent-soft);color:var(--text)}
+#sipView .mode-banner b{color:var(--accent-dark)}
+#sipView .mode-banner .tag{flex:none;font-size:10px;font-weight:800;text-transform:uppercase;padding:4px 8px;border-radius:99px;background:var(--accent);color:#fff}
+#sipView .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+#sipView .stat{padding:16px;min-width:0}
+#sipView .stat .label{font-size:11px;color:var(--muted);font-weight:750;display:flex;align-items:center;gap:7px}
+#sipView .stat .dot{width:8px;height:8px;border-radius:50%;flex:none}
+#sipView .stat .value{font-size:clamp(18px,2vw,25px);font-weight:850;letter-spacing:-.7px;margin-top:8px;overflow-wrap:anywhere}
+#sipView .stat .sub{font-size:11px;color:var(--muted);margin-top:4px}
+#sipView .stat.accent{background:linear-gradient(135deg,var(--accent),var(--accent-dark));border-color:transparent;color:white}
+#sipView .stat.accent .label,#sipView .stat.accent .value,#sipView .stat.accent .sub{color:white}
+#sipView .chart-card{padding:16px 16px 8px}
+#sipView .chart-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+#sipView .legend{display:flex;gap:13px;font-size:11px;color:var(--muted);font-weight:700}
+#sipView .legend span{display:inline-flex;align-items:center;gap:6px}
+#sipView .legend i{width:9px;height:9px;border-radius:3px;display:inline-block}
+#sipView canvas{width:100%;display:block}
+#sipView .table-card{padding:6px 4px;overflow-x:auto}
+#sipView table{width:100%;border-collapse:collapse;font-size:12px}
+#sipView table th,#sipView table td{padding:10px 12px;text-align:right;white-space:nowrap}
+#sipView table th:first-child,#sipView table td:first-child,#sipView table th:nth-child(2),#sipView table td:nth-child(2){text-align:left}
+#sipView thead th{font-size:10px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);border-bottom:1px solid var(--border)}
+#sipView tbody tr{border-bottom:1px solid var(--border)}
+#sipView tbody tr:last-child{border-bottom:0}
+#sipView .tag-table{padding:14px 16px 4px}
+#sipView .table-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+#sipView .pos{color:#16764a;font-weight:750}
+html[data-theme="dark"] #sipView .pos{color:#8fe0ad}
+html[data-theme="dark"] #sipView .stat.accent{background:linear-gradient(135deg,#0c6842,#073d29)}
+#sipView .badge{display:inline-block;font-size:10px;font-weight:800;padding:2px 6px;border-radius:6px;background:var(--accent-soft);color:var(--accent-dark);margin-left:5px}
+@media(max-width:1000px){#sipView .grid{grid-template-columns:1fr}#sipView .panel{position:static}#sipView .cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:640px){#sipView .sip-heading{flex-direction:column}#sipView .cards{grid-template-columns:1fr}#sipView .panel{padding:16px}#sipView .chart-card{padding:12px}#sipView .table-card{overflow-x:visible}#sipView table,#sipView tbody,#sipView tr,#sipView td{display:block;width:100%}#sipView thead{display:none}#sipView tbody tr{border:1px solid var(--border);border-radius:12px;padding:5px 0;margin-bottom:10px;background:var(--surface2)}#sipView tbody td{display:flex;align-items:center;justify-content:space-between;text-align:right;padding:7px 12px;white-space:normal;border:0}#sipView tbody td::before{content:attr(data-label);color:var(--muted);font-weight:650;font-size:11px;text-align:left;margin-right:12px}#sipView tbody td:first-child{justify-content:flex-start;font-weight:850;border-bottom:1px solid var(--border)}#sipView tbody td:first-child::before{content:"Year ";margin-right:4px}#sipView .row2{gap:8px}#sipView .mode-banner{align-items:flex-start}}
+
+
+/* Unified Zero Wealth logo, calculator hierarchy and polished status chips */
+.brand{gap:11px}.mark{position:relative;isolation:isolate;width:42px;height:42px;flex:0 0 42px;border-radius:14px;background:linear-gradient(145deg,#10b981 0%,#08754a 52%,#063d2b 100%);color:#fff;font-size:0;box-shadow:0 7px 18px #08754a24;overflow:hidden}.mark:before{content:"₹";font-size:24px;font-weight:800;position:relative;z-index:1}.mark:after{content:"";position:absolute;inset:auto 0 0 48%;height:36%;background:linear-gradient(135deg,#34d399,#10b981);transform:skewX(-28deg);opacity:.9;z-index:0}.wordmark{font-size:21px;font-weight:850;letter-spacing:-.8px;color:var(--text);white-space:nowrap}.wordmark span:last-child{color:var(--green)}.toolbtn{padding:10px;border:1px solid transparent}.toolbtn.active{border-color:#16764a18}.toolbtn strong{line-height:1.25}.toolbtn small{line-height:1.35;display:block;margin-top:2px}.pill{white-space:normal;text-align:center}.chartbox canvas{min-height:180px}.btn.primary{box-shadow:0 5px 14px #16764a20}.panelhead h2{line-height:1.18;max-width:28ch}.panelhead p{max-width:62ch;line-height:1.55}
+[data-theme="dark"] .mark{background:linear-gradient(145deg,#10b981 0%,#08754a 52%,#063d2b 100%);color:#fff;box-shadow:0 7px 22px #10b98125}
+[data-theme="dark"] .wordmark span:last-child{color:#35c989}
+[data-theme="dark"] .toolbtn.active{border-color:#35c98935}
+@media(max-width:540px){.wordmark{font-size:19px}.mark{width:39px;height:39px;flex-basis:39px}.panelhead{flex-direction:column}.pill{align-self:flex-start}}
+
+
+/* Readable results at high monthly SIP values; no sideways scrolling for projections. */
+#sipView .stat .value,#sipView .metric strong,#sipView .stat .sub{overflow-wrap:anywhere;word-break:normal;min-width:0;}
+#sipView .stat .value{font-size:clamp(19px,2vw,27px);line-height:1.2;}
+#sipView .table-card{overflow:visible;}
+#sipView table,#sipView tbody{display:block;width:100%;min-width:0;}
+#sipView thead{display:none;}
+#sipView tbody tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px;width:100%;padding:12px 16px;margin:0 0 12px;border:1px solid var(--border);border-radius:14px;background:var(--surface-2);}
+#sipView tbody td{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;min-width:0;white-space:normal;overflow-wrap:anywhere;text-align:right;padding:8px 0;border:0;border-bottom:1px solid var(--border);font-size:13px;}
+#sipView tbody td::before{content:attr(data-label);color:var(--muted);font-weight:650;font-size:11px;text-align:left;flex:1;min-width:0;}
+#sipView tbody td:first-child{grid-column:1/-1;justify-content:flex-start;align-items:center;font-size:15px;font-weight:850;border-bottom:1px solid var(--border);padding:4px 0 10px;margin-bottom:4px;}
+#sipView tbody td:first-child::before{content:"Year";flex:0 0 auto;margin-right:4px;}
+#sipView tbody td:last-child{border-bottom:0;}
+#sipView .table-head{gap:12px;flex-wrap:wrap;}
+#sipView .table-head .section-title{margin:0;}
+#sipView .chart-card,#sipView .card{min-width:0;}
+#sipView canvas{max-width:100%;}
+@media(max-width:560px){#sipView tbody tr{grid-template-columns:minmax(0,1fr);padding:10px 13px}#sipView tbody td:first-child{grid-column:auto}#sipView tbody td{font-size:12.5px}#sipView .stat .value{font-size:22px}#sipView .lump-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto}}
+
+
+/* Readable results at high monthly SIP values; no sideways scrolling for projections. */
+#sipView .stat .value,#sipView .metric strong,#sipView .stat .sub{overflow-wrap:anywhere;word-break:normal;min-width:0;}
+#sipView .stat .value{font-size:clamp(19px,2vw,27px);line-height:1.2;}
+#sipView .table-card{overflow:visible;}
+#sipView table,#sipView tbody{display:block;width:100%;min-width:0;}
+#sipView thead{display:none;}
+#sipView tbody tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 18px;width:100%;padding:12px 16px;margin:0 0 12px;border:1px solid var(--border);border-radius:14px;background:var(--surface-2);}
+#sipView tbody td{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;min-width:0;white-space:normal;overflow-wrap:anywhere;text-align:right;padding:8px 0;border:0;border-bottom:1px solid var(--border);font-size:13px;}
+#sipView tbody td::before{content:attr(data-label);color:var(--muted);font-weight:650;font-size:11px;text-align:left;flex:1;min-width:0;}
+#sipView tbody td:first-child{grid-column:1/-1;justify-content:flex-start;align-items:center;font-size:15px;font-weight:850;border-bottom:1px solid var(--border);padding:4px 0 10px;margin-bottom:4px;}
+#sipView tbody td:first-child::before{content:"Year";flex:0 0 auto;margin-right:4px;}
+#sipView tbody td:last-child{border-bottom:0;}
+#sipView .table-head{gap:12px;flex-wrap:wrap;}
+#sipView .table-head .section-title{margin:0;}
+#sipView .chart-card,#sipView .card{min-width:0;}
+#sipView canvas{max-width:100%;}
+@media(max-width:560px){#sipView tbody tr{grid-template-columns:minmax(0,1fr);padding:10px 13px}#sipView tbody td:first-child{grid-column:auto}#sipView tbody td{font-size:12.5px}#sipView .stat .value{font-size:22px}#sipView .lump-row{grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto}}
+
+
+/* FINAL ZERO WEALTH BRAND OVERRIDE — matched to the approved logo board */
+.brand,.wordmark{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+.brand{gap:12px;letter-spacing:-.35px}
+.wordmark{display:inline-flex;align-items:baseline;gap:5px;font-size:22px;font-weight:850;letter-spacing:-1.05px;line-height:1;color:var(--text);white-space:nowrap}
+.wordmark span:first-child{color:var(--text)}
+.wordmark span:last-child{color:var(--brand-word,#08754a)}
+.brandmark,.mark{background:linear-gradient(145deg,#10b981 0%,#08754a 52%,#063d2b 100%)!important;color:#fff!important;box-shadow:0 7px 20px #08754a26!important}
+.brandmark:before,.mark:before{color:#fff!important}
+:root{--brand-word:#08754a}
+[data-theme=dark]{--brand-word:#34d399}
+[data-theme=dark] .wordmark span:first-child{color:#f1f7f3}
+[data-theme=dark] .wordmark span:last-child{color:#34d399}
+[data-theme=dark] .brandmark,[data-theme=dark] .mark{background:linear-gradient(145deg,#10b981 0%,#08754a 52%,#063d2b 100%)!important;color:#fff!important}
+@media(max-width:540px){.wordmark{font-size:19px;letter-spacing:-.8px}.brand{gap:9px}}
+
+
+/* Custom, theme-aware frequency dropdown. Native select remains as the calculation value source. */
+.control.custom-select-shell{padding:0;position:relative;display:block;min-height:48px;overflow:visible}
+.control.custom-select-shell::after{content:"";position:absolute;right:17px;top:20px;width:8px;height:8px;border-right:2px solid var(--green);border-bottom:2px solid var(--green);transform:rotate(45deg);pointer-events:none;transition:transform .15s ease}
+.control.custom-select-shell.is-open::after{transform:translateY(4px) rotate(225deg)}
+.control.custom-select-shell .native-select{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;left:0;bottom:0;padding:0!important}
+.custom-select-trigger{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:46px;padding:11px 42px 11px 12px;border:0;border-radius:11px;background:transparent;color:var(--text);font:inherit;font-weight:750;text-align:left;cursor:pointer}
+.custom-select-trigger:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.custom-select-menu{position:absolute;top:calc(100% + 7px);left:0;right:0;z-index:50;padding:5px;background:var(--surface);border:1px solid var(--line);border-radius:13px;box-shadow:0 14px 34px #07110c25;max-height:240px;overflow-y:auto}
+.custom-select-menu[hidden]{display:none!important}
+.custom-select-option{display:flex;align-items:center;justify-content:space-between;width:100%;padding:10px 12px;border:0;border-radius:8px;background:transparent;color:var(--text);font:inherit;font-size:14px;text-align:left;cursor:pointer}
+.custom-select-option:hover,.custom-select-option:focus-visible{outline:none;background:var(--surface2)}
+.custom-select-option[aria-selected="true"]{background:var(--mint);color:var(--green);font-weight:800}
+.custom-select-option[aria-selected="true"]::after{content:"✓";font-weight:900;color:var(--green)}
+[data-theme=dark] .custom-select-menu{background:#0e1b14;border-color:#2b4433;box-shadow:0 16px 36px #0008}
+[data-theme=dark] .custom-select-option{color:#edf7f0}
+[data-theme=dark] .custom-select-option:hover,[data-theme=dark] .custom-select-option:focus-visible{background:#193b29}
+[data-theme=dark] .custom-select-option[aria-selected="true"]{background:#193b29;color:#73e4a9}
+@media(prefers-reduced-motion:reduce){.control.custom-select-shell::after{transition:none}}
+
+</style>
+<style id="readability-and-chart-fixes">
+/* Keep SIP calculation notes inside the card on every viewport. */
+#sipView .footnote,#sipView #tableNote{display:block;max-width:100%;width:100%;box-sizing:border-box;padding:12px 18px 18px;margin:0;color:var(--muted);font-size:12px;line-height:1.65;white-space:normal;overflow-wrap:anywhere;word-break:normal;hyphens:auto;}
+#sipView .card,#sipView .table-card,#sipView .chart-card{min-width:0;max-width:100%;}
+#sipView .table-head{flex-wrap:wrap;align-items:center;}
+#sipView .table-head .export-btn{flex-shrink:0;}
+#sipView .chart-card{overflow:hidden;}
+#sipView .chart-card canvas{width:100%;max-width:100%;height:auto;display:block;touch-action:pan-y;}
+.chartbox{min-width:0;max-width:100%;overflow:hidden;}
+.chartbox .kicker{line-height:1.4;overflow-wrap:anywhere;}
+#genericChart{width:100%;max-width:100%;height:180px;display:block;}
+@media(max-width:540px){#sipView .footnote,#sipView #tableNote{padding:10px 14px 15px;font-size:11.5px;}#sipView .chart-head{align-items:flex-start;}#sipView .legend{flex-wrap:wrap;}}
+</style>
+<style id="projection-layout-fix">
+#sipView .table-card,#sipView .table-head,#sipView .table-head .section-title{min-width:0;max-width:100%;}
+#sipView .table-head .section-title{white-space:normal;overflow-wrap:anywhere;line-height:1.35;}
+#sipView tbody tr{min-width:0;max-width:100%;}
+#sipView tbody td{min-width:0;max-width:100%;}
+#sipView tbody td:not(:first-child){display:flex;flex-wrap:wrap;align-items:flex-start;}
+#sipView tbody td::before{overflow-wrap:anywhere;}
+#sipView tbody td:not(:first-child){word-break:normal;}
+#sipView .badge{white-space:normal;max-width:100%;}
+#sipView .chart-card canvas{width:100%;display:block;}
+@media(max-width:560px){#sipView tbody td:not(:first-child){gap:4px;flex-direction:column;align-items:flex-start;text-align:left;}#sipView tbody td:not(:first-child)::before{flex:auto;}#sipView tbody td:not(:first-child){overflow-wrap:anywhere;}}
+</style>
+</head><body><header class="wrap nav"><a class="brand" href="index.html"><span class="mark" aria-hidden="true">₹</span><span class="wordmark"><span>Zero</span><span> Wealth</span></span></a><div class="navright"><a class="btn" href="index.html">← SIP calculator</a><button class="iconbtn" id="themeBtn" aria-label="Toggle theme">☾</button></div></header>
+<main class="wrap"><section class="hero"><div class="kicker">THE ZERO WEALTH TOOLKIT</div><h1>Turn your money questions<br>into clearer numbers.</h1><p>Change the assumptions to explore scenarios. These calculators provide estimates for educational and planning purposes, not guaranteed outcomes.</p></section>
+<div class="layout"><aside class="sidebar"><div class="sidehead">Choose a calculator</div>
+<button class="toolbtn" data-tool="sip"><span class="ico">↗</span><span><strong>SIP Calculator</strong><small>Build a monthly investment plan</small></span></button>
+<button class="toolbtn" data-tool="emi"><span class="ico">⌂</span><span><strong>EMI Calculator</strong><small>Plan monthly loan payments</small></span></button>
+<button class="toolbtn" data-tool="lumpsum"><span class="ico">◈</span><span><strong>Lumpsum</strong><small>One-time investment growth</small></span></button>
+<button class="toolbtn" data-tool="compare"><span class="ico">⇄</span><span><strong>SIP vs Lumpsum</strong><small>Compare investment approaches</small></span></button>
+<button class="toolbtn" data-tool="compound"><span class="ico">∑</span><span><strong>Compound Interest</strong><small>See compounding at work</small></span></button>
+<button class="toolbtn" data-tool="fd"><span class="ico">▤</span><span><strong>FD Calculator</strong><small>Estimate deposit maturity</small></span></button>
+<button class="toolbtn" data-tool="swp"><span class="ico">↘</span><span><strong>SWP Calculator</strong><small>Plan regular withdrawals</small></span></button>
+<button class="toolbtn" data-tool="ppf"><span class="ico">▦</span><span><strong>PPF Calculator</strong><small>Project long-term savings</small></span></button>
+<button class="toolbtn" data-tool="inflation"><span class="ico">⌁</span><span><strong>Inflation Calculator</strong><small>Future costs and purchasing power</small></span></button>
+<button class="toolbtn" data-tool="retirement"><span class="ico">◎</span><span><strong>Retirement Calculator</strong><small>Find your target corpus</small></span></button></aside>
+<section class="main"><div class="panel" id="genericPanel"><div class="panelhead"><div><div class="kicker" id="category">INVESTING</div><h2 id="title">Lumpsum Calculator</h2><p id="desc">Estimate how a one-time investment could grow.</p></div><span class="pill">Instant estimate</span></div><form id="calcForm"><div class="fields" id="fields"></div><div class="actions"><button class="btn primary" type="submit">Calculate results ↗</button><button class="btn" type="button" id="resetBtn">Reset defaults</button></div></form><div class="resultgrid"><div class="metric"><label id="label1">Amount invested</label><strong id="value1">—</strong><small id="sub1">Your contribution</small></div><div class="metric"><label id="label2">Estimated growth</label><strong id="value2">—</strong><small id="sub2">Illustrative only</small></div><div class="metric primary"><label id="label3">Future value</label><strong id="value3">—</strong><small id="sub3">At the end of the period</small></div></div><div class="breakdown"><h3>Calculation breakdown</h3><div class="rows" id="rows"></div><div class="chartbox"><div class="kicker">ILLUSTRATIVE PROJECTION</div><canvas id="genericChart" width="700" height="180" aria-label="Projection chart"></canvas></div></div><p class="note" id="note">Results are estimates based on your inputs. Actual outcomes may vary.</p></div><section id="sipView" class="hide" aria-label="SIP calculator">
+  <div class="sip-heading"><div><div class="kicker">INVESTING</div><h2>Build Your Wealth, Month by Month</h2><p>Project your SIP, yearly step-ups and lump sums — with inflation-adjusted results.</p></div><div class="sip-head-actions"><div class="toggle-pill" id="modeToggle" role="group" aria-label="Value display mode"><button type="button" data-mode="nominal" class="active" title="Future rupee value">Normal</button><button type="button" data-mode="real" title="Inflation-adjusted value">Real value</button></div><span class="pill">Advanced calculator</span></div></div>
+  <div class="grid">
+<!-- INPUT PANEL -->
+<section class="card panel">
+<h2>Your Plan</h2>
+<div class="field">
+<label>Monthly SIP amount</label>
+<div class="input-shell">
+<span class="prefix">₹</span>
+<input id="sip" min="0" step="500" type="number" value="10000"/>
+</div>
+</div>
+<div class="row2">
+<div class="field">
+<label>Step-up / year</label>
+<div class="input-shell">
+<input id="stepup" min="0" step="1" type="number" value="10"/>
+<span class="suffix">%</span>
+</div>
+</div>
+<div class="field">
+<label>Expected return</label>
+<div class="input-shell">
+<input id="return" min="0" step="0.5" type="number" value="12"/>
+<span class="suffix">%</span>
+</div>
+</div>
+</div>
+<div class="field">
+<label>SIP starts in</label>
+<div class="row2">
+<div class="input-shell">
+<select id="startMonth"></select>
+</div>
+<div class="input-shell">
+<input id="startYear" max="2100" min="2000" step="1" type="number" value="2026"/>
+</div>
+</div>
+</div>
+<div class="row2">
+<div class="field">
+<label>SIP tenure</label>
+<div class="input-shell">
+<input id="sipYears" min="1" step="1" type="number" value="10"/>
+<span class="suffix">yrs</span>
+</div>
+</div>
+<div class="field">
+<label>Total tenure</label>
+<div class="input-shell">
+<input id="totalYears" min="1" step="1" type="number" value="15"/>
+<span class="suffix">yrs</span>
+</div>
+</div>
+</div>
+<div class="hint" id="tenureHint">SIP runs 10 yrs, then your corpus keeps growing for 5 more years.</div>
+<div class="field" id="inflationField" style="display:none;">
+<label>Expected inflation</label>
+<div class="input-shell">
+<input id="inflation" min="0" step="0.5" type="number" value="6"/>
+<span class="suffix">%</span>
+</div>
+<div class="hint">Used to show the corpus in today's purchasing power.</div>
+</div>
+<hr class="div"/>
+<div class="section-title">Lump sum investments</div>
+<div id="lumpList"></div>
+<div class="empty-lump" id="emptyLump">No lump sums yet. Add a bonus, gift or windfall.</div>
+<button class="add-btn" id="addLump">＋ Add lump sum</button>
+</section>
+<!-- RESULTS -->
+<section class="results">
+<div class="mode-banner" id="modeBanner"></div>
+<div class="cards">
+<div class="card stat">
+<div class="label"><span class="dot" style="background:var(--invested)"></span>Total invested</div>
+<div class="value" id="cInvested">—</div>
+<div class="sub" id="cInvestedSub"></div>
+</div>
+<div class="card stat">
+<div class="label"><span class="dot" style="background:var(--accent)"></span>Estimated gains</div>
+<div class="value pos" id="cGains">—</div>
+<div class="sub" id="cGainsSub"></div>
+</div>
+<div class="card stat accent">
+<div class="label">Final corpus</div>
+<div class="value" id="cCorpus">—</div>
+<div class="sub" id="cCorpusSub"></div>
+</div>
+</div>
+<div class="card chart-card">
+<div class="chart-head">
+<div class="section-title" style="margin:0;">Growth over time</div>
+<div class="legend">
+<span><i style="background:var(--invested)"></i> Invested</span>
+<span><i style="background:var(--accent)"></i> Value</span>
+</div>
+</div>
+<canvas height="300" id="chart"></canvas>
+</div>
+<div class="card">
+<div class="tag-table table-head">
+<span class="section-title" style="margin:0;">Your Year-by-Year Wealth Projection</span>
+<button class="export-btn" id="exportCsv" title="Download as CSV">⤓ Export CSV</button>
+</div>
+<div class="table-card">
+<table>
+<thead>
+<tr>
+<th>Year</th><th>Period</th><th>SIP (yr)</th><th>Lump sum (yr)</th><th>Total invested</th><th id="thValue">Value</th><th id="thGains">Gains</th>
+</tr>
+</thead>
+<tbody id="tableBody"></tbody>
+</table>
+</div>
+<div class="footnote" id="tableNote"></div>
+</div>
+</section>
+</div>
+</section></section></div></main><footer class="wrap foot">© <span id="year"></span> Zero Wealth · For educational and planning purposes only. Returns, interest rates and tax rules can change. Verify product terms before making financial decisions.</footer>
+<script>(function(){
+
+"use strict";
+const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+let mode = "nominal";          // 'nominal' | 'real'
+let lastCalc = null;           // cached computation for chart redraw
+let chartGeom = null;          // chart geometry for hover
+
+// ---------- helpers ----------
+const $ = id => document.getElementById(id);
+const num = id => parseFloat($(id).value) || 0;
+
+function fmtINR(v) {
+  return "₹" + Math.round(v).toLocaleString("en-IN");
+}
+function fmtShort(v) {
+  const a = Math.abs(v), s = v < 0 ? "-" : "";
+  if (a >= 1e7) return s + "₹" + (a / 1e7).toFixed(2) + " Cr";
+  if (a >= 1e5) return s + "₹" + (a / 1e5).toFixed(2) + " L";
+  if (a >= 1e3) return s + "₹" + (a / 1e3).toFixed(1) + "k";
+  return s + "₹" + Math.round(a);
+}
+// month index (0-based from start) -> "Mon YYYY"
+function monthLabel(startMonth, startYear, offset) {
+  const abs = startMonth + offset;
+  const y = startYear + Math.floor(abs / 12);
+  return MONTHS[((abs % 12) + 12) % 12] + " " + y;
+}
+
+// ---------- populate month dropdown ----------
+(function initMonths() {
+  const sel = $("startMonth");
+  MONTHS.forEach((m, i) => {
+    const o = document.createElement("option");
+    o.value = i; o.textContent = m;
+    if (i === 5) o.selected = true; // June default
+    sel.appendChild(o);
+  });
+})();
+
+// ---------- lump sum rows ----------
+function makeLumpRow() {
+  const row = document.createElement("div");
+  row.className = "lump-row";
+
+  const yearShell = document.createElement("div"); yearShell.className = "input-shell";
+  const yearSel = document.createElement("select"); yearShell.appendChild(yearSel);
+
+  const amtShell = document.createElement("div"); amtShell.className = "input-shell";
+  const pfx = document.createElement("span"); pfx.className = "prefix"; pfx.textContent = "₹";
+  const amt = document.createElement("input"); amt.type = "number"; amt.min = "0"; amt.step = "1000"; amt.placeholder = "50,000";
+  amtShell.appendChild(pfx); amtShell.appendChild(amt);
+
+  const del = document.createElement("button"); del.className = "del-btn"; del.textContent = "✕";
+  del.onclick = () => { row.remove(); refreshLumpEmpty(); recalc(); };
+
+  row.appendChild(yearShell); row.appendChild(amtShell); row.appendChild(del);
+  row._year = yearSel; row._amt = amt;
+
+  yearSel.onchange = recalc;
+  amt.oninput = recalc;
+
+  fillYearOptions(yearSel);
+  return row;
+}
+
+function fillYearOptions(sel) {
+  const total = Math.max(1, Math.round(num("totalYears")));
+  const prev = sel.value;
+  sel.innerHTML = "";
+  const sm = parseInt($("startMonth").value, 10), sy = num("startYear");
+  for (let y = 0; y < total; y++) {
+    const o = document.createElement("option");
+    o.value = y;
+    o.textContent = "Year " + (y + 1) + " (" + monthLabel(sm, sy, y * 12).split(" ")[1] + ")";
+    sel.appendChild(o);
+  }
+  if (prev !== "" && +prev < total) sel.value = prev;
+}
+
+function refreshLumpEmpty() {
+  $("emptyLump").style.display = $("lumpList").children.length ? "none" : "block";
+}
+
+function readLumps() {
+  // returns { monthIndex: totalAmount }
+  const map = {};
+  for (const row of $("lumpList").children) {
+    const y = parseInt(row._year.value, 10) || 0;
+    const amt = parseFloat(row._amt.value) || 0;
+    if (amt <= 0) continue;
+    const t = y * 12;   // invested at the start of the chosen year
+    map[t] = (map[t] || 0) + amt;
+  }
+  return map;
+}
+
+$("addLump").onclick = () => {
+  $("lumpList").appendChild(makeLumpRow());
+  refreshLumpEmpty();
+  recalc();
+};
+
+// ---------- core calculation ----------
+function compute() {
+  const baseSIP = num("sip");
+  const g = num("stepup") / 100;
+  const i = num("return") / 100 / 12;     // monthly rate (r/12 convention)
+  const infl = num("inflation") / 100;
+  const totalY = Math.max(1, Math.round(num("totalYears")));
+  let sipY = Math.max(0, Math.round(num("sipYears")));
+  const clamped = sipY > totalY;
+  if (clamped) sipY = totalY;
+
+  const M = totalY * 12;
+  const sipMonths = sipY * 12;
+  const lumps = readLumps();
+
+  let balance = 0, investedCum = 0, sipCum = 0, lumpCum = 0;
+  let investedCumR = 0, sipCumR = 0, lumpCumR = 0;   // deflated to today (real)
+  const rows = [];               // per-year breakdown
+  let prevSip = 0, prevLump = 0, prevSipR = 0, prevLumpR = 0;
+
+  for (let t = 0; t < M; t++) {
+    const yIdx = Math.floor(t / 12);
+    let sipAmt = 0, lumpAmt = 0;
+    if (t < sipMonths) sipAmt = baseSIP * Math.pow(1 + g, yIdx);
+    if (lumps[t]) lumpAmt = lumps[t];
+    const contrib = sipAmt + lumpAmt;
+    balance += contrib;
+    investedCum += contrib;
+    sipCum += sipAmt; lumpCum += lumpAmt;
+    // deflate each contribution by the inflation since it was paid (t months = t/12 years)
+    const d = Math.pow(1 + infl, t / 12);
+    investedCumR += contrib / d; sipCumR += sipAmt / d; lumpCumR += lumpAmt / d;
+    balance *= (1 + i);
+    if (t % 12 === 11) {
+      rows.push({
+        yIdx,
+        sipYear: sipCum - prevSip,
+        lumpYear: lumpCum - prevLump,
+        investedCum,
+        sipYearR: sipCumR - prevSipR,
+        lumpYearR: lumpCumR - prevLumpR,
+        investedCumR,
+        value: balance
+      });
+      prevSip = sipCum; prevLump = lumpCum; prevSipR = sipCumR; prevLumpR = lumpCumR;
+    }
+  }
+
+  return {
+    totalInvested: investedCum,
+    totalInvestedR: investedCumR,
+    finalValue: balance,
+    rows, totalY, sipY, clamped, infl,
+    startMonth: parseInt($("startMonth").value, 10),
+    startYear: num("startYear")
+  };
+}
+
+// deflate to today's money for "real" mode
+function deflate(v, infl, years) { return v / Math.pow(1 + infl, years); }
+
+// ---------- render ----------
+function recalc() {
+  const c = compute();
+  lastCalc = c;
+  const real = mode === "real";
+  const infl = c.infl;
+
+  // mode banner — make the two modes unmistakable
+  $("modeBanner").innerHTML = real
+    ? "<span class='tag'>Real</span><span><b>Inflation-adjusted</b> — showing <b>today's purchasing power</b>, your future corpus deflated at <b>" + num("inflation") + "% inflation</b>. This is what the money would actually be worth now.</span>"
+    : "<span class='tag'>Normal</span><span>Showing the <b>actual rupee value</b> you'll have on maturity (not adjusted for inflation). Switch to <b>Real</b> for the inflation-adjusted, today's-money value.</span>";
+
+  // headline cards
+  const corpusN = c.finalValue;
+  const corpus = real ? deflate(corpusN, infl, c.totalY) : corpusN;
+  const invested = real ? c.totalInvestedR : c.totalInvested;
+  const gains = corpus - invested;
+
+  $("cInvested").textContent = fmtINR(invested);
+  $("cInvestedSub").textContent = real
+    ? fmtShort(invested) + " in today's ₹"
+    : fmtShort(invested) + " over " + c.totalY + " yrs";
+  $("cGains").textContent = fmtINR(gains);
+  $("cGains").className = "value " + (gains >= 0 ? "pos" : "");
+  $("cGains").style.color = gains < 0 ? "var(--danger)" : "";
+  const mult = invested > 0 ? (corpus / invested) : 0;
+  $("cGainsSub").textContent = real ? mult.toFixed(2) + "× (real)" : mult.toFixed(2) + "× your money";
+  $("cCorpus").textContent = fmtINR(corpus);
+  $("cCorpusSub").textContent = real
+    ? "today's value · " + fmtShort(corpusN) + " nominal"
+    : fmtShort(corpusN) + " by " + monthLabel(c.startMonth, c.startYear, c.totalY * 12 - 1);
+
+  // tenure hint
+  const gap = c.totalY - c.sipY;
+  $("tenureHint").innerHTML = c.clamped
+    ? "<span class='warn'>SIP tenure capped to total tenure (" + c.totalY + " yrs).</span>"
+    : "SIP runs " + c.sipY + " yr" + (c.sipY !== 1 ? "s" : "") +
+      (gap > 0 ? ", then your corpus keeps growing for " + gap + " more yr" + (gap !== 1 ? "s" : "") + "." : ".");
+
+  // table
+  const tb = $("tableBody");
+  tb.innerHTML = "";
+  c.rows.forEach(r => {
+    const val = real ? deflate(r.value, infl, r.yIdx + 1) : r.value;
+    const sipY = real ? r.sipYearR : r.sipYear;
+    const lumpY = real ? r.lumpYearR : r.lumpYear;
+    const invCum = real ? r.investedCumR : r.investedCum;
+    const g = val - invCum;
+    const isStop = (r.yIdx + 1) === c.sipY && c.totalY > c.sipY;
+    const period = monthLabel(c.startMonth, c.startYear, r.yIdx * 12).split(" ")[0] + " " +
+                   monthLabel(c.startMonth, c.startYear, r.yIdx * 12).split(" ")[1] + " – " +
+                   monthLabel(c.startMonth, c.startYear, r.yIdx * 12 + 11);
+    const tr = document.createElement("tr");
+    const valLbl = real ? "Value (today's ₹)" : "Value";
+    tr.innerHTML =
+      "<td data-label='Year'>" + (r.yIdx + 1) + (isStop ? "<span class='badge'>SIP ends</span>" : "") + "</td>" +
+      "<td data-label='Period'>" + period + "</td>" +
+      "<td data-label='SIP (yr)'>" + (sipY > 0 ? fmtINR(sipY) : "—") + "</td>" +
+      "<td data-label='Lump sum (yr)'>" + (lumpY > 0 ? fmtINR(lumpY) : "—") + "</td>" +
+      "<td data-label='Total invested'>" + fmtINR(invCum) + "</td>" +
+      "<td data-label='" + valLbl + "'>" + fmtINR(val) + "</td>" +
+      "<td data-label='Gains' class='" + (g >= 0 ? "pos" : "") + "'>" + fmtINR(g) + "</td>";
+    tb.appendChild(tr);
+  });
+
+  $("thValue").textContent = real ? "Value (today's ₹)" : "Value";
+  $("thGains").textContent = "Gains";
+  $("tableNote").textContent = real
+    ? "Everything (SIP, lump sum, invested, value & gains) shown in today's purchasing power, deflated at " + num("inflation") + "% inflation. Gains = real value − real invested, so both sides are on the same footing."
+    : "Nominal values. Monthly rate = annual return ÷ 12. Contributions assumed at the start of each month.";
+
+  drawChart();
+}
+
+// ---------- chart ----------
+function drawChart(hoverIdx) {
+  const c = lastCalc; if (!c) return;
+  const real = mode === "real";
+  const canvas = $("chart");
+  const dpr = window.devicePixelRatio || 1;
+  const cssW = canvas.clientWidth || 600;
+  const cssH = cssW < 420 ? 230 : (cssW < 680 ? 265 : 300);  // shorter on small screens
+  canvas.style.height = cssH + "px";
+  canvas.width = cssW * dpr; canvas.height = cssH * dpr;
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, cssW, cssH);
+
+  const cs = getComputedStyle(document.documentElement);
+  // SIP theme tokens live on #sipView; use brand tokens as safe fallbacks.
+  const cssVar = (name, fallback) => cs.getPropertyValue(name).trim() || fallback;
+  const accent = cssVar("--accent", cssVar("--green", "#10b981"));
+  const investedCol = cssVar("--invested", "#81958a");
+  const border = cssVar("--border", cssVar("--line", "#dce5de"));
+  const muted = cssVar("--muted", "#66766f");
+  const surface = cssVar("--surface", "#ffffff");
+  const text = cssVar("--text", "#14251f");
+
+  // series: index 0..N
+  const N = c.totalY;
+  const valArr = [0], invArr = [0];
+  c.rows.forEach(r => {
+    valArr.push(real ? deflate(r.value, c.infl, r.yIdx + 1) : r.value);
+    invArr.push(real ? r.investedCumR : r.investedCum);
+  });
+  const maxY = Math.max(...valArr, 1);
+
+  const padL = cssW < 420 ? 48 : 56, padR = 14, padT = 14, padB = 30;
+  const plotW = Math.max(1, cssW - padL - padR), plotH = Math.max(1, cssH - padT - padB);
+  const X = i => padL + plotW * (i / N);
+  const Y = v => padT + plotH * (1 - v / maxY);
+  chartGeom = { N, padL, padR, padT, padB, plotW, plotH, valArr, invArr, X, Y, cssW, cssH };
+
+  // gridlines + y labels
+  ctx.font = "11px Inter, sans-serif"; ctx.textBaseline = "middle";
+  const ticks = 4;
+  for (let k = 0; k <= ticks; k++) {
+    const v = maxY * k / ticks, y = Y(v);
+    ctx.strokeStyle = border; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(cssW - padR, y); ctx.stroke();
+    ctx.fillStyle = muted; ctx.textAlign = "right";
+    ctx.fillText(fmtShort(v).replace("₹", ""), padL - 8, y);
+  }
+  // x labels
+  ctx.textAlign = "center"; ctx.textBaseline = "top";
+  const step = N > 16 ? Math.ceil(N / 12) : (N > 8 ? 2 : 1);
+  for (let i = 0; i <= N; i += step) {
+    ctx.fillStyle = muted;
+    ctx.fillText(c.startYear + i, X(i), cssH - padB + 8);
+  }
+
+  // area fill helper
+  function area(arr, fill) {
+    ctx.beginPath();
+    ctx.moveTo(X(0), Y(arr[0]));
+    for (let i = 1; i < arr.length; i++) ctx.lineTo(X(i), Y(arr[i]));
+    ctx.lineTo(X(N), Y(0)); ctx.lineTo(X(0), Y(0)); ctx.closePath();
+    ctx.fillStyle = fill; ctx.fill();
+  }
+  function line(arr, col) {
+    ctx.beginPath(); ctx.moveTo(X(0), Y(arr[0]));
+    for (let i = 1; i < arr.length; i++) ctx.lineTo(X(i), Y(arr[i]));
+    ctx.strokeStyle = col; ctx.lineWidth = 2.5; ctx.lineJoin = "round"; ctx.stroke();
+  }
+
+  // value area (green), then invested area (gray) on top -> green = gains band, gray = principal
+  const grad = ctx.createLinearGradient(0, padT, 0, padT + plotH);
+  grad.addColorStop(0, accent + "55"); grad.addColorStop(1, accent + "08");
+  area(valArr, grad);
+  area(invArr, investedCol + "33");
+  line(valArr, accent);
+  line(invArr, investedCol);
+
+  // hover
+  if (hoverIdx != null && hoverIdx >= 0 && hoverIdx <= N) {
+    const hx = X(hoverIdx);
+    ctx.strokeStyle = muted; ctx.lineWidth = 1; ctx.setLineDash([4, 4]);
+    ctx.beginPath(); ctx.moveTo(hx, padT); ctx.lineTo(hx, padT + plotH); ctx.stroke();
+    ctx.setLineDash([]);
+    [[valArr[hoverIdx], accent], [invArr[hoverIdx], investedCol]].forEach(([v, col]) => {
+      ctx.beginPath(); ctx.arc(hx, Y(v), 4.5, 0, 7); ctx.fillStyle = col; ctx.fill();
+      ctx.strokeStyle = surface; ctx.lineWidth = 2; ctx.stroke();
+    });
+    // tooltip box
+    const lines = [
+      (c.startYear + hoverIdx) + (hoverIdx === 0 ? " (start)" : ""),
+      "Value: " + fmtShort(valArr[hoverIdx]),
+      "Invested: " + fmtShort(invArr[hoverIdx])
+    ];
+    ctx.font = "12px Inter, sans-serif"; ctx.textAlign = "left"; ctx.textBaseline = "top";
+    const bw = 132, bh = 58;
+    let bx = hx + 12; if (bx + bw > cssW) bx = hx - bw - 12;
+    bx = Math.max(4, Math.min(cssW - bw - 4, bx));
+    const by = padT + 6;
+    ctx.fillStyle = surface; ctx.strokeStyle = border; ctx.lineWidth = 1;
+    if (ctx.roundRect) { ctx.beginPath(); ctx.roundRect(bx, by, bw, bh, 8); ctx.fill(); ctx.stroke(); }
+    else { ctx.fillRect(bx, by, bw, bh); ctx.strokeRect(bx, by, bw, bh); }
+    ctx.fillStyle = text; ctx.font = "700 12px Inter, sans-serif";
+    ctx.fillText(lines[0], bx + 10, by + 9);
+    ctx.font = "12px Inter, sans-serif"; ctx.fillStyle = muted;
+    ctx.fillText(lines[1], bx + 10, by + 26);
+    ctx.fillText(lines[2], bx + 10, by + 41);
+  }
+}
+
+$("chart").addEventListener("mousemove", e => {
+  if (!chartGeom) return;
+  const rect = $("chart").getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  let idx = Math.round((mx - chartGeom.padL) / chartGeom.plotW * chartGeom.N);
+  idx = Math.max(0, Math.min(chartGeom.N, idx));
+  drawChart(idx);
+});
+$("chart").addEventListener("mouseleave", () => drawChart());
+
+// ---------- CSV export ----------
+$("exportCsv").addEventListener("click", () => {
+  const c = lastCalc; if (!c) return;
+  const real = mode === "real";
+  const u = real ? " (today's INR)" : " (INR)";
+  const rows = [["Year", "Period", "SIP this year" + u, "Lump sum this year" + u, "Total invested" + u, "Value" + u, "Gains" + u]];
+  c.rows.forEach(r => {
+    const val = real ? deflate(r.value, c.infl, r.yIdx + 1) : r.value;
+    const sipY = real ? r.sipYearR : r.sipYear;
+    const lumpY = real ? r.lumpYearR : r.lumpYear;
+    const invCum = real ? r.investedCumR : r.investedCum;
+    const period = monthLabel(c.startMonth, c.startYear, r.yIdx * 12) + " - " +
+                   monthLabel(c.startMonth, c.startYear, r.yIdx * 12 + 11);
+    rows.push([
+      r.yIdx + 1, period,
+      Math.round(sipY), Math.round(lumpY), Math.round(invCum),
+      Math.round(val), Math.round(val - invCum)
+    ]);
+  });
+  const csv = rows.map(r => r.map(cell => {
+    const s = String(cell);
+    return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  }).join(",")).join("\r\n");
+  const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "sip-breakdown-" + (real ? "real" : "nominal") + ".csv";
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+});
+
+// ---------- toggles ----------
+$("modeToggle").addEventListener("click", e => {
+  const btn = e.target.closest("button"); if (!btn) return;
+  mode = btn.dataset.mode;
+  [...$("modeToggle").children].forEach(b => b.classList.toggle("active", b === btn));
+  $("inflationField").style.display = mode === "real" ? "block" : "none";
+  recalc();
+});
+
+window.addEventListener('zw-theme-change',()=>{if(lastCalc){drawChart();}});
+window.refreshSipCalculator=()=>{recalc();drawChart();};
+
+// ---------- wire inputs ----------
+["sip","stepup","return","inflation","sipYears","totalYears","startYear"].forEach(id =>
+  $(id).addEventListener("input", () => {
+    // keep lump-sum year options in sync with the timeline
+    for (const row of $("lumpList").children) fillYearOptions(row._year);
+    recalc();
+  })
+);
+$("startMonth").addEventListener("change", () => {
+  for (const row of $("lumpList").children) fillYearOptions(row._year);
+  recalc();
+});
+
+window.addEventListener("resize", () => drawChart());
+
+// ---------- seed with a sample lump sum so the feature is discoverable ----------
+(function seed() {
+  const row = makeLumpRow();
+  $("lumpList").appendChild(row);
+  row._year.value = "4"; // Year 5
+  row._amt.value = "100000";
+  refreshLumpEmpty();
+  recalc();
+})();
+
+})();</script>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);const fmt=n=>'₹'+Math.round(Number(n)||0).toLocaleString('en-IN');const num=id=>Math.max(0,Number($(id)?.value)||0);const pct=id=>num(id)/100;const money=(id,label,def,min=0,step=1000)=>({id,label,def,min,step,prefix:'₹',type:'number'});const rate=(id,label,def,step=.5)=>({id,label,def,min:0,step,suffix:'%'});const years=(id,label,def,min=1,max=100)=>({id,label,def,min,max,step:1,suffix:'years'});const monthly=(id,label,def)=>({id,label,def,min:0,step:500,prefix:'₹',type:'number'});
+const configs={
+lumpsum:{title:'Give Your Money a Head Start',category:'INVESTING',desc:'Project how a one-time investment may compound over the years.',fields:[money('amount','Initial investment',100000,0,5000),rate('return','Expected annual return',12),years('tenure','Investment period',10)],run:v=>{let invested=v.amount, fv=invested*Math.pow(1+v.return/100,v.tenure);return result(invested,fv-invested,fv,[['Initial investment',fmt(invested)],['Annual return assumption',v.return+'%'],['Investment period',v.tenure+' years'],['Compounding assumption','Annual effective growth']],[invested],[fv]);}},
+compare:{title:'SIP or Lumpsum: Which Fits Your Plan?',category:'INVESTING',desc:'Compare monthly investing with investing the same amount upfront.',fields:[money('amount','Total amount available',120000,0,5000),rate('return','Expected annual return',12),years('tenure','Investment period',10)],run:v=>{let r=Math.pow(1+v.return/100,1/12)-1,n=Math.round(v.tenure*12),monthlyAmt=n?v.amount/n:0, sip=monthlyAmt*(r?((Math.pow(1+r,n)-1)/r):n),lump=v.amount*Math.pow(1+v.return/100,v.tenure);return {metrics:[['Total invested',fmt(v.amount),'Same total contribution'],['SIP estimated value',fmt(sip),'Monthly contributions'],['Lumpsum estimated value',fmt(lump),'Invested at start']],rows:[['Total contribution',fmt(v.amount)],['Monthly SIP amount',fmt(monthlyAmt)],['SIP estimated gains',fmt(sip-v.amount)],['Lumpsum estimated gains',fmt(lump-v.amount)],['Return assumption',v.return+'%'],['Period',v.tenure+' years']],series:[[...Array(n+1)].map((_,i)=>monthlyAmt*i),[...Array(n+1)].map((_,i)=>monthlyAmt*i?monthlyAmt*((r?((Math.pow(1+r,i)-1)/r):i)):0),[...Array(n+1)].map((_,i)=>v.amount*Math.pow(1+v.return/100,i/12))],note:'This comparison assumes the same total contribution, evenly divided into monthly instalments for the SIP case. Market returns are not guaranteed.'};}},
+swp:{title:'Make Your Corpus Pay You Back',category:'INVESTING',desc:'Estimate regular withdrawals and see how long your invested money may last.',fields:[money('corpus','Starting corpus',1000000,0,10000),monthly('withdrawal','Monthly withdrawal',10000),rate('return','Expected annual return',8),years('tenure','Projection period',20)],run:v=>{let b=v.corpus,inv=v.corpus,total=0,months=Math.round(v.tenure*12),r=Math.pow(1+v.return/100,1/12)-1,series=[b],withdrawn=0,exhausted=0;for(let i=0;i<months;i++){b*=1+r;let w=Math.min(b,v.withdrawal);b-=w;withdrawn+=w;series.push(b);if(b<=0){b=0;exhausted=i+1;for(let j=i+1;j<months;j++)series.push(0);break;}}return {metrics:[['Starting corpus',fmt(inv),'Initial investment'],['Total withdrawals',fmt(withdrawn),'Over projection period'],['Remaining corpus',fmt(b),exhausted?'Corpus depleted during period':'Estimated at period end']],rows:[['Monthly withdrawal',fmt(v.withdrawal)],['Expected annual return',v.return+'%'],['Projection period',v.tenure+' years'],['Corpus status',exhausted?'Depleted after about '+exhausted+' months':'Not depleted in selected period']],series:[series],note:'Assumes monthly compounding and withdrawals at month-end. Actual market volatility, taxes, fees and timing can materially change results.'};}},
+compound:{title:'Let Compounding Do the Heavy Lifting',category:'SAVINGS',desc:'Explore how interest, time and compounding frequency shape your balance.',fields:[money('principal','Initial principal',100000,0,5000),rate('return','Annual interest rate',8),years('tenure','Investment period',10),{id:'frequency',label:'Compounding frequency',def:'4',type:'select',options:[['1','Annually'],['2','Half-yearly'],['4','Quarterly'],['12','Monthly'],['365','Daily']]}],run:v=>{let fv=v.principal*Math.pow(1+v.return/100/v.frequency,v.frequency*v.tenure);return result(v.principal,fv-v.principal,fv,[['Principal',fmt(v.principal)],['Interest rate',v.return+'% p.a.'],['Compounding',({1:'Annually',2:'Half-yearly',4:'Quarterly',12:'Monthly',365:'Daily'})[v.frequency]],['Period',v.tenure+' years']],[v.principal],[...Array(Math.max(1,Math.round(v.tenure))+1)].map((_,i)=>v.principal*Math.pow(1+v.return/100/v.frequency,v.frequency*i)));}},
+fd:{title:'Know Your FD Maturity Before You Invest',category:'SAVINGS',desc:'Estimate deposit maturity and interest from your rate and tenure.',fields:[money('principal','Deposit amount',200000,0,5000),rate('return','Annual interest rate',7),years('tenure','Deposit tenure',3),{id:'frequency',label:'Compounding frequency',def:'4',type:'select',options:[['1','Annually'],['2','Half-yearly'],['4','Quarterly'],['12','Monthly']]}],run:v=>{let fv=v.principal*Math.pow(1+v.return/100/v.frequency,v.frequency*v.tenure);return result(v.principal,fv-v.principal,fv,[['Deposit amount',fmt(v.principal)],['Interest rate',v.return+'% p.a.'],['Compounding',({1:'Annually',2:'Half-yearly',4:'Quarterly',12:'Monthly'})[v.frequency]],['Tenure',v.tenure+' years'],['Tax treatment','Not included']],[v.principal],[...Array(Math.max(1,Math.round(v.tenure))+1)].map((_,i)=>v.principal*Math.pow(1+v.return/100/v.frequency,v.frequency*i)), 'Illustrative estimate before tax. Actual FD terms, compounding conventions and premature withdrawal rules depend on the bank.');}},
+emi:{title:'Know the Real Cost of Your Loan',category:'LOANS',desc:'Calculate monthly EMI, total interest and repayment before you commit.',fields:[money('principal','Loan amount',2500000,0,50000),rate('return','Annual interest rate',8.5),years('tenure','Loan tenure',20)],run:v=>{let n=Math.round(v.tenure*12),r=v.return/1200,emi=r? v.principal*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):(n?v.principal/n:0),total=emi*n,interest=total-v.principal;return {metrics:[['Loan amount',fmt(v.principal),'Principal borrowed'],['Total interest',fmt(interest),'Over full tenure'],['Monthly EMI',fmt(emi),'Estimated instalment']],rows:[['Loan tenure',v.tenure+' years ('+n+' months)'],['Annual interest rate',v.return+'%'],['Total repayment',fmt(total)],['Interest as share of repayment',total?((interest/total)*100).toFixed(1)+'%':'—']],series:[Array.from({length:Math.min(v.tenure,50)+1},(_,i)=>{let m=i*12;return m===0?v.principal:Math.max(0,v.principal*Math.pow(1+r,m)-emi*(r?((Math.pow(1+r,m)-1)/r):m));})],note:'Estimate excludes processing fees, insurance and rate changes. Lender rounding and payment dates may change the final schedule.'};}},
+ppf:{title:'Plan Your Long-Term PPF Growth',category:'SAVINGS',desc:'Estimate how annual contributions may build your PPF balance over time.',fields:[{...money('amount','Annual contribution',150000,0,5000),max:150000},rate('return','Assumed annual interest rate',7.1),years('tenure','Investment period',15,1,50)],run:v=>{let b=0,contrib=0,series=[0];for(let y=0;y<v.tenure;y++){b=(b+v.amount)*(1+v.return/100);contrib+=v.amount;series.push(b);}return result(contrib,b-contrib,b,[['Annual contribution',fmt(v.amount)],['Assumed annual rate',v.return+'%'],['Period',v.tenure+' years'],['Total contributions',fmt(contrib)],['Interest earned',fmt(b-contrib)] ,[ 'Deposit timing','Assumed at start of each year']],[...Array(v.tenure+1)].map((_,i)=>i*v.amount),series,'Illustrative projection. Annual contributions are capped at ₹1,50,000 to reflect the current PPF limit; actual interest crediting depends on deposit timing and current scheme rules.');}},
+inflation:{title:'See What Today’s Money May Buy Tomorrow',category:'PLANNING',desc:'Estimate future costs and how inflation can reduce purchasing power.',fields:[money('amount','Current amount / cost',100000,0,5000),rate('return','Annual inflation rate',6),years('tenure','Time period',10)],run:v=>{let future=v.amount*Math.pow(1+v.return/100,v.tenure),real=v.amount/Math.pow(1+v.return/100,v.tenure);return {metrics:[['Current amount',fmt(v.amount),'Today’s money'],['Future equivalent cost',fmt(future),'At assumed inflation'],['Purchasing power',fmt(real),'Approximate future purchasing power'],],rows:[['Annual inflation assumption',v.return+'%'],['Period',v.tenure+' years'],['Increase in cost',fmt(future-v.amount)],['Future purchasing power',fmt(real)]],series:[[...Array(v.tenure+1)].map((_,i)=>v.amount*Math.pow(1+v.return/100,i))],note:'Inflation varies by category and over time. This is a constant-rate illustration, not a forecast.'};}},
+retirement:{title:'Find Your Retirement Number',category:'PLANNING',desc:'Estimate future monthly expenses, target corpus and savings needed.',fields:[money('amount','Monthly expenses today',50000,0,1000),rate('return','Expected pre-retirement return',10),rate('inflation','Annual inflation',6),years('tenure','Years until retirement',25),years('retire','Years in retirement',25,1,60),rate('postreturn','Expected return during retirement',7)],run:v=>{let exp=v.amount*Math.pow(1+v.inflation/100,v.tenure),r=v.postreturn/1200,n=v.retire*12,corpus=r?exp*((1-Math.pow(1+r,-n))/r):exp*n,pre=Math.pow(1+v.return/100,1/12)-1,m=v.tenure*12,monthlyNeed=pre?corpus*pre/(Math.pow(1+pre,m)-1):corpus/Math.max(1,m);return {metrics:[['Monthly expense at retirement',fmt(exp),'Inflation-adjusted'],['Target retirement corpus',fmt(corpus),'At retirement date'],['Monthly saving target',fmt(monthlyNeed),'Approximate from ₹0 today']],rows:[['Current monthly expenses',fmt(v.amount)],['Inflation assumption',v.inflation+'%'],['Years until retirement',v.tenure],['Retirement duration',v.retire+' years'],['Return before retirement',v.return+'%'],['Return during retirement',v.postreturn+'%'],['Corpus calculation','Monthly expense held constant in real terms only approximately']],series:[[...Array(v.tenure+1)].map((_,i)=>corpus*Math.pow(1+v.return/100,-(v.tenure-i)))],note:'Simplified estimate. It assumes a constant return and a level monthly expense at retirement; taxes, healthcare, pensions, asset allocation and sequence-of-return risk are not modeled.'};}}
+};
+function result(invested,gains,future,rows,invSeries,valSeries,note='Assumes a constant rate and the compounding convention shown. Actual returns may differ.'){return {metrics:[['Amount invested',fmt(invested),'Total contributions'],['Estimated growth',fmt(gains),'Interest / gains'],['Future value',fmt(future),'Illustrative estimate']],rows,series:[invSeries,valSeries],note};}
+let current='sip';function fieldsFor(c){
+  $('fields').innerHTML='';
+  c.fields.forEach(f=>{
+    const d=document.createElement('div');d.className='field';
+    const label=document.createElement('label');label.htmlFor=f.id;label.textContent=f.label;d.append(label);
+    const shell=document.createElement('div');shell.className='control';
+    if(f.prefix){const s=document.createElement('span');s.textContent=f.prefix;shell.append(s)}
+    let el;
+    if(f.type==='select'){
+      el=document.createElement('select');el.className='native-select';
+      f.options.forEach(([value,text])=>{const o=document.createElement('option');o.value=value;o.textContent=text;el.append(o)});
+      el.id=f.id;el.value=f.def;el.required=true;shell.classList.add('custom-select-shell');
+      const trigger=document.createElement('button');trigger.type='button';trigger.className='custom-select-trigger';trigger.setAttribute('aria-haspopup','listbox');trigger.setAttribute('aria-expanded','false');trigger.setAttribute('aria-controls',f.id+'Menu');
+      const currentLabel=()=>f.options.find(([value])=>String(value)===String(el.value))?.[1]||'Choose an option';trigger.textContent=currentLabel();
+      const menu=document.createElement('div');menu.className='custom-select-menu';menu.id=f.id+'Menu';menu.setAttribute('role','listbox');menu.setAttribute('aria-label',f.label);menu.hidden=true;
+      const optionButtons=[];const syncOptions=()=>optionButtons.forEach(btn=>{btn.setAttribute('aria-selected',String(btn.dataset.value===String(el.value)))});
+      f.options.forEach(([value,text])=>{const option=document.createElement('button');option.type='button';option.className='custom-select-option';option.setAttribute('role','option');option.dataset.value=String(value);option.textContent=text;option.addEventListener('click',()=>{el.value=String(value);trigger.textContent=currentLabel();syncOptions();menu.hidden=true;shell.classList.remove('is-open');trigger.setAttribute('aria-expanded','false');trigger.focus();el.dispatchEvent(new Event('change',{bubbles:true}))});optionButtons.push(option);menu.append(option)});
+      const closeMenu=()=>{menu.hidden=true;shell.classList.remove('is-open');trigger.setAttribute('aria-expanded','false')};
+      trigger.addEventListener('click',()=>{const opening=menu.hidden;menu.hidden=!opening;shell.classList.toggle('is-open',opening);trigger.setAttribute('aria-expanded',String(opening));if(opening){syncOptions();const selected=optionButtons.find(btn=>btn.dataset.value===String(el.value));(selected||optionButtons[0])?.focus()}});
+      trigger.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();trigger.focus()}if(e.key==='ArrowDown'&&menu.hidden){e.preventDefault();trigger.click()}});
+      menu.addEventListener('keydown',e=>{const index=optionButtons.indexOf(document.activeElement);if(e.key==='Escape'){e.preventDefault();closeMenu();trigger.focus()}else if(e.key==='ArrowDown'){e.preventDefault();optionButtons[Math.min(index+1,optionButtons.length-1)]?.focus()}else if(e.key==='ArrowUp'){e.preventDefault();optionButtons[Math.max(index-1,0)]?.focus()}else if(e.key==='Tab'){closeMenu()}});
+      document.addEventListener('click',e=>{if(!shell.contains(e.target))closeMenu()});shell.append(el,trigger,menu);
+    }else{el=document.createElement('input');el.type='number';el.min=f.min??0;el.step=f.step??1;if(f.max)el.max=f.max;el.id=f.id;el.value=f.def;el.required=true;shell.append(el)}
+    if(f.suffix){const s=document.createElement('span');s.textContent=f.suffix;shell.append(s)}d.append(shell);$('fields').append(d)
+  })
+}
+function showTool(key){if(!configs[key]&&key!=='sip')key='lumpsum';current=key;document.querySelectorAll('[data-tool]').forEach(b=>b.classList.toggle('active',b.dataset.tool===key));const generic=$('genericPanel'),sipView=$('sipView');if(key==='sip'){generic.classList.add('hide');sipView.classList.remove('hide');if(window.refreshSipCalculator)window.refreshSipCalculator();}else{sipView.classList.add('hide');generic.classList.remove('hide');let c=configs[key];$('title').textContent=c.title;$('category').textContent=c.category;$('desc').textContent=c.desc;fieldsFor(c);calculate();}history.replaceState(null,'','#'+key);requestAnimationFrame(()=>{if(key==='sip'){if(window.refreshSipCalculator)window.refreshSipCalculator()}else{const c=configs[key];if(c)draw((c.run(values(c)).series)||[])}})}function values(c){let v={};c.fields.forEach(f=>v[f.id]=f.type==='select'?Number($(f.id).value):Number($(f.id).value)||0);return v}function calculate(){let c=configs[current],v=values(c);for(const f of c.fields){let el=$(f.id);if(!el.checkValidity()){el.reportValidity();return}}let out=c.run(v);out.metrics.forEach((m,i)=>{$('label'+(i+1)).textContent=m[0];$('value'+(i+1)).textContent=m[1];$('sub'+(i+1)).textContent=m[2]||''});$('rows').innerHTML=out.rows.map(r=>`<div class="row"><span>${r[0]}</span><strong>${r[1]}</strong></div>`).join('');$('note').textContent=out.note||'Estimate only. Actual results may differ.';draw(out.series||[])}function draw(series){
+ const canvas=$('genericChart');if(!canvas)return;
+ const rect=canvas.getBoundingClientRect();
+ const w=Math.max(280,Math.floor(rect.width||canvas.clientWidth||650)),h=180,dpr=Math.max(1,window.devicePixelRatio||1);
+ canvas.style.width='100%';canvas.style.maxWidth='100%';canvas.style.height=h+'px';canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);
+ const ctx=canvas.getContext('2d');if(!ctx)return;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+ const valid=(Array.isArray(series)?series:[]).filter(arr=>Array.isArray(arr)&&arr.length>1).map(arr=>arr.map(Number).filter(Number.isFinite)).filter(arr=>arr.length>1);
+ const css=getComputedStyle(document.documentElement),line=css.getPropertyValue('--line').trim()||'#dce5de',accent=css.getPropertyValue('--green').trim()||'#16764a',muted=css.getPropertyValue('--muted').trim()||'#93a99a',text=css.getPropertyValue('--text').trim()||'#14251f';
+ const padL=42,padR=12,padT=12,padB=24,plotW=Math.max(1,w-padL-padR),plotH=Math.max(1,h-padT-padB);
+ const all=valid.flat();if(!all.length){ctx.fillStyle=muted;ctx.font='12px system-ui,sans-serif';ctx.textAlign='center';ctx.fillText('Enter your values to see the projection',w/2,h/2);return;}
+ const max=Math.max(...all,1),min=Math.min(0,...all),range=max-min||1;
+ ctx.font='10px system-ui,sans-serif';ctx.textAlign='right';ctx.textBaseline='middle';
+ for(let i=0;i<4;i++){const y=padT+plotH*i/3;ctx.strokeStyle=line;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(w-padR,y);ctx.stroke();const value=max-(range*i/3);const label=Math.abs(value)>=1e7?'₹'+(value/1e7).toFixed(1)+'Cr':Math.abs(value)>=1e5?'₹'+(value/1e5).toFixed(1)+'L':Math.abs(value)>=1e3?'₹'+(value/1e3).toFixed(0)+'k':'₹'+Math.round(value);ctx.fillStyle=muted;ctx.fillText(label,padL-6,y);}
+ const colors=[muted,accent,'#9acb62'];valid.forEach((arr,idx)=>{ctx.beginPath();arr.forEach((val,i)=>{const x=padL+plotW*i/(arr.length-1),y=padT+plotH*(1-(val-min)/range);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.strokeStyle=colors[idx%colors.length];ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.lineCap='round';ctx.stroke();});
+ ctx.fillStyle=muted;ctx.font='10px system-ui,sans-serif';ctx.textAlign='left';ctx.textBaseline='alphabetic';ctx.fillText('Start',padL,h-5);ctx.textAlign='right';ctx.fillText('End',w-padR,h-5);
+}
+document.querySelectorAll('[data-tool]').forEach(b=>b.addEventListener('click',()=>showTool(b.dataset.tool)));$('calcForm').addEventListener('submit',e=>{e.preventDefault();calculate()});$('resetBtn').addEventListener('click',()=>showTool(current));$('year').textContent=new Date().getFullYear();const root=document.documentElement;/* Default to local time, but keep an explicit manual choice consistent across pages. */const localHour=new Date().getHours();let savedTheme=null;try{savedTheme=localStorage.getItem('zw-theme')||localStorage.getItem('sip-theme')}catch(e){}root.dataset.theme=savedTheme||((localHour>=18||localHour<6)?'dark':'light');function themeIcon(){$('themeBtn').textContent=root.dataset.theme==='dark'?'☀':'☾'}themeIcon();$('themeBtn').addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('zw-theme',root.dataset.theme);localStorage.setItem('sip-theme',root.dataset.theme)}catch(e){}themeIcon();if(current!=='sip')calculate();window.dispatchEvent(new Event('zw-theme-change'))});window.addEventListener('resize',()=>{if(current==='sip'){if(window.refreshSipCalculator)window.refreshSipCalculator()}else calculate()});let initial=location.hash.slice(1);showTool((configs[initial]||initial==='sip')?initial:'sip');
+</script></body></html>
+
