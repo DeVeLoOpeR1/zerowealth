@@ -13,7 +13,7 @@
 
 - **10/10 responsive smoke checks passed** across the two main pages and five viewport profiles in the primary matrix.
 - **50/50 calculator-tab checks passed**: all 10 calculator tools were opened at each of five responsive profiles.
-- **14/14 time-based theme cases passed** across the landing and workspace pages for local hours 00:00, 05:00, 06:00, 12:00, 17:00, 18:00 and 23:00.
+- Theme: one site-wide setting (theme.js). Default is light; the theme button choice is saved and applied on every page and open tab. (The earlier time-of-day auto theme was removed.)
 - Manual theme switching passed in each theme-boundary case and each responsive calculator test.
 - No horizontal document overflow in the final viewport matrix.
 - No browser JavaScript errors in the final responsive smoke checks.
