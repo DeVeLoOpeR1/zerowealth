@@ -11,7 +11,7 @@
 .control select option{background:var(--surface);color:var(--text)}
 [data-theme=dark] .control select{color-scheme:dark}
 [data-theme=dark] .control:has(select)::after{border-color:var(--green)}
-.hint{font-size:11px;color:var(--muted);margin-top:5px}.warn{color:#c2410c;font-weight:700}[data-theme=dark] .warn{color:#fdba74}.legend-row{display:flex;gap:14px;flex-wrap:wrap;margin:6px 0 4px;font-size:11px;color:var(--muted);font-weight:700}.legend-row span{display:inline-flex;align-items:center;gap:6px}.legend-row i{width:9px;height:9px;border-radius:3px;display:inline-block}#sipView .empty-lump{font-size:12px;color:var(--muted);margin:2px 0 6px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.resultgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}.metric{padding:17px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}.metric.primary{background:linear-gradient(135deg,#16764a,#0d5737);color:#fff;border-color:transparent}.metric label{display:block;font-size:11px;color:var(--muted);font-weight:750}.metric.primary label{color:#e1f4e7}.metric strong{display:block;font-size:clamp(19px,2.3vw,27px);letter-spacing:-.8px;margin:6px 0 2px;overflow-wrap:anywhere}.metric small{font-size:11px;color:var(--muted)}.metric.primary small{color:#e1f4e7}.breakdown{margin-top:18px;border:1px solid var(--line);border-radius:16px;overflow:hidden}.breakdown h3{font-size:13px;margin:0;padding:15px 17px;background:var(--surface2)}.rows{padding:4px 17px}.row{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}.row:last-child{border-bottom:0}.row span{color:var(--muted)}.chartbox{padding:14px 17px 10px;border-top:1px solid var(--line)}canvas{display:block;width:100%;height:180px}.note{font-size:11px;color:var(--muted);margin:15px 2px 0}.foot{padding:24px 0 34px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}.hide{display:none!important}
+.hint{font-size:11px;color:var(--muted);margin-top:5px}.warn{color:#c2410c;font-weight:700}[data-theme=dark] .warn{color:#fdba74}.field-error{font-size:11.5px;font-weight:700;color:#c2410c;margin-top:5px;min-height:0}.field-error:empty{display:none}.field.has-error .control{border-color:#c2410c}[data-theme=dark] .field-error{color:#fdba74}[data-theme=dark] .field.has-error .control{border-color:#fdba74}.legend-row{display:flex;gap:14px;flex-wrap:wrap;margin:6px 0 4px;font-size:11px;color:var(--muted);font-weight:700}.legend-row span{display:inline-flex;align-items:center;gap:6px}.legend-row i{width:9px;height:9px;border-radius:3px;display:inline-block}#sipView .empty-lump{font-size:12px;color:var(--muted);margin:2px 0 6px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.resultgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}.metric{padding:17px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}.metric.primary{background:linear-gradient(135deg,#16764a,#0d5737);color:#fff;border-color:transparent}.metric label{display:block;font-size:11px;color:var(--muted);font-weight:750}.metric.primary label{color:#e1f4e7}.metric strong{display:block;font-size:clamp(19px,2.3vw,27px);letter-spacing:-.8px;margin:6px 0 2px;overflow-wrap:anywhere}.metric small{font-size:11px;color:var(--muted)}.metric.primary small{color:#e1f4e7}.breakdown{margin-top:18px;border:1px solid var(--line);border-radius:16px;overflow:hidden}.breakdown h3{font-size:13px;margin:0;padding:15px 17px;background:var(--surface2)}.rows{padding:4px 17px}.row{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}.row:last-child{border-bottom:0}.row span{color:var(--muted)}.chartbox{padding:14px 17px 10px;border-top:1px solid var(--line)}canvas{display:block;width:100%;height:180px}.note{font-size:11px;color:var(--muted);margin:15px 2px 0}.foot{padding:24px 0 34px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}.hide{display:none!important}
 [data-theme=dark] body{background:radial-gradient(ellipse at 85% 0%,#24352a 0,transparent 32%),var(--bg)}
 [data-theme=dark] .mark{color:#092016}
 [data-theme=dark] .btn.primary{background:var(--green);color:#071b11;border-color:var(--green)}
@@ -222,21 +222,21 @@ html[data-theme="dark"] #sipView .stat.accent{background:linear-gradient(135deg,
 <label for="sip">Monthly SIP amount</label>
 <div class="input-shell">
 <span class="prefix">₹</span>
-<input id="sip" min="0" step="500" type="number" value="10000"/>
+<input id="sip" min="0" step="any" inputmode="decimal" type="number" value="5000"/>
 </div>
 </div>
 <div class="row2">
 <div class="field">
 <label for="stepup">Step-up / year</label>
 <div class="input-shell">
-<input id="stepup" min="0" step="1" type="number" value="10"/>
+<input id="stepup" min="0" step="any" inputmode="decimal" type="number" value="10"/>
 <span class="suffix">%</span>
 </div>
 </div>
 <div class="field">
 <label for="return">Expected return</label>
 <div class="input-shell">
-<input id="return" min="0" step="0.5" type="number" value="12"/>
+<input id="return" min="0" step="any" inputmode="decimal" type="number" value="12"/>
 <span class="suffix">%</span>
 </div>
 </div>
@@ -256,14 +256,14 @@ html[data-theme="dark"] #sipView .stat.accent{background:linear-gradient(135deg,
 <div class="field">
 <label for="sipYears">SIP tenure</label>
 <div class="input-shell">
-<input id="sipYears" min="1" step="1" type="number" value="10"/>
+<input id="sipYears" min="0" step="any" inputmode="decimal" type="number" value="10"/>
 <span class="suffix">yrs</span>
 </div>
 </div>
 <div class="field">
 <label for="totalYears">Total tenure</label>
 <div class="input-shell">
-<input id="totalYears" min="1" step="1" type="number" value="15"/>
+<input id="totalYears" min="0.1" step="any" inputmode="decimal" type="number" value="15"/>
 <span class="suffix">yrs</span>
 </div>
 </div>
@@ -272,7 +272,7 @@ html[data-theme="dark"] #sipView .stat.accent{background:linear-gradient(135deg,
 <div class="field" id="inflationField" style="display:none;">
 <label for="inflation">Expected inflation</label>
 <div class="input-shell">
-<input id="inflation" min="0" step="0.5" type="number" value="6"/>
+<input id="inflation" min="0" step="any" inputmode="decimal" type="number" value="6"/>
 <span class="suffix">%</span>
 </div>
 <div class="hint">Used to show the corpus in today's purchasing power.</div>
@@ -385,7 +385,7 @@ function makeLumpRow() {
 
   const amtShell = document.createElement("div"); amtShell.className = "input-shell";
   const pfx = document.createElement("span"); pfx.className = "prefix"; pfx.textContent = "₹";
-  const amt = document.createElement("input"); amt.type = "number"; amt.min = "0"; amt.step = "1000"; amt.placeholder = "50,000"; amt.setAttribute("aria-label", "Lump sum amount");
+  const amt = document.createElement("input"); amt.type = "number"; amt.min = "0"; amt.step = "any"; amt.inputMode = "decimal"; amt.placeholder = "5,000"; amt.setAttribute("aria-label", "Lump sum amount");
   amtShell.appendChild(pfx); amtShell.appendChild(amt);
 
   const del = document.createElement("button"); del.type = "button"; del.className = "del-btn"; del.textContent = "✕"; del.setAttribute("aria-label", "Remove lump sum");
@@ -402,7 +402,7 @@ function makeLumpRow() {
 }
 
 function fillYearOptions(sel) {
-  const total = Math.max(1, Math.round(num("totalYears")));
+  const total = Math.max(1, Math.ceil(totalMonths() / 12));   // part-years still get their own year slot
   const prev = sel.value;
   sel.innerHTML = "";
   const sm = parseInt($("startMonth").value, 10), sy = num("startYear");
@@ -438,19 +438,23 @@ $("addLump").onclick = () => {
   recalc();
 };
 
+// tenures may be part-years (e.g. 2.5); the model runs in whole months
+function totalMonths() { return Math.max(1, Math.round(num("totalYears") * 12)); }
+function fmtYears(months) {
+  const y = months / 12, s = Number.isInteger(y) ? String(y) : y.toFixed(2).replace(/0$/, "");
+  return s + " yr" + (y === 1 ? "" : "s");
+}
+
 // ---------- core calculation ----------
 function compute() {
-  const baseSIP = num("sip");
+  const baseSIP = Math.max(0, num("sip"));
   const g = num("stepup") / 100;
   const i = num("return") / 100 / 12;     // monthly rate (r/12 convention)
   const infl = num("inflation") / 100;
-  const totalY = Math.max(1, Math.round(num("totalYears")));
-  let sipY = Math.max(0, Math.round(num("sipYears")));
-  const clamped = sipY > totalY;
-  if (clamped) sipY = totalY;
-
-  const M = totalY * 12;
-  const sipMonths = sipY * 12;
+  const M = totalMonths();
+  let sipMonths = Math.max(0, Math.round(num("sipYears") * 12));
+  const clamped = sipMonths > M;
+  if (clamped) sipMonths = M;
   const lumps = readLumps();
 
   let balance = 0, investedCum = 0, sipCum = 0, lumpCum = 0;
@@ -471,9 +475,10 @@ function compute() {
     const d = Math.pow(1 + infl, t / 12);
     investedCumR += contrib / d; sipCumR += sipAmt / d; lumpCumR += lumpAmt / d;
     balance *= (1 + i);
-    if (t % 12 === 11) {
+    if (t % 12 === 11 || t === M - 1) {   // close each year, plus a final part-year
       rows.push({
         yIdx,
+        endMonth: t + 1,
         sipYear: sipCum - prevSip,
         lumpYear: lumpCum - prevLump,
         investedCum,
@@ -490,7 +495,7 @@ function compute() {
     totalInvested: investedCum,
     totalInvestedR: investedCumR,
     finalValue: balance,
-    rows, totalY, sipY, clamped, infl,
+    rows, M, sipMonths, clamped, infl,
     startMonth: parseInt($("startMonth").value, 10),
     startYear: num("startYear")
   };
@@ -513,14 +518,14 @@ function recalc() {
 
   // headline cards
   const corpusN = c.finalValue;
-  const corpus = real ? deflate(corpusN, infl, c.totalY) : corpusN;
+  const corpus = real ? deflate(corpusN, infl, c.M / 12) : corpusN;
   const invested = real ? c.totalInvestedR : c.totalInvested;
   const gains = corpus - invested;
 
   $("cInvested").textContent = fmtINR(invested);
   $("cInvestedSub").textContent = real
     ? fmtShort(invested) + " in today's ₹"
-    : fmtShort(invested) + " over " + c.totalY + " yrs";
+    : fmtShort(invested) + " over " + fmtYears(c.M);
   $("cGains").textContent = fmtINR(gains);
   $("cGains").className = "value " + (gains >= 0 ? "pos" : "");
   $("cGains").style.color = gains < 0 ? "var(--danger)" : "";
@@ -529,28 +534,27 @@ function recalc() {
   $("cCorpus").textContent = fmtINR(corpus);
   $("cCorpusSub").textContent = real
     ? "today's value · " + fmtShort(corpusN) + " nominal"
-    : fmtShort(corpusN) + " by " + monthLabel(c.startMonth, c.startYear, c.totalY * 12 - 1);
+    : fmtShort(corpusN) + " by " + monthLabel(c.startMonth, c.startYear, c.M - 1);
 
   // tenure hint
-  const gap = c.totalY - c.sipY;
+  const gap = c.M - c.sipMonths;
   $("tenureHint").innerHTML = c.clamped
-    ? "<span class='warn'>SIP tenure capped to total tenure (" + c.totalY + " yrs).</span>"
-    : "SIP runs " + c.sipY + " yr" + (c.sipY !== 1 ? "s" : "") +
-      (gap > 0 ? ", then your corpus keeps growing for " + gap + " more yr" + (gap !== 1 ? "s" : "") + "." : ".");
+    ? "<span class='warn'>SIP tenure capped to total tenure (" + fmtYears(c.M) + ").</span>"
+    : "SIP runs " + fmtYears(c.sipMonths) +
+      (gap > 0 ? ", then your corpus keeps growing for " + fmtYears(gap) + " more." : ".");
 
   // table
   const tb = $("tableBody");
   tb.innerHTML = "";
   c.rows.forEach(r => {
-    const val = real ? deflate(r.value, infl, r.yIdx + 1) : r.value;
+    const val = real ? deflate(r.value, infl, r.endMonth / 12) : r.value;
     const sipY = real ? r.sipYearR : r.sipYear;
     const lumpY = real ? r.lumpYearR : r.lumpYear;
     const invCum = real ? r.investedCumR : r.investedCum;
     const g = val - invCum;
-    const isStop = (r.yIdx + 1) === c.sipY && c.totalY > c.sipY;
-    const period = monthLabel(c.startMonth, c.startYear, r.yIdx * 12).split(" ")[0] + " " +
-                   monthLabel(c.startMonth, c.startYear, r.yIdx * 12).split(" ")[1] + " – " +
-                   monthLabel(c.startMonth, c.startYear, r.yIdx * 12 + 11);
+    const isStop = c.sipMonths > 0 && c.M > c.sipMonths && Math.floor((c.sipMonths - 1) / 12) === r.yIdx;
+    const period = monthLabel(c.startMonth, c.startYear, r.yIdx * 12) + " – " +
+                   monthLabel(c.startMonth, c.startYear, r.endMonth - 1);
     const tr = document.createElement("tr");
     const valLbl = real ? "Value (today's ₹)" : "Value";
     tr.innerHTML =
@@ -598,19 +602,20 @@ function drawChart(hoverIdx) {
   const text = cssVar("--text", "#14251f");
 
   // series: index 0..N
-  const N = c.totalY;
-  const valArr = [0], invArr = [0];
+  const N = c.rows.length, T = c.M / 12;
+  const valArr = [0], invArr = [0], timeArr = [0];
   c.rows.forEach(r => {
-    valArr.push(real ? deflate(r.value, c.infl, r.yIdx + 1) : r.value);
+    valArr.push(real ? deflate(r.value, c.infl, r.endMonth / 12) : r.value);
     invArr.push(real ? r.investedCumR : r.investedCum);
+    timeArr.push(r.endMonth / 12);
   });
   const maxY = Math.max(...valArr, 1);
 
   const padL = cssW < 420 ? 48 : 56, padR = 14, padT = 14, padB = 30;
   const plotW = Math.max(1, cssW - padL - padR), plotH = Math.max(1, cssH - padT - padB);
-  const X = i => padL + plotW * (i / N);
+  const X = i => padL + plotW * (timeArr[i] / T);
   const Y = v => padT + plotH * (1 - v / maxY);
-  chartGeom = { N, padL, padR, padT, padB, plotW, plotH, valArr, invArr, X, Y, cssW, cssH };
+  chartGeom = { N, padL, padR, padT, padB, plotW, plotH, valArr, invArr, timeArr, X, Y, cssW, cssH };
 
   // gridlines + y labels
   ctx.font = "11px Inter, sans-serif"; ctx.textBaseline = "middle";
@@ -624,10 +629,10 @@ function drawChart(hoverIdx) {
   }
   // x labels
   ctx.textAlign = "center"; ctx.textBaseline = "top";
-  const step = N > 16 ? Math.ceil(N / 12) : (N > 8 ? 2 : 1);
-  for (let i = 0; i <= N; i += step) {
+  const whole = Math.floor(T), step = whole > 16 ? Math.ceil(whole / 12) : (whole > 8 ? 2 : 1);
+  for (let y = 0; y <= whole; y += step) {
     ctx.fillStyle = muted;
-    ctx.fillText(c.startYear + i, X(i), cssH - padB + 8);
+    ctx.fillText(c.startYear + y, padL + plotW * (y / T), cssH - padB + 8);
   }
 
   // area fill helper
@@ -635,7 +640,7 @@ function drawChart(hoverIdx) {
     ctx.beginPath();
     ctx.moveTo(X(0), Y(arr[0]));
     for (let i = 1; i < arr.length; i++) ctx.lineTo(X(i), Y(arr[i]));
-    ctx.lineTo(X(N), Y(0)); ctx.lineTo(X(0), Y(0)); ctx.closePath();
+    ctx.lineTo(X(arr.length - 1), Y(0)); ctx.lineTo(X(0), Y(0)); ctx.closePath();
     ctx.fillStyle = fill; ctx.fill();
   }
   function line(arr, col) {
@@ -664,7 +669,7 @@ function drawChart(hoverIdx) {
     });
     // tooltip box
     const lines = [
-      (c.startYear + hoverIdx) + (hoverIdx === 0 ? " (start)" : ""),
+      hoverIdx === 0 ? monthLabel(c.startMonth, c.startYear, 0) + " (start)" : "End " + monthLabel(c.startMonth, c.startYear, c.rows[hoverIdx - 1].endMonth - 1),
       "Value: " + fmtShort(valArr[hoverIdx]),
       "Invested: " + fmtShort(invArr[hoverIdx])
     ];
@@ -689,8 +694,9 @@ $("chart").addEventListener("pointermove", e => {
   if (!chartGeom) return;
   const rect = $("chart").getBoundingClientRect();
   const mx = e.clientX - rect.left;
-  let idx = Math.round((mx - chartGeom.padL) / chartGeom.plotW * chartGeom.N);
-  idx = Math.max(0, Math.min(chartGeom.N, idx));
+  // nearest plotted point (points are not evenly spaced when the last year is partial)
+  let idx = 0, best = Infinity;
+  for (let k = 0; k <= chartGeom.N; k++) { const d = Math.abs(chartGeom.X(k) - mx); if (d < best) { best = d; idx = k; } }
   drawChart(idx);
 });
 $("chart").addEventListener("pointerleave", () => drawChart());
@@ -702,12 +708,12 @@ $("exportCsv").addEventListener("click", () => {
   const u = real ? " (today's INR)" : " (INR)";
   const rows = [["Year", "Period", "SIP this year" + u, "Lump sum this year" + u, "Total invested" + u, "Value" + u, "Gains" + u]];
   c.rows.forEach(r => {
-    const val = real ? deflate(r.value, c.infl, r.yIdx + 1) : r.value;
+    const val = real ? deflate(r.value, c.infl, r.endMonth / 12) : r.value;
     const sipY = real ? r.sipYearR : r.sipYear;
     const lumpY = real ? r.lumpYearR : r.lumpYear;
     const invCum = real ? r.investedCumR : r.investedCum;
     const period = monthLabel(c.startMonth, c.startYear, r.yIdx * 12) + " - " +
-                   monthLabel(c.startMonth, c.startYear, r.yIdx * 12 + 11);
+                   monthLabel(c.startMonth, c.startYear, r.endMonth - 1);
     rows.push([
       r.yIdx + 1, period,
       Math.round(sipY), Math.round(lumpY), Math.round(invCum),
@@ -757,7 +763,7 @@ $("startMonth").addEventListener("change", () => {
   const row = makeLumpRow();
   $("lumpList").appendChild(row);
   row._year.value = "4"; // Year 5
-  row._amt.value = "100000";
+  row._amt.value = "5000";
   refreshLumpEmpty();
   recalc();
 })();
@@ -765,19 +771,26 @@ $("startMonth").addEventListener("change", () => {
 })();</script>
 <script>
 'use strict';
-const $=id=>document.getElementById(id);const fmt=n=>'₹'+Math.round(Number(n)||0).toLocaleString('en-IN');const num=id=>Math.max(0,Number($(id)?.value)||0);const pct=id=>num(id)/100;const money=(id,label,def,min=0,step=1000)=>({id,label,def,min,step,prefix:'₹',type:'number'});const rate=(id,label,def,step=.5)=>({id,label,def,min:0,step,suffix:'%'});const years=(id,label,def,min=1,max=100)=>({id,label,def,min,max,step:1,suffix:'years'});const monthly=(id,label,def)=>({id,label,def,min:0,step:500,prefix:'₹',type:'number'});
+const $=id=>document.getElementById(id);const fmt=n=>'₹'+Math.round(Number(n)||0).toLocaleString('en-IN');
+/* Inputs accept any value (no step snapping); only real limits (min/max, whole years where required) are checked. Tenures may be part-years. */
+const money=(id,label,def,min=0)=>({id,label,def,min,prefix:'₹',type:'number'});const rate=(id,label,def)=>({id,label,def,min:0,suffix:'%'});const years=(id,label,def,min=0.1,max=100)=>({id,label,def,min,max,suffix:'years'});const monthly=money;
+const yrs=t=>t+(t===1?' year':' years');
+/* Evenly spaced chart times from 0 to t (one point per year, last point exactly at t, so part-years plot correctly). */
+const timePoints=t=>{const n=Math.max(1,Math.ceil(t));return [...Array(n+1)].map((_,i)=>t*i/n)};
 const configs={
-lumpsum:{title:'Give Your Money a Head Start',category:'INVESTING',desc:'Project how a one-time investment may compound over the years.',fields:[money('amount','Initial investment',100000,0,5000),rate('return','Expected annual return',12),years('tenure','Investment period',10)],run:v=>{let invested=v.amount, fv=invested*Math.pow(1+v.return/100,v.tenure);return result(invested,fv-invested,fv,[['Initial investment',fmt(invested)],['Annual return assumption',v.return+'%'],['Investment period',v.tenure+' years'],['Compounding assumption','Annual effective growth']],[invested],[...Array(Math.max(1,Math.round(v.tenure))+1)].map((_,i)=>invested*Math.pow(1+v.return/100,i)));}},
-compare:{title:'SIP or Lumpsum: Which Fits Your Plan?',category:'INVESTING',desc:'Compare monthly investing with investing the same amount upfront.',fields:[money('amount','Total amount available',120000,0,5000),rate('return','Expected annual return',12),years('tenure','Investment period',10)],run:v=>{let r=v.return/1200,n=Math.round(v.tenure*12),monthlyAmt=n?v.amount/n:0,sipFv=i=>monthlyAmt*(r?((Math.pow(1+r,i)-1)/r)*(1+r):i), sip=sipFv(n),lump=v.amount*Math.pow(1+v.return/100,v.tenure);return {metrics:[['Total invested',fmt(v.amount),'Same total contribution'],['SIP estimated value',fmt(sip),'Monthly contributions'],['Lumpsum estimated value',fmt(lump),'Invested at start']],rows:[['Total contribution',fmt(v.amount)],['Monthly SIP amount',fmt(monthlyAmt)],['SIP estimated gains',fmt(sip-v.amount)],['Lumpsum estimated gains',fmt(lump-v.amount)],['Return assumption',v.return+'%'],['Period',v.tenure+' years']],series:[[...Array(n+1)].map((_,i)=>monthlyAmt*i),[...Array(n+1)].map((_,i)=>sipFv(i)),[...Array(n+1)].map((_,i)=>v.amount*Math.pow(1+v.return/100,i/12))],labels:['Amount invested (SIP)','SIP value','Lumpsum value'],note:'Same total contribution in both cases. SIP: equal monthly instalments at the start of each month, monthly rate = annual return ÷ 12 (same as the SIP calculator). Lumpsum: invested at the start, compounded annually (same as the Lumpsum calculator). Market returns are not guaranteed.'};}},
-swp:{title:'Make Your Corpus Pay You Back',category:'INVESTING',desc:'Estimate regular withdrawals and see how long your invested money may last.',fields:[money('corpus','Starting corpus',1000000,0,10000),monthly('withdrawal','Monthly withdrawal',10000),rate('return','Expected annual return',8),years('tenure','Projection period',20)],run:v=>{let b=v.corpus,inv=v.corpus,total=0,months=Math.round(v.tenure*12),r=Math.pow(1+v.return/100,1/12)-1,series=[b],withdrawn=0,exhausted=0;for(let i=0;i<months;i++){b*=1+r;let w=Math.min(b,v.withdrawal);b-=w;withdrawn+=w;series.push(b);if(b<=0){b=0;exhausted=i+1;for(let j=i+1;j<months;j++)series.push(0);break;}}return {metrics:[['Starting corpus',fmt(inv),'Initial investment'],['Total withdrawals',fmt(withdrawn),'Over projection period'],['Remaining corpus',fmt(b),exhausted?'Corpus depleted during period':'Estimated at period end']],rows:[['Monthly withdrawal',fmt(v.withdrawal)],['Expected annual return',v.return+'%'],['Projection period',v.tenure+' years'],['Corpus status',exhausted?'Depleted after about '+exhausted+' months':'Not depleted in selected period']],series:[series],labels:['Corpus balance'],note:'Assumes monthly compounding and withdrawals at month-end. Actual market volatility, taxes, fees and timing can materially change results.'};}},
-compound:{title:'Let Compounding Do the Heavy Lifting',category:'SAVINGS',desc:'Explore how interest, time and compounding frequency shape your balance.',fields:[money('principal','Initial principal',100000,0,5000),rate('return','Annual interest rate',8),years('tenure','Investment period',10),{id:'frequency',label:'Compounding frequency',def:'4',type:'select',options:[['1','Annually'],['2','Half-yearly'],['4','Quarterly'],['12','Monthly'],['365','Daily']]}],run:v=>{let fv=v.principal*Math.pow(1+v.return/100/v.frequency,v.frequency*v.tenure);return result(v.principal,fv-v.principal,fv,[['Principal',fmt(v.principal)],['Interest rate',v.return+'% p.a.'],['Compounding',({1:'Annually',2:'Half-yearly',4:'Quarterly',12:'Monthly',365:'Daily'})[v.frequency]],['Period',v.tenure+' years']],[v.principal],[...Array(Math.max(1,Math.round(v.tenure))+1)].map((_,i)=>v.principal*Math.pow(1+v.return/100/v.frequency,v.frequency*i)));}},
-fd:{title:'Know Your FD Maturity Before You Invest',category:'SAVINGS',desc:'Estimate deposit maturity and interest from your rate and tenure.',fields:[money('principal','Deposit amount',200000,0,5000),rate('return','Annual interest rate',7),years('tenure','Deposit tenure',3),{id:'frequency',label:'Compounding frequency',def:'4',type:'select',options:[['1','Annually'],['2','Half-yearly'],['4','Quarterly'],['12','Monthly']]}],run:v=>{let fv=v.principal*Math.pow(1+v.return/100/v.frequency,v.frequency*v.tenure);return result(v.principal,fv-v.principal,fv,[['Deposit amount',fmt(v.principal)],['Interest rate',v.return+'% p.a.'],['Compounding',({1:'Annually',2:'Half-yearly',4:'Quarterly',12:'Monthly'})[v.frequency]],['Tenure',v.tenure+' years'],['Tax treatment','Not included']],[v.principal],[...Array(Math.max(1,Math.round(v.tenure))+1)].map((_,i)=>v.principal*Math.pow(1+v.return/100/v.frequency,v.frequency*i)), 'Illustrative estimate before tax. Actual FD terms, compounding conventions and premature withdrawal rules depend on the bank.');}},
-emi:{title:'Know the Real Cost of Your Loan',category:'LOANS',desc:'Calculate monthly EMI, total interest and repayment before you commit.',fields:[money('principal','Loan amount',2500000,0,50000),rate('return','Annual interest rate',8.5),years('tenure','Loan tenure',20)],run:v=>{let n=Math.round(v.tenure*12),r=v.return/1200,emi=r? v.principal*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):(n?v.principal/n:0),total=emi*n,interest=total-v.principal;return {metrics:[['Loan amount',fmt(v.principal),'Principal borrowed'],['Total interest',fmt(interest),'Over full tenure'],['Monthly EMI',fmt(emi),'Estimated instalment']],rows:[['Loan tenure',v.tenure+' years ('+n+' months)'],['Annual interest rate',v.return+'%'],['Total repayment',fmt(total)],['Interest as share of repayment',total?((interest/total)*100).toFixed(1)+'%':'—']],labels:['Outstanding loan balance'],series:[Array.from({length:v.tenure+1},(_,i)=>{let m=i*12;return m===0?v.principal:Math.max(0,v.principal*Math.pow(1+r,m)-emi*(r?((Math.pow(1+r,m)-1)/r):m));})],note:'Estimate excludes processing fees, insurance and rate changes. Lender rounding and payment dates may change the final schedule.'};}},
-ppf:{title:'Plan Your Long-Term PPF Growth',category:'SAVINGS',desc:'Estimate how annual contributions may build your PPF balance over time.',fields:[{...money('amount','Annual contribution',150000,0,5000),max:150000},rate('return','Assumed annual interest rate',7.1),years('tenure','Investment period',15,1,50)],run:v=>{let b=0,contrib=0,series=[0];for(let y=0;y<v.tenure;y++){b=(b+v.amount)*(1+v.return/100);contrib+=v.amount;series.push(b);}return result(contrib,b-contrib,b,[['Annual contribution',fmt(v.amount)],['Assumed annual rate',v.return+'%'],['Period',v.tenure+' years'],['Total contributions',fmt(contrib)],['Interest earned',fmt(b-contrib)] ,[ 'Deposit timing','Assumed at start of each year']],[...Array(v.tenure+1)].map((_,i)=>i*v.amount),series,'Illustrative projection. Annual contributions are capped at ₹1,50,000 to reflect the current PPF limit; actual interest crediting depends on deposit timing and current scheme rules.');}},
-inflation:{title:'See What Today’s Money May Buy Tomorrow',category:'PLANNING',desc:'Estimate future costs and how inflation can reduce purchasing power.',fields:[money('amount','Current amount / cost',100000,0,5000),rate('return','Annual inflation rate',6),years('tenure','Time period',10)],run:v=>{let future=v.amount*Math.pow(1+v.return/100,v.tenure),real=v.amount/Math.pow(1+v.return/100,v.tenure);return {metrics:[['Current amount',fmt(v.amount),'Today’s money'],['Future equivalent cost',fmt(future),'At assumed inflation'],['Purchasing power',fmt(real),'Approximate future purchasing power'],],rows:[['Annual inflation assumption',v.return+'%'],['Period',v.tenure+' years'],['Increase in cost',fmt(future-v.amount)],['Future purchasing power',fmt(real)]],series:[[...Array(v.tenure+1)].map((_,i)=>v.amount*Math.pow(1+v.return/100,i))],labels:['Future cost'],note:'Inflation varies by category and over time. This is a constant-rate illustration, not a forecast.'};}},
-retirement:{title:'Find Your Retirement Number',category:'PLANNING',desc:'Estimate future monthly expenses, target corpus and savings needed.',fields:[money('amount','Monthly expenses today',50000,0,1000),rate('return','Expected pre-retirement return',10),rate('inflation','Annual inflation',6),years('tenure','Years until retirement',25),years('retire','Years in retirement',25,1,60),rate('postreturn','Expected return during retirement',7)],run:v=>{let exp=v.amount*Math.pow(1+v.inflation/100,v.tenure),r=v.postreturn/1200,n=v.retire*12,corpus=r?exp*((1-Math.pow(1+r,-n))/r):exp*n,pre=Math.pow(1+v.return/100,1/12)-1,m=v.tenure*12,monthlyNeed=pre?corpus*pre/(Math.pow(1+pre,m)-1):corpus/Math.max(1,m);return {metrics:[['Monthly expense at retirement',fmt(exp),'Inflation-adjusted'],['Target retirement corpus',fmt(corpus),'At retirement date'],['Monthly saving target',fmt(monthlyNeed),'Approximate from ₹0 today']],rows:[['Current monthly expenses',fmt(v.amount)],['Inflation assumption',v.inflation+'%'],['Years until retirement',v.tenure+' years'],['Retirement duration',v.retire+' years'],['Return before retirement',v.return+'%'],['Return during retirement',v.postreturn+'%'],['Corpus calculation','Expense at retirement held flat (not inflated) during retirement']],series:[[...Array(v.tenure+1)].map((_,i)=>corpus*Math.pow(1+v.return/100,-(v.tenure-i)))],labels:['Corpus needed on track (today → retirement)'],note:'Simplified estimate. It assumes a constant return and a level monthly expense at retirement; taxes, healthcare, pensions, asset allocation and sequence-of-return risk are not modeled.'};}}
+lumpsum:{title:'Give Your Money a Head Start',category:'INVESTING',desc:'Project how a one-time investment may compound over the years.',fields:[money('amount','Initial investment',5000),rate('return','Expected annual return',12),years('tenure','Investment period',10)],run:v=>{let invested=v.amount,g=t=>invested*Math.pow(1+v.return/100,t),fv=g(v.tenure);return result(invested,fv-invested,fv,[['Initial investment',fmt(invested)],['Annual return assumption',v.return+'%'],['Investment period',yrs(v.tenure)],['Compounding assumption','Annual effective growth']],[invested],timePoints(v.tenure).map(g));}},
+compare:{title:'SIP or Lumpsum: Which Fits Your Plan?',category:'INVESTING',desc:'Compare monthly investing with investing the same amount upfront.',fields:[money('amount','Total amount available',5000),rate('return','Expected annual return',12),years('tenure','Investment period',10)],run:v=>{let r=v.return/1200,n=Math.max(1,Math.round(v.tenure*12)),monthlyAmt=v.amount/n,sipFv=i=>monthlyAmt*(r?((Math.pow(1+r,i)-1)/r)*(1+r):i), sip=sipFv(n),lump=v.amount*Math.pow(1+v.return/100,v.tenure);return {metrics:[['Total invested',fmt(v.amount),'Same total contribution'],['SIP estimated value',fmt(sip),'Monthly contributions'],['Lumpsum estimated value',fmt(lump),'Invested at start']],rows:[['Total contribution',fmt(v.amount)],['Monthly SIP amount',fmt(monthlyAmt)+' × '+n+' months'],['SIP estimated gains',fmt(sip-v.amount)],['Lumpsum estimated gains',fmt(lump-v.amount)],['Return assumption',v.return+'%'],['Period',yrs(v.tenure)]],series:[[...Array(n+1)].map((_,i)=>monthlyAmt*i),[...Array(n+1)].map((_,i)=>sipFv(i)),[...Array(n+1)].map((_,i)=>v.amount*Math.pow(1+v.return/100,i/12))],labels:['Amount invested (SIP)','SIP value','Lumpsum value'],note:'Same total contribution in both cases. SIP: equal monthly instalments at the start of each month, monthly rate = annual return ÷ 12 (same as the SIP calculator). Lumpsum: invested at the start, compounded annually (same as the Lumpsum calculator). Market returns are not guaranteed.'};}},
+swp:{title:'Make Your Corpus Pay You Back',category:'INVESTING',desc:'Estimate regular withdrawals and see how long your invested money may last.',fields:[money('corpus','Starting corpus',500000),monthly('withdrawal','Monthly withdrawal',5000),rate('return','Expected annual return',8),years('tenure','Projection period',20)],run:v=>{let b=v.corpus,inv=v.corpus,months=Math.max(1,Math.round(v.tenure*12)),r=Math.pow(1+v.return/100,1/12)-1,series=[b],withdrawn=0,exhausted=0;for(let i=0;i<months;i++){b*=1+r;let w=Math.min(b,v.withdrawal);b-=w;withdrawn+=w;series.push(b);if(b<=0){b=0;exhausted=i+1;for(let j=i+1;j<months;j++)series.push(0);break;}}return {metrics:[['Starting corpus',fmt(inv),'Initial investment'],['Total withdrawals',fmt(withdrawn),'Over projection period'],['Remaining corpus',fmt(b),exhausted?'Corpus depleted during period':'Estimated at period end']],rows:[['Monthly withdrawal',fmt(v.withdrawal)],['Expected annual return',v.return+'%'],['Projection period',yrs(v.tenure)+' ('+months+' months)'],['Corpus status',exhausted?'Depleted after about '+exhausted+' months':'Not depleted in selected period']],series:[series],labels:['Corpus balance'],note:'Assumes monthly compounding and withdrawals at month-end. Actual market volatility, taxes, fees and timing can materially change results.'};}},
+compound:{title:'Let Compounding Do the Heavy Lifting',category:'SAVINGS',desc:'Explore how interest, time and compounding frequency shape your balance.',fields:[money('principal','Initial principal',5000),rate('return','Annual interest rate',8),years('tenure','Investment period',10),{id:'frequency',label:'Compounding frequency',def:'4',type:'select',options:[['1','Annually'],['2','Half-yearly'],['4','Quarterly'],['12','Monthly'],['365','Daily']]}],run:v=>{let g=t=>v.principal*Math.pow(1+v.return/100/v.frequency,v.frequency*t),fv=g(v.tenure);return result(v.principal,fv-v.principal,fv,[['Principal',fmt(v.principal)],['Interest rate',v.return+'% p.a.'],['Compounding',({1:'Annually',2:'Half-yearly',4:'Quarterly',12:'Monthly',365:'Daily'})[v.frequency]],['Period',yrs(v.tenure)]],[v.principal],timePoints(v.tenure).map(g));}},
+fd:{title:'Know Your FD Maturity Before You Invest',category:'SAVINGS',desc:'Estimate deposit maturity and interest from your rate and tenure.',fields:[money('principal','Deposit amount',5000),rate('return','Annual interest rate',7),years('tenure','Deposit tenure',3),{id:'frequency',label:'Compounding frequency',def:'4',type:'select',options:[['1','Annually'],['2','Half-yearly'],['4','Quarterly'],['12','Monthly']]}],run:v=>{let g=t=>v.principal*Math.pow(1+v.return/100/v.frequency,v.frequency*t),fv=g(v.tenure);return result(v.principal,fv-v.principal,fv,[['Deposit amount',fmt(v.principal)],['Interest rate',v.return+'% p.a.'],['Compounding',({1:'Annually',2:'Half-yearly',4:'Quarterly',12:'Monthly'})[v.frequency]],['Tenure',yrs(v.tenure)],['Tax treatment','Not included']],[v.principal],timePoints(v.tenure).map(g), 'Illustrative estimate before tax. Actual FD terms, compounding conventions and premature withdrawal rules depend on the bank.');}},
+emi:{title:'Know the Real Cost of Your Loan',category:'LOANS',desc:'Calculate monthly EMI, total interest and repayment before you commit.',fields:[money('principal','Loan amount',500000),rate('return','Annual interest rate',8.5),years('tenure','Loan tenure',20)],run:v=>{let n=Math.max(1,Math.round(v.tenure*12)),r=v.return/1200,emi=r? v.principal*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):v.principal/n,total=emi*n,interest=total-v.principal,bal=m=>Math.max(0,v.principal*Math.pow(1+r,m)-emi*(r?((Math.pow(1+r,m)-1)/r):m));return {metrics:[['Loan amount',fmt(v.principal),'Principal borrowed'],['Total interest',fmt(interest),'Over full tenure'],['Monthly EMI',fmt(emi),'Estimated instalment']],rows:[['Loan tenure',yrs(v.tenure)+' ('+n+' months)'],['Annual interest rate',v.return+'%'],['Total repayment',fmt(total)],['Interest as share of repayment',total?((interest/total)*100).toFixed(1)+'%':'—']],labels:['Outstanding loan balance'],series:[timePoints(v.tenure).map(t=>bal(Math.min(n,Math.round(t*12))))],note:'Estimate excludes processing fees, insurance and rate changes. Lender rounding and payment dates may change the final schedule.'};}},
+ppf:{title:'Plan Your Long-Term PPF Growth',category:'SAVINGS',desc:'Estimate how annual contributions may build your PPF balance over time.',fields:[{...money('amount','Annual contribution',5000),max:150000,maxMsg:'PPF allows up to ₹1,50,000 a year'},rate('return','Assumed annual interest rate',7.1),{...years('tenure','Investment period',15,1,50),integer:true,integerMsg:'PPF runs in whole years — enter e.g. 15'}],run:v=>{let b=0,contrib=0,series=[0];for(let y=0;y<v.tenure;y++){b=(b+v.amount)*(1+v.return/100);contrib+=v.amount;series.push(b);}return result(contrib,b-contrib,b,[['Annual contribution',fmt(v.amount)],['Assumed annual rate',v.return+'%'],['Period',yrs(v.tenure)],['Total contributions',fmt(contrib)],['Interest earned',fmt(b-contrib)] ,[ 'Deposit timing','Assumed at start of each year']],[...Array(v.tenure+1)].map((_,i)=>i*v.amount),series,'Illustrative projection. Annual contributions are capped at ₹1,50,000 to reflect the current PPF limit; actual interest crediting depends on deposit timing and current scheme rules.');}},
+inflation:{title:'See What Today’s Money May Buy Tomorrow',category:'PLANNING',desc:'Estimate future costs and how inflation can reduce purchasing power.',fields:[money('amount','Current amount / cost',5000),rate('return','Annual inflation rate',6),years('tenure','Time period',10)],run:v=>{let future=v.amount*Math.pow(1+v.return/100,v.tenure),real=v.amount/Math.pow(1+v.return/100,v.tenure);return {metrics:[['Current amount',fmt(v.amount),'Today’s money'],['Future equivalent cost',fmt(future),'At assumed inflation'],['Purchasing power',fmt(real),'Approximate future purchasing power'],],rows:[['Annual inflation assumption',v.return+'%'],['Period',yrs(v.tenure)],['Increase in cost',fmt(future-v.amount)],['Future purchasing power',fmt(real)]],series:[timePoints(v.tenure).map(t=>v.amount*Math.pow(1+v.return/100,t))],labels:['Future cost'],note:'Inflation varies by category and over time. This is a constant-rate illustration, not a forecast.'};}},
+retirement:{title:'Find Your Retirement Number',category:'PLANNING',desc:'Estimate future monthly expenses, target corpus and savings needed.',fields:[money('amount','Monthly expenses today',25000),rate('return','Expected pre-retirement return',10),rate('inflation','Annual inflation',6),years('tenure','Years until retirement',25),years('retire','Years in retirement',25,0.1,60),rate('postreturn','Expected return during retirement',7)],run:v=>{let exp=v.amount*Math.pow(1+v.inflation/100,v.tenure),r=v.postreturn/1200,n=Math.max(1,Math.round(v.retire*12)),corpus=r?exp*((1-Math.pow(1+r,-n))/r):exp*n,pre=Math.pow(1+v.return/100,1/12)-1,m=Math.max(1,Math.round(v.tenure*12)),monthlyNeed=pre?corpus*pre/(Math.pow(1+pre,m)-1):corpus/m;return {metrics:[['Monthly expense at retirement',fmt(exp),'Inflation-adjusted'],['Target retirement corpus',fmt(corpus),'At retirement date'],['Monthly saving target',fmt(monthlyNeed),'Approximate from ₹0 today']],rows:[['Current monthly expenses',fmt(v.amount)],['Inflation assumption',v.inflation+'%'],['Years until retirement',yrs(v.tenure)],['Retirement duration',yrs(v.retire)],['Return before retirement',v.return+'%'],['Return during retirement',v.postreturn+'%'],['Corpus calculation','Expense at retirement held flat (not inflated) during retirement']],series:[timePoints(v.tenure).map(t=>corpus*Math.pow(1+v.return/100,-(v.tenure-t)))],labels:['Corpus needed on track (today → retirement)'],note:'Simplified estimate. It assumes a constant return and a level monthly expense at retirement; taxes, healthcare, pensions, asset allocation and sequence-of-return risk are not modeled.'};}}
 };
 function result(invested,gains,future,rows,invSeries,valSeries,note='Assumes a constant rate and the compounding convention shown. Actual returns may differ.'){if(invSeries.length===1&&valSeries.length>1)invSeries=valSeries.map(()=>invSeries[0]);return {labels:['Amount invested','Estimated value'],metrics:[['Amount invested',fmt(invested),'Total contributions'],['Estimated growth',fmt(gains),'Interest / gains'],['Future value',fmt(future),'Illustrative estimate']],rows,series:[invSeries,valSeries],note};}
+/* Returns a plain-language problem with a field's value, or '' if it is usable. */
+function fieldError(f,el){if(f.type==='select')return '';if(el.validity.badInput)return 'Enter a valid number';const raw=el.value.trim();if(raw==='')return 'Enter a value';const v=Number(raw);if(!Number.isFinite(v))return 'Enter a valid number';if(f.min!=null&&v<f.min)return f.min===0?'Can\'t be negative':'Minimum is '+(f.prefix?fmt(f.min):f.suffix==='years'?yrs(f.min):f.min+'%');if(f.max!=null&&v>f.max)return f.maxMsg||'Maximum is '+(f.prefix?fmt(f.max):f.suffix==='years'?yrs(f.max):f.max+'%');if(f.integer&&!Number.isInteger(v))return f.integerMsg||'Use a whole number';return ''}
 let current='sip',fieldsAbort=null,lastSeries=[],lastLabels=[];function fieldsFor(c){
   if(fieldsAbort)fieldsAbort.abort();fieldsAbort=new AbortController();
   $('fields').innerHTML='';
@@ -801,11 +814,11 @@ let current='sip',fieldsAbort=null,lastSeries=[],lastLabels=[];function fieldsFo
       trigger.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();trigger.focus()}if(e.key==='ArrowDown'&&menu.hidden){e.preventDefault();trigger.click()}});
       menu.addEventListener('keydown',e=>{const index=optionButtons.indexOf(document.activeElement);if(e.key==='Escape'){e.preventDefault();closeMenu();trigger.focus()}else if(e.key==='ArrowDown'){e.preventDefault();optionButtons[Math.min(index+1,optionButtons.length-1)]?.focus()}else if(e.key==='ArrowUp'){e.preventDefault();optionButtons[Math.max(index-1,0)]?.focus()}else if(e.key==='Tab'){closeMenu()}});
       document.addEventListener('click',e=>{if(!shell.contains(e.target))closeMenu()},{signal:fieldsAbort.signal});shell.append(el,trigger,menu);
-    }else{el=document.createElement('input');el.type='number';el.min=f.min??0;el.step=f.step??1;if(f.max)el.max=f.max;el.id=f.id;el.value=f.def;el.required=true;shell.append(el)}
-    if(f.suffix){const s=document.createElement('span');s.textContent=f.suffix;shell.append(s)}d.append(shell);$('fields').append(d)
+    }else{el=document.createElement('input');el.type='number';el.min=f.min??0;el.step='any';el.inputMode=f.integer?'numeric':'decimal';if(f.max)el.max=f.max;el.id=f.id;el.value=f.def;el.required=true;el.setAttribute('aria-describedby',f.id+'Error');shell.append(el)}
+    if(f.suffix){const s=document.createElement('span');s.textContent=f.suffix;shell.append(s)}const err=document.createElement('div');err.className='field-error';err.id=f.id+'Error';err.setAttribute('aria-live','polite');d.append(shell,err);$('fields').append(d)
   })
 }
-function showTool(key){if(!configs[key]&&key!=='sip')key='lumpsum';current=key;document.querySelectorAll('[data-tool]').forEach(b=>{const on=b.dataset.tool===key;b.classList.toggle('active',on);if(on)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')});const generic=$('genericPanel'),sipView=$('sipView');if(key==='sip'){generic.classList.add('hide');sipView.classList.remove('hide');if(window.refreshSipCalculator)window.refreshSipCalculator();}else{sipView.classList.add('hide');generic.classList.remove('hide');let c=configs[key];$('title').textContent=c.title;$('category').textContent=c.category;$('desc').textContent=c.desc;fieldsFor(c);calculate();}history.replaceState(null,'','#'+key);requestAnimationFrame(redraw)}function values(c){let v={};c.fields.forEach(f=>v[f.id]=f.type==='select'?Number($(f.id).value):Number($(f.id).value)||0);return v}function isValidField(f,el){const v=el.validity;if(v.valid)return true;const onlyStep=v.stepMismatch&&!v.valueMissing&&!v.badInput&&!v.rangeUnderflow&&!v.rangeOverflow;return onlyStep&&f.suffix!=='years'}function calculate(report=true){let c=configs[current],v=values(c);for(const f of c.fields){let el=$(f.id);if(!isValidField(f,el)){if(report)el.reportValidity();return}}let out=c.run(v);out.metrics.forEach((m,i)=>{$('label'+(i+1)).textContent=m[0];$('value'+(i+1)).textContent=m[1];$('sub'+(i+1)).textContent=m[2]||''});$('rows').innerHTML=out.rows.map(r=>`<div class="row"><span>${r[0]}</span><strong>${r[1]}</strong></div>`).join('');$('note').textContent=out.note||'Estimate only. Actual results may differ.';lastSeries=out.series||[];lastLabels=out.labels||[];draw(lastSeries,lastLabels)}function redraw(){if(current==='sip'){if(window.refreshSipCalculator)window.refreshSipCalculator()}else draw(lastSeries,lastLabels)}function draw(series,labels=[]){
+function showTool(key){if(!configs[key]&&key!=='sip')key='lumpsum';current=key;document.querySelectorAll('[data-tool]').forEach(b=>{const on=b.dataset.tool===key;b.classList.toggle('active',on);if(on)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')});const generic=$('genericPanel'),sipView=$('sipView');if(key==='sip'){generic.classList.add('hide');sipView.classList.remove('hide');if(window.refreshSipCalculator)window.refreshSipCalculator();}else{sipView.classList.add('hide');generic.classList.remove('hide');let c=configs[key];$('title').textContent=c.title;$('category').textContent=c.category;$('desc').textContent=c.desc;fieldsFor(c);calculate();}history.replaceState(null,'','#'+key);requestAnimationFrame(redraw)}function values(c){let v={};c.fields.forEach(f=>v[f.id]=f.type==='select'?Number($(f.id).value):Number($(f.id).value)||0);return v}function calculate(report=true){let c=configs[current],v=values(c),firstBad=null;for(const f of c.fields){const el=$(f.id),msg=fieldError(f,el),slot=$(f.id+'Error');if(slot)slot.textContent=msg;if(el.type!=='select-one')el.setAttribute('aria-invalid',String(!!msg));el.closest('.field').classList.toggle('has-error',!!msg);if(msg&&!firstBad)firstBad=el}if(firstBad){if(report)firstBad.focus();return}let out=c.run(v);out.metrics.forEach((m,i)=>{$('label'+(i+1)).textContent=m[0];$('value'+(i+1)).textContent=m[1];$('sub'+(i+1)).textContent=m[2]||''});$('rows').innerHTML=out.rows.map(r=>`<div class="row"><span>${r[0]}</span><strong>${r[1]}</strong></div>`).join('');$('note').textContent=out.note||'Estimate only. Actual results may differ.';lastSeries=out.series||[];lastLabels=out.labels||[];draw(lastSeries,lastLabels)}function redraw(){if(current==='sip'){if(window.refreshSipCalculator)window.refreshSipCalculator()}else draw(lastSeries,lastLabels)}function draw(series,labels=[]){
  const canvas=$('genericChart');if(!canvas)return;
  const rect=canvas.getBoundingClientRect();
  const w=Math.max(280,Math.floor(rect.width||canvas.clientWidth||650)),h=180,dpr=Math.max(1,window.devicePixelRatio||1);
