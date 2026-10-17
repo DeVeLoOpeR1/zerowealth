@@ -29,7 +29,7 @@ html[data-theme="dark"] #sipView .lump-warn{color:#fdba74}
 #sipView .zw-select-trigger:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 #sipView .lump-row .zw-select-trigger{font-size:12px;padding:10px 24px 10px 8px}
 #sipView .lump-row .zw-select::after{right:9px;width:6px;height:6px}
-#sipView .zw-select-menu{position:absolute;top:calc(100% + 6px);left:0;min-width:100%;width:max-content;max-width:min(300px,85vw);z-index:60;padding:5px;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 14px 34px rgba(7,17,12,.18);max-height:260px;overflow-y:auto}
+#sipView .zw-select-menu{position:absolute;top:calc(100% + 6px);left:-1px;min-width:calc(100% + 2px);width:max-content;max-width:min(300px,85vw);z-index:60;padding:5px;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 14px 34px rgba(7,17,12,.18);max-height:260px;overflow-y:auto}
 html[data-theme="dark"] #sipView .zw-select-menu{box-shadow:0 16px 36px rgba(0,0,0,.6)}
 #sipView .zw-select-menu[hidden]{display:none}
 #sipView .zw-option{all:unset;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;padding:9px 11px;border-radius:8px;font-size:13.5px;color:var(--text);cursor:pointer;white-space:nowrap}
@@ -243,7 +243,7 @@ html[data-theme="dark"] #sipView .stat.accent{background:linear-gradient(135deg,
 .control.custom-select-shell .native-select{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;left:0;bottom:0;padding:0!important}
 .custom-select-trigger{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:46px;padding:11px 42px 11px 12px;border:0;border-radius:11px;background:transparent;color:var(--text);font:inherit;font-weight:750;text-align:left;cursor:pointer}
 .custom-select-trigger:focus-visible{outline:2px solid var(--green);outline-offset:2px}
-.custom-select-menu{position:absolute;top:calc(100% + 7px);left:0;right:0;z-index:50;padding:5px;background:var(--surface);border:1px solid var(--line);border-radius:13px;box-shadow:0 14px 34px #07110c25;max-height:240px;overflow-y:auto}
+.custom-select-menu{position:absolute;top:calc(100% + 7px);left:-1px;right:-1px;z-index:50;padding:5px;background:var(--surface);border:1px solid var(--line);border-radius:13px;box-shadow:0 14px 34px #07110c25;max-height:240px;overflow-y:auto}
 .custom-select-menu[hidden]{display:none!important}
 .custom-select-option{display:flex;align-items:center;justify-content:space-between;width:100%;padding:10px 12px;border:0;border-radius:8px;background:transparent;color:var(--text);font:inherit;font-size:14px;text-align:left;cursor:pointer}
 .custom-select-option:hover,.custom-select-option:focus-visible{outline:none;background:var(--surface2)}
@@ -544,6 +544,7 @@ window.zwEnhanceSelect = sel => {
     menu.hidden = false; shell.classList.add("is-open"); trigger.setAttribute("aria-expanded", "true");
     const cur = menu.querySelector("[aria-selected='true']") || menu.firstChild;
     if (cur) { cur.focus({ preventScroll: true }); cur.scrollIntoView({ block: "nearest" }); }
+    menu.getBoundingClientRect().bottom > window.innerHeight && menu.scrollIntoView({ block: "nearest", behavior: matchMedia("(prefers-reduced-motion:reduce)").matches ? "auto" : "smooth" });
   };
   trigger.addEventListener("click", () => (menu.hidden ? open() : close()));
   trigger.addEventListener("keydown", e => {
@@ -567,6 +568,8 @@ window.zwEnhanceSelect = sel => {
 document.addEventListener("click", e => {
   document.querySelectorAll(".zw-select.is-open").forEach(sh => { if (!sh.contains(e.target)) sh._zwClose(); });
 });
+// A pinned (sticky) panel taller than the window would hide its lower part; let it scroll until its bottom edge shows, then pin.
+window.zwFitSticky = el => { if (!el || getComputedStyle(el).position !== "sticky") { if (el) el.style.top = ""; return; } el.style.top = Math.min(14, window.innerHeight - el.offsetHeight - 14) + "px"; };
 const syncSelects = () => document.querySelectorAll("#sipView select").forEach(x => x._zwSync && x._zwSync());
 
 // shrink a value's font until it fits on one line in its card (never below 13px)
@@ -891,6 +894,7 @@ function recalc() {
   window.zwCompare.render($("sipCompare"), "sip", lastSipCompare.inputs, lastSipCompare.metrics);
   window.zwFit([$("cInvested"), $("cGains"), $("cCorpus"), $("iTax"), $("iRange"), $("iTer")]);
   syncSelects();
+  window.zwFitSticky(document.querySelector("#sipView .panel"));
 
   // keep the inputs in the URL so the plan can be shared
   if (!$("sipView").classList.contains("hide")) {
@@ -1405,7 +1409,7 @@ let current='sip',fieldsAbort=null,lastSeries=[],lastLabels=[],lastTable=null;fu
       const optionButtons=[];const syncOptions=()=>optionButtons.forEach(btn=>{btn.setAttribute('aria-selected',String(btn.dataset.value===String(el.value)))});
       f.options.forEach(([value,text])=>{const option=document.createElement('button');option.type='button';option.className='custom-select-option';option.setAttribute('role','option');option.dataset.value=String(value);option.textContent=text;option.addEventListener('click',()=>{el.value=String(value);trigger.textContent=currentLabel();syncOptions();menu.hidden=true;shell.classList.remove('is-open');trigger.setAttribute('aria-expanded','false');trigger.focus();el.dispatchEvent(new Event('change',{bubbles:true}))});optionButtons.push(option);menu.append(option)});
       const closeMenu=()=>{menu.hidden=true;shell.classList.remove('is-open');trigger.setAttribute('aria-expanded','false')};
-      trigger.addEventListener('click',()=>{const opening=menu.hidden;menu.hidden=!opening;shell.classList.toggle('is-open',opening);trigger.setAttribute('aria-expanded',String(opening));if(opening){syncOptions();const selected=optionButtons.find(btn=>btn.dataset.value===String(el.value));(selected||optionButtons[0])?.focus()}});
+      trigger.addEventListener('click',()=>{const opening=menu.hidden;menu.hidden=!opening;shell.classList.toggle('is-open',opening);trigger.setAttribute('aria-expanded',String(opening));if(opening){syncOptions();const selected=optionButtons.find(btn=>btn.dataset.value===String(el.value));(selected||optionButtons[0])?.focus();if(menu.getBoundingClientRect().bottom>innerHeight)menu.scrollIntoView({block:'nearest'})}});
       trigger.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenu();trigger.focus()}if(e.key==='ArrowDown'&&menu.hidden){e.preventDefault();trigger.click()}});
       menu.addEventListener('keydown',e=>{const index=optionButtons.indexOf(document.activeElement);if(e.key==='Escape'){e.preventDefault();closeMenu();trigger.focus()}else if(e.key==='ArrowDown'){e.preventDefault();optionButtons[Math.min(index+1,optionButtons.length-1)]?.focus()}else if(e.key==='ArrowUp'){e.preventDefault();optionButtons[Math.max(index-1,0)]?.focus()}else if(e.key==='Tab'){closeMenu()}});
       document.addEventListener('click',e=>{if(!shell.contains(e.target))closeMenu()},{signal:fieldsAbort.signal});shell.append(el,trigger,menu);
@@ -1437,6 +1441,6 @@ window.zwShare=shareLink;function values(c){let v={};c.fields.forEach(f=>v[f.id]
  const colors=valid.length===1?[accent]:[muted,accent,'#d9a21b'];const legend=$('legend');if(legend)legend.innerHTML=items.map((x,idx)=>x.label?'<span><i style="background:'+colors[idx%colors.length]+'"></i>'+x.label+'</span>':'').join('');valid.forEach((arr,idx)=>{ctx.beginPath();arr.forEach((val,i)=>{const x=padL+plotW*i/(arr.length-1),y=padT+plotH*(1-(val-min)/range);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.strokeStyle=colors[idx%colors.length];ctx.lineWidth=2.5;ctx.lineJoin='round';ctx.lineCap='round';ctx.stroke();});
  ctx.fillStyle=muted;ctx.font='10px system-ui,sans-serif';ctx.textAlign='left';ctx.textBaseline='alphabetic';ctx.fillText('Start',padL,h-5);ctx.textAlign='right';ctx.fillText('End',w-padR,h-5);
 }
-document.querySelectorAll('[data-tool]').forEach(b=>b.addEventListener('click',()=>{showTool(b.dataset.tool);/* On stacked (mobile) layout the panel sits below the tool list, so bring it into view. */if(matchMedia('(max-width:850px)').matches)document.querySelector('.main').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'})}));$('calcForm').addEventListener('submit',e=>{e.preventDefault();calculate()});$('calcForm').addEventListener('input',()=>calculate(false));$('calcForm').addEventListener('change',()=>calculate(false));window.addEventListener('hashchange',()=>{const [k,params]=parseHash();if(configs[k]||k==='sip')showTool(k,params)});$('shareBtn').addEventListener('click',e=>shareLink(e.currentTarget));$('pinBtn').addEventListener('click',()=>{if(!lastCompare)return;window.zwCompare.pin(current,lastCompare.inputs,lastCompare.metrics);calculate(false);$('compareBox').scrollIntoView({behavior:'smooth',block:'nearest'})});$('tableCsv').addEventListener('click',()=>{if(lastTable)downloadCsv(current+'-year-by-year.csv',lastTable.head,lastTable.rows)});$('resetBtn').addEventListener('click',()=>showTool(current));$('year').textContent=new Date().getFullYear();/* Theme is handled site-wide by theme.js; redraw charts when it changes. */window.addEventListener('zw-theme-change',()=>{if(current!=='sip')draw(lastSeries,lastLabels)});let resizeFrame=0;window.addEventListener('resize',()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(redraw)});const [initial,initialParams]=parseHash();showTool((configs[initial]||initial==='sip')?initial:'sip',initialParams);
+document.querySelectorAll('[data-tool]').forEach(b=>b.addEventListener('click',()=>{showTool(b.dataset.tool);/* On stacked (mobile) layout the panel sits below the tool list, so bring it into view. */if(matchMedia('(max-width:850px)').matches)document.querySelector('.main').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'start'})}));$('calcForm').addEventListener('submit',e=>{e.preventDefault();calculate()});$('calcForm').addEventListener('input',()=>calculate(false));$('calcForm').addEventListener('change',()=>calculate(false));window.addEventListener('hashchange',()=>{const [k,params]=parseHash();if(configs[k]||k==='sip')showTool(k,params)});$('shareBtn').addEventListener('click',e=>shareLink(e.currentTarget));$('pinBtn').addEventListener('click',()=>{if(!lastCompare)return;window.zwCompare.pin(current,lastCompare.inputs,lastCompare.metrics);calculate(false);$('compareBox').scrollIntoView({behavior:'smooth',block:'nearest'})});$('tableCsv').addEventListener('click',()=>{if(lastTable)downloadCsv(current+'-year-by-year.csv',lastTable.head,lastTable.rows)});$('resetBtn').addEventListener('click',()=>showTool(current));$('year').textContent=new Date().getFullYear();/* Theme is handled site-wide by theme.js; redraw charts when it changes. */window.addEventListener('zw-theme-change',()=>{if(current!=='sip')draw(lastSeries,lastLabels)});window.zwFitSticky(document.querySelector('.sidebar'));window.addEventListener('resize',()=>window.zwFitSticky(document.querySelector('.sidebar')));let resizeFrame=0;window.addEventListener('resize',()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(redraw)});const [initial,initialParams]=parseHash();showTool((configs[initial]||initial==='sip')?initial:'sip',initialParams);
 </script></body></html>
 
