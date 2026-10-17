@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About Saurabh Yadav — Zero Wealth</title>
+<meta name="description" content="Saurabh Yadav — Java backend engineer working on AI integration, finance content creator on YouTube, and the person building Zero Wealth, a wealth management tool for everyday Indians.">
+<script src="theme.js"></script>
+<link rel="stylesheet" href="yt.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Saurabh Yadav","jobTitle":"Java Backend Engineer","worksFor":{"@type":"Organization","name":"Kpis Pvt. Ltd."},"alumniOf":{"@type":"CollegeOrUniversity","name":"Swami Keshvanand Institute of Technology, Management & Gramothan, Jaipur"},"address":{"@type":"PostalAddress","addressLocality":"Alwar","addressRegion":"Rajasthan","addressCountry":"IN"},"email":"mailto:saurabh.sy2001@gmail.com","url":"https://zerowealth.in/about.html","sameAs":["https://www.linkedin.com/in/saurabh-yadav-407834169/","https://www.youtube.com/channel/UCn2tPHDpXme_rNmy6tBPUNg","https://www.instagram.com/hey.saurabhyadav/","https://whatsapp.com/channel/0029Vb93MCZInlqURFZPZw1O"]}
+</script>
+<style>
+:root{--bg:#f6f8f5;--surface:#fff;--surface2:#f0f4ef;--text:#14251f;--muted:#5f7068;--line:#e1e9e2;--green:#16764a;--green2:#0d5737;--mint:#dff4e8;--lime:#c9f36b;--shadow:0 18px 50px #163c2812}
+[data-theme="dark"]{color-scheme:dark;--bg:#07110c;--surface:#0e1b14;--surface2:#14251b;--text:#edf7f0;--muted:#a3b8aa;--line:#263e2e;--green:#35c989;--green2:#10a76a;--mint:#193b29;--lime:#b9f078;--shadow:0 16px 40px #0005}
+html{color-scheme:light;scroll-behavior:smooth;scroll-padding-top:90px}html[data-theme="dark"]{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+[data-theme="dark"] body{background:radial-gradient(ellipse at 82% 0%,#123a27 0,transparent 38%),var(--bg)}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+:focus-visible{outline:3px solid color-mix(in srgb,var(--green) 40%,transparent);outline-offset:3px}
+.container{width:min(1160px,calc(100% - 40px));margin:auto}
+
+/* ---------- top bar (same as home page) ---------- */
+.nav{position:sticky;top:0;z-index:20;background:var(--bg);display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:78px;padding:0 max(20px,calc((100% - 1160px)/2))}
+.brand{display:flex;align-items:center;gap:12px}
+.brandmark{position:relative;isolation:isolate;width:42px;height:42px;flex:0 0 42px;border-radius:14px;display:grid;place-items:center;overflow:hidden;background:linear-gradient(145deg,#10b981 0%,#08754a 52%,#063d2b 100%);box-shadow:0 7px 20px #08754a26;font-size:0}
+.brandmark:before{content:"₹";position:relative;z-index:1;font-size:24px;font-weight:850;color:#fff}
+.brandmark:after{content:"";position:absolute;inset:auto 0 0 48%;height:36%;background:linear-gradient(135deg,#34d399,#10b981);transform:skewX(-28deg);opacity:.9}
+.wordmark{font-size:22px;font-weight:850;letter-spacing:-1.05px;white-space:nowrap}
+.wordmark span:last-child{color:#08754a}[data-theme="dark"] .wordmark span:last-child{color:#34d399}
+.navlinks{display:flex;gap:26px;font-size:14px;font-weight:650;color:var(--muted)}
+.navlinks a:hover,.navlinks a[aria-current]{color:var(--text)}
+.navlinks a[aria-current]{position:relative}.navlinks a[aria-current]:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:var(--green)}
+.navright{display:flex;gap:10px;align-items:center}
+.iconbtn{height:42px;width:42px;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--text);cursor:pointer}
+
+/* ---------- shared bits ---------- */
+.kicker{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);font-weight:850}
+.section{padding:56px 0}
+.section h2{font-size:clamp(28px,3vw,40px);letter-spacing:-1.4px;line-height:1.15;margin:8px 0 10px}
+.lead{color:var(--muted);font-size:16px;max-width:640px;margin:0}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 18px;font-weight:800;font-size:14px;border:1px solid transparent;transition:transform .2s,background-color .2s}
+.btn.primary{background:linear-gradient(135deg,#10b981,#08754a);color:#fff}
+.btn.ghost{background:var(--surface);border-color:var(--line);color:var(--text)}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:18px;height:18px;flex:none}
+.tag{display:inline-block;font-size:11.5px;font-weight:750;padding:4px 10px;border-radius:999px;background:var(--mint);color:var(--green)}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center;padding:54px 0 30px}
+.avatar{width:156px;height:156px;border-radius:44px;display:grid;place-items:center;background:linear-gradient(145deg,#10b981 0%,#08754a 52%,#063d2b 100%);color:#fff;font-size:58px;font-weight:850;letter-spacing:-2px;box-shadow:0 22px 50px #08754a40;position:relative;overflow:hidden}
+.avatar:after{content:"";position:absolute;inset:auto 0 0 52%;height:30%;background:linear-gradient(135deg,#34d399,#10b981);transform:skewX(-28deg);opacity:.75}
+.avatar span{position:relative;z-index:1}
+.hero h1{font-size:clamp(38px,5vw,62px);line-height:1.03;letter-spacing:-2.6px;margin:8px 0 12px}
+.hero h1 em{font-style:normal;color:var(--green)}
+.hero .headline{font-size:17px;font-weight:700;margin:0 0 6px}
+.hero .loc{font-size:14px;color:var(--muted);margin:0 0 16px;display:flex;align-items:center;gap:6px}
+.hero .story{color:var(--muted);font-size:16px;max-width:700px;margin:0 0 22px}
+.heroactions{display:flex;flex-wrap:wrap;gap:10px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:30px}
+.stat{border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:16px 18px}
+.stat strong{display:block;font-size:30px;letter-spacing:-1.2px;line-height:1.1}
+.stat span{font-size:12.5px;color:var(--muted);font-weight:650}
+
+/* ---------- pathway (overview) ---------- */
+.path{position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:30px;padding:0;list-style:none}
+.path:before{content:"";position:absolute;left:8%;right:8%;top:38px;height:4px;border-radius:4px;background:linear-gradient(90deg,#9fd8b8,#10b981 55%,#08754a)}
+[data-theme="dark"] .path:before{background:linear-gradient(90deg,#1f5c3c,#10b981 55%,#34d399)}
+.step{position:relative;text-align:center}
+.step a{display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 4px 6px;border-radius:16px}
+.node{width:80px;height:80px;border-radius:50%;display:grid;place-items:center;font-size:30px;background:var(--surface);border:3px solid #10b981;box-shadow:0 10px 26px #08754a26;position:relative;z-index:1;transition:transform .2s}
+.step a:hover .node{transform:translateY(-4px) scale(1.04)}
+.step.now .node{background:linear-gradient(145deg,#10b981,#08754a);color:#fff;border-color:transparent}
+.step a>div{display:flex;flex-direction:column;align-items:center;gap:3px}
+.step .when{font-size:11px;font-weight:850;letter-spacing:.8px;text-transform:uppercase;color:var(--green)}
+.step b{font-size:15px;line-height:1.25}
+.step small{font-size:12px;color:var(--muted);line-height:1.4}
+.arrow{position:absolute;top:28px;right:-14px;z-index:2;color:#10b981;font-size:18px;font-weight:900}
+.step:last-child .arrow{display:none}
+
+/* ---------- journey detail (vertical timeline) ---------- */
+.journey{position:relative;margin-top:26px;padding-left:46px}
+.journey:before{content:"";position:absolute;left:17px;top:6px;bottom:6px;width:3px;border-radius:3px;background:linear-gradient(#9fd8b8,#10b981,#08754a)}
+[data-theme="dark"] .journey:before{background:linear-gradient(#1f5c3c,#10b981,#34d399)}
+.stage{position:relative;margin:0 0 34px}
+.stage>.dot{position:absolute;left:-46px;top:0;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:3px solid #10b981;font-size:17px;z-index:1}
+.stage.now>.dot{background:linear-gradient(145deg,#10b981,#08754a);border-color:transparent}
+.stage h3{margin:2px 0 4px;font-size:22px;letter-spacing:-.5px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.stage h3 .tag{font-size:11px}
+.stage>p{margin:0 0 14px;color:var(--muted);font-size:14.5px;max-width:760px}
+.roles{display:grid;gap:12px}
+.role{border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:18px 20px;box-shadow:0 4px 18px #173e2606}
+.rolehead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.role h4{margin:0;font-size:16.5px;letter-spacing:-.2px}
+.role .org{color:var(--green);font-weight:750}
+.role time{font-size:12.5px;font-weight:750;color:var(--muted);white-space:nowrap}
+.role ul{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:14px}
+.role li{margin:3px 0}
+.role li b{color:var(--text)}
+.role .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.award{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;color:#8a5a00;background:color-mix(in srgb,#d9a21b 18%,transparent);border-radius:999px;padding:3px 10px;margin-top:10px}
+[data-theme="dark"] .award{color:#fcd34d}
+
+/* ---------- now / skills ---------- */
+.cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
+.card{border:1px solid var(--line);background:var(--surface);border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.card .ic{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--mint);font-size:22px}
+.card h3{margin:6px 0 0;font-size:18px}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.card a.more{margin-top:auto;padding-top:8px;font-weight:800;font-size:13px;color:var(--green)}
+.skillgrid{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:24px}
+.skillbox{border:1px solid var(--line);background:var(--surface);border-radius:20px;padding:22px}
+.skillbox h3{margin:0 0 12px;font-size:16px}
+.skilltags{display:flex;flex-wrap:wrap;gap:8px}
+.skilltags span{font-size:13px;font-weight:700;border:1px solid var(--line);background:var(--surface2);border-radius:999px;padding:6px 12px}
+.skillbox ul{margin:0;padding-left:18px;color:var(--muted);font-size:14px}
+
+/* ---------- why + contact ---------- */
+.why{border-radius:28px;padding:36px;background:#142d20;color:#f4fff6;display:grid;grid-template-columns:1.3fr .7fr;gap:26px;align-items:center}
+[data-theme="dark"] .why{background:linear-gradient(135deg,#132c1d,#0c1f14);border:1px solid #2a4b34}
+.why .kicker{color:var(--lime)}
+.why h2{color:#fff;margin:8px 0 12px}
+.why p{color:#b9d1c1;margin:0 0 10px;max-width:620px}
+.why .btn.primary{background:var(--lime);color:#173722}
+.contact{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:24px}
+.cbtn{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:18px;transition:border-color .2s,transform .2s;min-width:0}
+.cbtn:hover{transform:translateY(-3px);border-color:var(--green)}
+.cbtn svg{width:30px;height:30px}
+.cbtn b{font-size:15px}
+.cbtn span{font-size:12.5px;color:var(--muted);overflow-wrap:anywhere}
+.footer{margin-top:40px;border-top:1px solid var(--line);padding:26px 0 34px;color:var(--muted);font-size:12.5px}
+.footer .row{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+
+/* ---------- responsive ---------- */
+@media(max-width:980px){
+ .path{grid-template-columns:1fr;gap:0;padding-left:0}
+ .path:before{left:39px;right:auto;top:20px;bottom:20px;width:4px;height:auto;background:linear-gradient(#9fd8b8,#10b981,#08754a)}
+ [data-theme="dark"] .path:before{background:linear-gradient(#1f5c3c,#10b981,#34d399)}
+ .step{text-align:left}
+ .step a{flex-direction:row;align-items:center;gap:16px;padding:8px 0}
+ .step a>div{align-items:flex-start}
+ .arrow{display:none}
+ .cards3{grid-template-columns:1fr}
+ .skillgrid{grid-template-columns:1fr}
+ .why{grid-template-columns:1fr}
+ .contact{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .navlinks{display:none}
+}
+@media(max-width:600px){
+ .container{width:calc(100% - 28px)}
+ .nav{padding:0 14px;min-height:68px}
+ .wordmark{font-size:19px}
+ .hero{grid-template-columns:1fr;gap:18px;padding-top:30px}
+ .avatar{width:104px;height:104px;border-radius:30px;font-size:40px}
+ .node{width:64px;height:64px;font-size:24px}
+ .path:before{left:31px}
+ .journey{padding-left:40px}.journey:before{left:14px}.stage>.dot{left:-40px;width:32px;height:32px;font-size:15px}
+ .why{padding:24px}
+ .contact{grid-template-columns:1fr}
+ .ytpill [data-yt-subs]{display:none}.ytpill{padding:0 10px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="Zero Wealth home"><span class="brandmark" aria-hidden="true">₹</span><span class="wordmark"><span>Zero</span><span> Wealth</span></span></a>
+  <nav class="navlinks"><a href="index.html#calculators">Calculators</a><a href="index.html#youtube">Videos</a><a href="index.html#how-it-works">How it works</a><a href="about.html" aria-current="page">About</a></nav>
+  <div class="navright">
+    <a class="ytpill" data-yt-link data-yt-pill href="https://www.youtube.com/channel/UCn2tPHDpXme_rNmy6tBPUNg" target="_blank" rel="noopener" title="Zero Wealth on YouTube" aria-label="Zero Wealth on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5a2.7 2.7 0 0 0-1.9 1.9C2 8.9 2 12 2 12s0 3.1.4 4.8a2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9c.4-1.7.4-4.8.4-4.8s0-3.1-.4-4.8Z" fill="#ff0033"/><path d="m10 15.2 5.2-3.2L10 8.8Z" fill="#fff"/></svg><span data-yt-subs>YouTube</span></a>
+    <button class="iconbtn" id="themeBtn" type="button" data-theme-toggle aria-label="Toggle theme">☾</button>
+  </div>
+</header>
+
+<main id="top">
+<!-- ================= HERO ================= -->
+<section class="container hero" aria-labelledby="hi">
+  <div class="avatar" aria-hidden="true"><span>SY</span></div>
+  <div>
+    <div class="kicker">The person behind Zero Wealth</div>
+    <h1 id="hi">Hi, I'm Saurabh — I build <em>backend systems</em> and make <em>money simple</em>.</h1>
+    <p class="headline">Java Backend Engineer · AI Integration · Finance Content Creator</p>
+    <p class="loc"><span aria-hidden="true">📍</span> Alwar, Rajasthan, India</p>
+    <p class="story">I'm a Java backend engineer with 3+ years of building real-time, high-scale systems in food-tech and gaming — and a content creator who explains personal finance in plain words. Zero Wealth brings the two together: videos that make money decisions clearer, and a wealth management tool that turns your own numbers into a clear plan.</p>
+    <div class="heroactions">
+      <a class="btn primary" href="https://www.linkedin.com/in/saurabh-yadav-407834169/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11H3v-11Zm6.5 0h3.8v1.5h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.65 4.77 6.1v5.45h-4v-4.84c0-1.15-.02-2.64-1.6-2.64-1.62 0-1.86 1.26-1.86 2.56v4.92h-3.94v-11Z"/></svg>Connect on LinkedIn</a>
+      <a class="btn ghost" href="mailto:saurabh.sy2001@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m5.5 8.5 6.5 4.5 6.5-4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Email me</a>
+      <a class="btn ghost" href="#contact">All contact options ↓</a>
+    </div>
+  </div>
+</section>
+<div class="container">
+  <div class="stats">
+    <div class="stat"><strong>3+ yrs</strong><span>building backend systems</span></div>
+    <div class="stat"><strong>30+</strong><span>backend projects delivered</span></div>
+    <div class="stat"><strong>100K+</strong><span>daily users on systems I've built</span></div>
+    <div class="stat"><strong data-yt-subs>7.47K</strong><span>YouTube subscribers</span></div>
+  </div>
+</div>
+
+<!-- ================= PATHWAY ================= -->
+<section class="container section" id="path" aria-labelledby="pathTitle">
+  <div class="kicker">My path</div>
+  <h2 id="pathTitle">From code to content to Zero Wealth.</h2>
+  <p class="lead">Each step built on the last. Tap a step to read the details.</p>
+  <ol class="path">
+    <li class="step"><a href="#education"><span class="node" aria-hidden="true">🎓</span><div><span class="when">2017 – 2021</span><b>Education</b><small>B.Tech, Computer Science · SKIT Jaipur</small></div></a><span class="arrow" aria-hidden="true">›</span></li>
+    <li class="step"><a href="#java"><span class="node" aria-hidden="true">☕</span><div><span class="when">2022 – now</span><b>Java Developer</b><small>Spring Boot · Microservices · Kpis</small></div></a><span class="arrow" aria-hidden="true">›</span></li>
+    <li class="step"><a href="#fullstack"><span class="node" aria-hidden="true">🧩</span><div><span class="when">2022 – now</span><b>Full-stack Developer</b><small>React web apps → POS, kiosk &amp; customer apps</small></div></a><span class="arrow" aria-hidden="true">›</span></li>
+    <li class="step"><a href="#ai"><span class="node" aria-hidden="true">🤖</span><div><span class="when">Now</span><b>AI Engineer</b><small>AI recommendations · AI-assisted engineering</small></div></a><span class="arrow" aria-hidden="true">›</span></li>
+    <li class="step"><a href="#creator"><span class="node" aria-hidden="true">🎥</span><div><span class="when">2019 – now</span><b>Content Creator</b><small>Writing roots → YouTube &amp; Instagram</small></div></a><span class="arrow" aria-hidden="true">›</span></li>
+    <li class="step now"><a href="#zerowealth"><span class="node" aria-hidden="true">₹</span><div><span class="when">Today</span><b>Zero Wealth</b><small>Finance videos + wealth management tool</small></div></a></li>
+  </ol>
+</section>
+
+<!-- ================= JOURNEY DETAIL ================= -->
+<section class="container section" id="journey" aria-labelledby="journeyTitle" style="padding-top:10px">
+  <div class="kicker">The journey in detail</div>
+  <h2 id="journeyTitle">Education &amp; experience</h2>
+  <div class="journey">
+
+    <div class="stage" id="education"><span class="dot" aria-hidden="true">🎓</span>
+      <h3>Education</h3>
+      <p>Computer Science foundations — the start of everything that followed.</p>
+      <div class="roles">
+        <article class="role"><div class="rolehead"><h4>Bachelor of Technology, Computer Science · <span class="org">Swami Keshvanand Institute of Technology, Management &amp; Gramothan (SKIT), Jaipur</span></h4><time>Aug 2017 – Sep 2021</time></div></article>
+        <article class="role"><div class="rolehead"><h4>Class XII (CBSE) · <span class="org">Suraj Public School</span></h4><time>2016 – 2017</time></div></article>
+        <article class="role"><div class="rolehead"><h4>Class X (CBSE) · <span class="org">Suraj Public School</span></h4><time>2014 – 2015</time></div></article>
+      </div>
+    </div>
+
+    <div class="stage" id="creator-roots"><span class="dot" aria-hidden="true">✍️</span>
+      <h3>Where content started <span class="tag">2019</span></h3>
+      <p>While still in college, I learned to write for an audience and grow it — skills I use on YouTube today.</p>
+      <div class="roles">
+        <article class="role"><div class="rolehead"><h4>Content Writing Intern · <span class="org">MyPustak.com</span></h4><time>Mar 2019</time></div><ul><li>Wrote SEO-friendly Quora blogs that promoted relevant books and drove traffic to the platform.</li></ul></article>
+        <article class="role"><div class="rolehead"><h4>Social Media Marketing Intern · <span class="org">CATKing Educare</span></h4><time>Feb – Mar 2019</time></div><ul><li>Ran brand-awareness campaigns on Quora, Instagram and Facebook for a student audience.</li></ul></article>
+        <article class="role"><div class="rolehead"><h4>Social Media Marketing Intern · <span class="org">Tutor Guide</span></h4><time>Feb 2019</time></div><ul><li>Created SEO-optimised blogs on home tutoring to grow reach.</li></ul></article>
+      </div>
+    </div>
+
+    <div class="stage" id="fullstack"><span class="dot" aria-hidden="true">🧩</span>
+      <h3>Full-stack beginnings <span class="tag">2022</span></h3>
+      <p>Front-end, quality and the web — learning how real products are built, tested and shipped.</p>
+      <div class="roles">
+        <article class="role"><div class="rolehead"><h4>Web Developer · <span class="org">Orena Solutions</span>, Vadodara</h4><time>Jan – Feb 2022</time></div><ul><li>Built interactive, mobile-friendly UIs with HTML5, CSS3 and JavaScript.</li><li>Developed and deployed a church website and a food-ordering platform front end.</li></ul></article>
+        <article class="role"><div class="rolehead"><h4>React Developer · <span class="org">The Entrepreneurship Network</span></h4><time>Jan – Mar 2022</time></div><ul><li>Built a responsive portfolio-management web app in React.</li><li>Used hooks, routing and component architecture — <b>cut development time by 30%</b>.</li></ul><div class="tags"><span class="tag">React</span><span class="tag">JavaScript</span><span class="tag">Git</span></div></article>
+        <article class="role"><div class="rolehead"><h4>Quality Analyst · <span class="org">W3 SpeedUp</span>, Jaipur</h4><time>Mar – Jun 2022</time></div><ul><li>Tested WordPress and Shopify sites for responsiveness, performance and cross-browser support.</li><li>Validated UI/UX flows, payment gateways and forms; improved site speed with performance audits.</li></ul><span class="award">🏆 Awarded “Best Team”</span></article>
+      </div>
+    </div>
+
+    <div class="stage" id="java"><span class="dot" aria-hidden="true">☕</span>
+      <h3>Java backend engineering <span class="tag">2022 – now</span></h3>
+      <p>Scalable, real-time systems in food-tech and gaming — 30+ backend projects delivered.</p>
+      <div class="roles">
+        <article class="role"><div class="rolehead"><h4>Java Backend Developer · <span class="org">Kpis Pvt. Ltd.</span>, Jaipur</h4><time>Mar 2023 – Present</time></div>
+          <ul>
+            <li>Built a cloud-native restaurant platform serving <b>100K+ daily users</b> — POS, kiosk, delivery and customer apps.</li>
+            <li>Real-time updates across POS, kitchen display, waiter and customer apps with Redis pub/sub and WebSockets.</li>
+            <li>Centralised config engine that <b>reduced multi-role sync issues by 70%</b>; plug-and-play APIs that <b>cut new-outlet launch time by 40%</b>.</li>
+            <li>Real-time multiplayer game backends (Ludo, Cards, Aviator, Slots) for <b>1K+ concurrent players</b> with secure matchmaking (WebSockets + RabbitMQ).</li>
+          </ul>
+          <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Microservices</span><span class="tag">Redis</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">WebSockets</span><span class="tag">RabbitMQ</span></div></article>
+        <article class="role"><div class="rolehead"><h4>Java Backend Developer Trainee · <span class="org">AccioJob</span></h4><time>Aug 2022 – Mar 2023</time></div><ul><li>Solved <b>100+</b> data-structures &amp; algorithms problems on AccioJob and LeetCode.</li><li>Built an industry-level Java project with JSP, Spring Boot, REST APIs and MySQL using MVC and clean-code practices.</li></ul><div class="tags"><span class="tag">Spring Boot</span><span class="tag">REST APIs</span><span class="tag">Maven</span><span class="tag">Swagger</span></div></article>
+      </div>
+    </div>
+
+    <div class="stage" id="ai"><span class="dot" aria-hidden="true">🤖</span>
+      <h3>AI engineering <span class="tag">Now</span></h3>
+      <p>Bringing AI into real products — and into the way I build them.</p>
+      <div class="roles">
+        <article class="role"><div class="rolehead"><h4>AI integration · <span class="org">Kpis Pvt. Ltd.</span></h4><time>Ongoing</time></div><ul><li>Integrated <b>AI-powered menu recommendations</b> to lift upsell and engagement.</li><li>Added gameplay personalisation and order recommendations — <b>user retention up 30%</b>.</li><li>Use AI tools (ChatGPT, Copilot) in daily engineering for API testing, design planning and code generation.</li></ul><div class="tags"><span class="tag">AI Integration</span><span class="tag">Recommendations</span><span class="tag">Python</span><span class="tag">LLM tools</span></div></article>
+      </div>
+    </div>
+
+    <div class="stage" id="creator"><span class="dot" aria-hidden="true">🎥</span>
+      <h3>Content creator <span class="tag">YouTube · Instagram</span></h3>
+      <p>Simple, practical videos on personal finance and wealth building — FDs, RDs, SIPs, smart saving and live app demos.</p>
+      <div class="roles">
+        <article class="role"><div class="rolehead"><h4>Creator · <span class="org">Zero Wealth on YouTube</span> (@ZeroWealthIN)</h4><time>Ongoing</time></div><ul><li><b><span data-yt-subs>7.47K</span> subscribers</b> and 277 videos; most-watched video crossed <b>2 lakh views</b>.</li><li>Instagram <b>@hey.saurabhyadav</b> and a WhatsApp channel for quick updates.</li></ul></article>
+      </div>
+    </div>
+
+    <div class="stage now" id="zerowealth"><span class="dot" aria-hidden="true">₹</span>
+      <h3>Zero Wealth <span class="tag">Today</span></h3>
+      <p>Where engineering meets finance content: <a href="index.html" style="color:var(--green);font-weight:800">zerowealth.in</a> — a wealth management tool for everyday Indians. Plan SIPs, FDs, RDs, loans, PPF, withdrawals, retirement and goals with plain-language results, shareable plans and the videos that explain them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NOW + SKILLS ================= -->
+<section class="container section" id="now" aria-labelledby="nowTitle" style="padding-top:10px">
+  <div class="kicker">What I do now</div>
+  <h2 id="nowTitle">Three things, one goal: clarity.</h2>
+  <div class="cards3">
+    <div class="card"><div class="ic" aria-hidden="true">⚙️</div><h3>Engineering</h3><p>Java backend engineer at Kpis — real-time, scalable systems with Spring Boot, microservices and AI integration.</p><a class="more" href="https://www.linkedin.com/in/saurabh-yadav-407834169/" target="_blank" rel="noopener">View LinkedIn ↗</a></div>
+    <div class="card"><div class="ic" aria-hidden="true">🎥</div><h3>Content</h3><p>Finance and wealth-building videos that explain money in simple words, with live app demos you can follow.</p><a class="more" data-yt-link href="https://www.youtube.com/channel/UCn2tPHDpXme_rNmy6tBPUNg" target="_blank" rel="noopener">Watch on YouTube ↗</a></div>
+    <div class="card"><div class="ic" aria-hidden="true">₹</div><h3>Zero Wealth</h3><p>A wealth management tool that turns the ideas from every video into a plan for your own money — in seconds.</p><a class="more" href="index.html#calculators">Open Zero Wealth →</a></div>
+  </div>
+  <div class="skillgrid">
+    <div class="skillbox"><h3>Skills</h3><div class="skilltags"><span>Core Java</span><span>Spring Boot</span><span>Microservices</span><span>REST APIs</span><span>Redis</span><span>MongoDB</span><span>MySQL</span><span>WebSockets</span><span>RabbitMQ</span><span>Software Design</span><span>Python</span><span>AI Integration</span><span>React</span><span>JavaScript</span><span>HTML &amp; CSS</span><span>Content &amp; SEO</span></div></div>
+    <div class="skillbox"><h3>Certifications</h3><ul><li>The Complete 2022 Web Development Bootcamp</li><li>Programming Using Python</li><li>C++ tutorial</li></ul></div>
+  </div>
+</section>
+
+<!-- ================= WHY ================= -->
+<section class="container section" aria-labelledby="whyTitle" style="padding-top:10px">
+  <div class="why">
+    <div><div class="kicker">Why Zero Wealth</div><h2 id="whyTitle">Good money decisions start with a clear number.</h2>
+      <p>As an engineer I build systems that turn complicated inputs into clear answers. Zero Wealth does the same for money: the videos explain the idea, and the tool shows what it means for your own savings, investments, loans and goals.</p>
+      <p>Everything is free and educational — no tips, no hype, just the maths made simple.</p></div>
+    <div><a class="btn primary" href="index.html#calculators">Open Zero Wealth ↗</a></div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="container section" id="contact" aria-labelledby="contactTitle" style="padding-top:10px">
+  <div class="kicker">Get in touch</div>
+  <h2 id="contactTitle">Let's connect.</h2>
+  <p class="lead">For collaborations, questions about Zero Wealth or just to say hi.</p>
+  <div class="contact">
+    <a class="cbtn" href="mailto:saurabh.sy2001@gmail.com"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="4" fill="#16764a"/><path d="m5 8 7 5 7-5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Email</b><span>saurabh.sy2001@gmail.com</span></a>
+    <a class="cbtn" href="https://www.linkedin.com/in/saurabh-yadav-407834169/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="#0a66c2"/><path fill="#fff" d="M7.2 6.1a1.6 1.6 0 1 1 0 3.2 1.6 1.6 0 0 1 0-3.2ZM5.9 10.3h2.6V18H5.9v-7.7Zm4.2 0h2.5v1.05h.04c.35-.66 1.2-1.36 2.48-1.36 2.65 0 3.14 1.74 3.14 4V18h-2.6v-3.5c0-.84-.02-1.92-1.17-1.92-1.17 0-1.35.91-1.35 1.86V18h-2.6v-7.7Z"/></svg><b>LinkedIn</b><span>Saurabh Yadav</span></a>
+    <a class="cbtn" data-yt-link href="https://www.youtube.com/channel/UCn2tPHDpXme_rNmy6tBPUNg" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5a2.7 2.7 0 0 0-1.9 1.9C2 8.9 2 12 2 12s0 3.1.4 4.8a2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9c.4-1.7.4-4.8.4-4.8s0-3.1-.4-4.8Z" fill="#ff0033"/><path d="m10 15.2 5.2-3.2L10 8.8Z" fill="#fff"/></svg><b>YouTube</b><span>@ZeroWealthIN</span></a>
+    <a class="cbtn" href="https://www.instagram.com/hey.saurabhyadav/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><defs><radialGradient id="igAbout" cx="30%" cy="107%" r="150%"><stop offset="0" stop-color="#fdf497"/><stop offset=".05" stop-color="#fdf497"/><stop offset=".45" stop-color="#fd5949"/><stop offset=".6" stop-color="#d6249f"/><stop offset=".9" stop-color="#285aeb"/></radialGradient></defs><rect x="2" y="2" width="20" height="20" rx="6" fill="url(#igAbout)"/><rect x="6.3" y="6.3" width="11.4" height="11.4" rx="3.5" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="12" cy="12" r="2.8" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="16.1" cy="7.9" r="1.1" fill="#fff"/></svg><b>Instagram</b><span>@hey.saurabhyadav</span></a>
+    <a class="cbtn" href="https://whatsapp.com/channel/0029Vb93MCZInlqURFZPZw1O" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25d366" d="M12 2a10 10 0 0 0-8.66 15l-1.3 4.76 4.88-1.28A10 10 0 1 0 12 2Z"/><path fill="#fff" d="M8.9 7.3c-.2-.45-.4-.46-.6-.47h-.5c-.18 0-.47.07-.72.34-.25.27-.94.92-.94 2.25s.97 2.6 1.1 2.79c.13.18 1.87 2.98 4.6 4.06 2.28.9 2.74.72 3.24.67.5-.04 1.6-.65 1.82-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.31l-1.82-.9c-.25-.09-.43-.13-.61.14-.18.27-.7.89-.86 1.07-.16.18-.32.2-.59.07-.27-.14-1.13-.42-2.16-1.33-.8-.71-1.34-1.59-1.5-1.86-.16-.27-.02-.42.12-.55.12-.12.27-.32.4-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48l-.83-2.03Z"/></svg><b>WhatsApp channel</b><span>Updates from Zero Wealth</span></a>
+  </div>
+</section>
+</main>
+
+<footer class="footer"><div class="container row">
+  <a class="brand" href="index.html" aria-label="Zero Wealth home"><span class="brandmark" aria-hidden="true">₹</span><span class="wordmark"><span>Zero</span><span> Wealth</span></span></a>
+  <span>Simple tools for thoughtful money decisions.</span>
+  <span>© <span id="year">2026</span> Zero Wealth</span>
+</div></footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+<script src="data/youtube.js"></script><script src="yt.js"></script>
+</body>
+</html>
