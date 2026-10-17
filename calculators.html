@@ -17,6 +17,9 @@ html[data-theme=dark] select option,html[data-theme=dark] select optgroup{backgr
 [data-theme=dark] .control select{color-scheme:dark}
 [data-theme=dark] .control:has(select)::after{border-color:var(--green)}
 .hint{font-size:11px;color:var(--muted);margin-top:5px}.warn{color:#c2410c;font-weight:700}[data-theme=dark] .warn{color:#fdba74}.summary{margin-top:14px;padding:15px 17px;border-radius:16px;background:var(--mint);color:var(--text);font-size:14px;line-height:1.6;border:1px solid color-mix(in srgb,var(--green) 22%,transparent)}.summary-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:4px}.summary-title{font-size:10.5px;font-weight:850;letter-spacing:1px;text-transform:uppercase;color:var(--green)}.summary-text{margin:0}.lang-toggle{display:inline-flex;border:1px solid color-mix(in srgb,var(--green) 30%,transparent);border-radius:99px;padding:2px;background:var(--surface)}.lang-toggle button{border:0;background:transparent;color:var(--muted);font:inherit;font-size:11px;font-weight:800;padding:3px 9px;border-radius:99px;cursor:pointer}.lang-toggle button.active{background:var(--green);color:#fff}[data-theme=dark] .lang-toggle button.active{color:#06120c}.summary-text:lang(hi),.summary-text{font-feature-settings:normal}.compare-card{margin-top:14px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface)}.compare-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 16px;background:var(--surface2);font-size:13px}.compare-clear{border:0;background:transparent;color:var(--muted);font:inherit;font-size:12px;font-weight:750;cursor:pointer}.compare-clear:hover{color:var(--text)}.compare-changes{margin:0;padding:10px 16px;font-size:12.5px;color:var(--muted);border-bottom:1px solid var(--line)}.compare-changes b{color:var(--text)}.compare-table td.up{color:#15803d;font-weight:750}.compare-table td.down{color:#c2410c;font-weight:750}[data-theme=dark] .compare-table td.up{color:#73e4a9}[data-theme=dark] .compare-table td.down{color:#fdba74}#sipView .insights{padding:16px}.insight-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.insight{min-width:0;padding:12px 13px;border:1px solid var(--line);border-radius:13px;background:var(--surface2)}#sipView .insight{border-color:var(--border);background:var(--surface-2)}.insight .i-label{display:block;font-size:11px;font-weight:750;color:var(--muted)}.insight strong{display:block;font-size:18px;letter-spacing:-.4px;margin:5px 0 3px;white-space:nowrap;overflow:hidden}.insight .nw{white-space:nowrap}.insight small{display:block;font-size:11px;line-height:1.45;color:var(--muted)}@media(max-width:700px){.insight-grid{grid-template-columns:1fr}}#sipView .summary,#sipView .compare-card{margin-top:0}
+#sipView .lump-warn{grid-column:1/-1;margin-top:-2px;font-size:11.5px;font-weight:650;line-height:1.45;color:#c2410c}
+#sipView .lump-warn[hidden]{display:none}
+html[data-theme="dark"] #sipView .lump-warn{color:#fdba74}
 /* Themed dropdowns in the SIP calculator */
 #sipView .input-shell.zw-select{position:relative;padding:0;display:block}#sipView .lump-row .input-shell.zw-select{padding:0}
 #sipView .zw-select .zw-native{position:absolute!important;left:0;bottom:0;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;padding:0!important}
@@ -631,10 +634,12 @@ function makeLumpRow() {
   const del = document.createElement("button"); del.type = "button"; del.className = "del-btn"; del.textContent = "✕"; del.setAttribute("aria-label", "Remove lump sum");
   del.onclick = () => { row.remove(); refreshLumpEmpty(); recalc(); };
 
-  row.appendChild(yearShell); row.appendChild(amtShell); row.appendChild(del);
-  row._year = yearSel; row._amt = amt;
+  const warn = document.createElement("div"); warn.className = "lump-warn"; warn.hidden = true; warn.setAttribute("role", "status");
+  row.appendChild(yearShell); row.appendChild(amtShell); row.appendChild(del); row.appendChild(warn);
+  row._year = yearSel; row._amt = amt; row._warn = warn;
 
-  yearSel.onchange = recalc;
+  // remember the year the user picked, so a shorter plan only moves it temporarily
+  yearSel.onchange = () => { yearSel._wanted = +yearSel.value; fillYearOptions(yearSel); recalc(); };
   amt.oninput = recalc;
 
   fillYearOptions(yearSel);
@@ -644,7 +649,7 @@ function makeLumpRow() {
 
 function fillYearOptions(sel) {
   const total = Math.max(1, Math.ceil(totalMonths() / 12));   // part-years still get their own year slot
-  const prev = sel.value;
+  const wanted = sel._wanted != null ? sel._wanted : (sel.value !== "" ? +sel.value : 0);
   sel.innerHTML = "";
   const sm = parseInt($("startMonth").value, 10), sy = num("startYear");
   for (let y = 0; y < total; y++) {
@@ -653,7 +658,16 @@ function fillYearOptions(sel) {
     o.textContent = "Year " + (y + 1) + " (" + monthLabel(sm, sy, y * 12).split(" ")[1] + ")";
     sel.appendChild(o);
   }
-  if (prev !== "" && +prev < total) sel.value = prev;
+  // a year beyond the plan moves to the plan's last year (not Year 1), with a note; it moves back if the plan grows
+  const moved = wanted > total - 1;
+  sel.value = String(moved ? total - 1 : wanted);
+  const row = sel.closest(".lump-row");
+  if (row && row._warn) {
+    row._warn.hidden = !moved;
+    row._warn.textContent = moved
+      ? "Year " + (wanted + 1) + " is beyond your " + fmtYears(totalMonths()) + " plan, so this lump sum is counted in Year " + total + " for now. It moves back if you lengthen the plan."
+      : "";
+  }
 }
 
 function refreshLumpEmpty() {
@@ -883,7 +897,7 @@ function recalc() {
     const qs = new URLSearchParams();
     ["sip", "stepup", "return", "sipYears", "totalYears", "inflation"].forEach(id => qs.set(id, $(id).value));
     qs.set("start", $("startMonth").value + "-" + $("startYear").value);
-    const lumps = [...$("lumpList").children].filter(r => +r._amt.value > 0).map(r => r._year.value + ":" + r._amt.value);
+    const lumps = [...$("lumpList").children].filter(r => +r._amt.value > 0).map(r => (r._year._wanted != null ? r._year._wanted : r._year.value) + ":" + r._amt.value);
     if (lumps.length) qs.set("lumps", lumps.join(","));
     if (mode === "real") qs.set("mode", "real");
     qs.set("vol", $("volatility").value); qs.set("fee", $("terGap").value); qs.set("tax", $("taxType").value);
@@ -991,7 +1005,8 @@ window.applySipParams = params => {
       if (!Number.isFinite(+y) || !Number.isFinite(+a)) return;
       const row = makeLumpRow();
       $("lumpList").appendChild(row);
-      row._year.value = String(Math.max(0, Math.round(+y)));
+      row._year._wanted = Math.max(0, Math.round(+y));
+      fillYearOptions(row._year);
       row._amt.value = a;
     });
     refreshLumpEmpty();
@@ -1193,7 +1208,8 @@ $("startMonth").addEventListener("change", () => {
 (function seed() {
   const row = makeLumpRow();
   $("lumpList").appendChild(row);
-  row._year.value = "4"; // Year 5
+  row._year._wanted = 4; // Year 5
+  fillYearOptions(row._year);
   row._amt.value = "5000";
   refreshLumpEmpty();
   recalc();
