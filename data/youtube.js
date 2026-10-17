@@ -56,7 +56,7 @@ window.ZW_YT = {
    "id": "ZBeH_oXL8CA",
    "title": "How to Withdraw FD from Stable Money | Live Demo (Part 2)",
    "published": "2026-01-06",
-   "views": 6226,
+   "views": 6230,
    "short": true
   },
   {
@@ -77,7 +77,7 @@ window.ZW_YT = {
    "id": "R2BTZON99oU",
    "title": "FD Se Monthly Income? 99% Log Ye Trick Miss Karte Hain",
    "published": "2025-12-30",
-   "views": 66077,
+   "views": 66176,
    "short": true
   },
   {
@@ -110,10 +110,11 @@ window.ZW_YT = {
   }
  ],
  "name": "Zero Wealth",
- "source": "page",
+ "source": "api",
  "subscribers": 7470,
  "subscribersText": "7.47K",
  "videoCount": 277,
- "recentViews": 411532,
- "updated": "2026-10-17"
+ "recentViews": 411635,
+ "updated": "2026-10-17",
+ "totalViews": 3922753
 };
