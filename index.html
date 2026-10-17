@@ -31,45 +31,6 @@ body, .nav, .calc, .step, .searchbox, .filter, .sidebar, .panel, .resultcard{tra
 @media(max-width:850px){.nav{position:relative}.navlinks{display:none}.hero{grid-template-columns:1fr;gap:30px;padding-top:30px}.visual{min-height:360px}.cards{grid-template-columns:repeat(2,1fr)}.banner{grid-template-columns:1fr}.sectionhead{align-items:start;flex-direction:column}.searchbox{max-width:none}.steps{grid-template-columns:1fr}}
 @media(max-width:540px){.container{width:min(100% - 28px,1160px)}.nav{height:67px}.brand{font-size:18px}.navright .btn{padding:10px 13px;font-size:12px}.hero h1{font-size:46px;letter-spacing:-2.6px}.hero p{font-size:15px}.visual{padding:18px;min-height:345px}.bigmoney{font-size:29px}.section{padding:38px 0}.cards{grid-template-columns:1fr}.calc{min-height:190px}.banner{padding:25px}.bannerstats{grid-template-columns:1fr 1fr}.sectionhead{margin-bottom:18px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
-/* Dark Chai-inspired theme adaptation for Zero Wealth */
-[data-theme="dark"]{color-scheme:dark;--bg:#010107;--surface:#080d16;--surface2:#0b1b29;--text:#becfda;--muted:#8da8ba;--line:#18364b;--green:#49ace9;--green2:#1679b6;--mint:#0b2b40;--lime:#61a6d1;--shadow:0 18px 48px #0009}
-[data-theme="dark"] body{background:radial-gradient(ellipse at 82% 0%,#07273b 0,transparent 38%),var(--bg)}
-[data-theme="dark"] .brandmark{background:#1679b6;color:#ebf7ff;box-shadow:0 8px 22px #1679b633}
-[data-theme="dark"] .btn:not(.outline){background:#007f99;color:#ebf7ff}
-[data-theme="dark"] .btn:hover:not(.outline){background:#0a9fbd}
-[data-theme="dark"] .iconbtn{background:#09334e;border-color:#1c4964;color:#becfda}
-[data-theme="dark"] .eyebrow{background:#071a29;border-color:#17405a;color:#61a6d1}
-[data-theme="dark"] .pulse{background:#49ace9;box-shadow:0 0 0 4px #49ace922}
-[data-theme="dark"] .hero h1 span,[data-theme="dark"] .kicker,[data-theme="dark"] .trust b{color:#61a6d1}
-[data-theme="dark"] .visual{background:linear-gradient(145deg,#06111f,#07273b 58%,#09334e);color:#becfda;border-color:#17405a;box-shadow:0 24px 70px #0008}
-[data-theme="dark"] .visual:before{border-color:#49ace933;box-shadow:0 0 0 35px #49ace90a,0 0 0 70px #49ace906}
-[data-theme="dark"] .visual:after{background:#1679b6;opacity:.2}
-[data-theme="dark"] .wealthcard{background:#071522e8;border-color:#1a4058;box-shadow:0 20px 45px #0006}
-[data-theme="dark"] .smalllabel,[data-theme="dark"] .ministat span{color:#8da8ba}
-[data-theme="dark"] .gain{color:#7fd7a2}
-[data-theme="dark"] .ministat{background:#092237db;border-color:#1a4058}
-[data-theme="dark"] .live{background:#0e3851;color:#b8e6ff}
-[data-theme="dark"] .calc{background:#080d16;border-color:#173247}
-[data-theme="dark"] .calc:hover{border-color:#49ace9;box-shadow:0 16px 36px #0008}
-[data-theme="dark"] .calcicon{background:#0b2b40;color:#61a6d1}
-[data-theme="dark"] .calcfoot{color:#61a6d1}
-[data-theme="dark"] .calc.featured{background:linear-gradient(145deg,#071522,#0b2b40);border-color:#1679b6}
-[data-theme="dark"] .calc.featured .status{background:#0d3b56;color:#c8ebff}
-[data-theme="dark"] .status{background:#0b1b29;color:#8da8ba}
-[data-theme="dark"] .banner{background:linear-gradient(135deg,#06111f,#07273b);border:1px solid #17405a}
-[data-theme="dark"] .banner .kicker{color:#61a6d1}
-[data-theme="dark"] .banner p,[data-theme="dark"] .bannerstat span{color:#9bb7c8}
-[data-theme="dark"] .bannerstat{border-color:#24516b;background:#49ace90b}
-[data-theme="dark"] .step{background:#080d16;border-color:#173247}
-[data-theme="dark"] .stepnum{color:#61a6d1}
-[data-theme="dark"] .filter{background:#080d16;border-color:#173247;color:#8da8ba}
-[data-theme="dark"] .filter.active,[data-theme="dark"] .filter:hover{background:#1679b6;border-color:#1679b6;color:#fff}
-[data-theme="dark"] .searchbox{background:#080d16;border-color:#173247}
-[data-theme="dark"] .btn.outline{background:#080d16;border-color:#21445a;color:#becfda}
-[data-theme="dark"] .calc:focus-visible{outline-color:#49ace9}
-[data-theme="dark"] button:focus-visible,[data-theme="dark"] a:focus-visible,[data-theme="dark"] input:focus-visible{outline-color:#49ace9}
-[data-theme="dark"] .nav{border-color:#173247}
-
 /* Zero Wealth identity system: emerald gradient + white rupee, consistent in both themes */
 .brand{gap:11px;letter-spacing:-.35px}.brandmark,.mark{width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(145deg,#10b981 0%,#08754a 52%,#063d2b 100%);color:#fff!important;font-size:24px;font-weight:800;box-shadow:0 7px 18px #08754a24;position:relative;overflow:hidden}.brandmark:after,.mark:after{content:"";position:absolute;inset:auto 0 0 48%;height:36%;background:linear-gradient(135deg,#34d399,#10b981);transform:skewX(-28deg);opacity:.9;pointer-events:none}.brandmark{isolation:isolate}.brandmark:before,.mark:before{content:"₹";position:relative;z-index:1}.brandmark{font-size:0}.wordmark{font-size:21px;font-weight:850;letter-spacing:-.8px;color:var(--text);white-space:nowrap}.wordmark span:last-child{color:var(--green)}
 .searchbox{position:relative;gap:9px;padding-right:9px}.searchbox input{min-width:0}.searchclear{display:none;border:0;background:var(--surface2);color:var(--muted);width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:20px;line-height:1}.searchclear.show{display:grid;place-items:center}.searchclear:hover{background:var(--mint);color:var(--green)}.searchcount{white-space:nowrap;font-size:11px;font-weight:800;color:var(--green);background:var(--mint);padding:6px 9px;border-radius:8px}
@@ -95,6 +56,8 @@ body, .nav, .calc, .step, .searchbox, .filter, .sidebar, .panel, .resultcard{tra
 [data-theme="dark"] .bannerstat{border-color:#ffffff20;background:#ffffff09}
 [data-theme="dark"] .searchcount{background:#193b29;color:#73e4a9}
 [data-theme="dark"] .searchclear{background:#14251b;color:#a3b8aa}
+[data-theme="dark"] .filter.active,[data-theme="dark"] .filter:hover{color:#06120c}
+[data-theme="dark"] .calc:hover{border-color:#35c98966}
 @media(max-width:540px){.wordmark{font-size:19px}.brandmark{width:39px;height:39px;flex-basis:39px}.searchcount{font-size:10px;padding:5px 7px}.calc{min-height:200px}}
 
 
