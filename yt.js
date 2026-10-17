@@ -112,7 +112,7 @@
     if (upd && D.updated) upd.textContent = "Updated " + ago(D.updated) + " from YouTube";
   }
 
-  // ---------- calculators page: "Watch · explained in Hindi" card for the open calculator ----------
+  // ---------- calculators page: "Watch · explained simply" card for the open calculator ----------
   function renderWatch(tool) {
     var boxes = document.querySelectorAll("[data-yt-watch]");
     if (!boxes.length) return;
@@ -123,7 +123,7 @@
       box.hidden = false;
       box.innerHTML = '<a class="watchcard" href="' + watchUrl(match) + '" target="_blank" rel="noopener">' +
         '<span class="wthumb">' + thumb(match, "wimg") + PLAY + '</span>' +
-        '<span class="wtext"><span class="wkick">' + PLAY + ' Watch · explained in Hindi</span><b>' + esc(match.title) + '</b>' +
+        '<span class="wtext"><span class="wkick">' + PLAY + ' Watch · explained simply</span><b>' + esc(match.title) + '</b>' +
         '<small>' + esc(D.name || "Zero Wealth") + ' · ' + short(match.views) + ' views on YouTube</small></span>' +
         '<span class="wgo">Watch ↗</span></a>';
     });
