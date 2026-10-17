@@ -79,6 +79,7 @@
 .footer .foottag{flex:1;min-width:220px}
 .footer .footmeta{display:inline-flex;align-items:center;gap:20px;flex-wrap:wrap}
 .footer .footcopy{white-space:nowrap}
+.footabout{font-weight:800;color:var(--text);text-decoration:none}.footabout:hover{color:var(--green)}
 /* Instagram / WhatsApp buttons */
 .footsocial{display:inline-flex;align-items:center;gap:8px}
 .soc{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:var(--surface);transition:border-color .2s,transform .2s}
@@ -121,3 +122,18 @@
  .watchcard{flex-wrap:wrap}.wthumb{width:100%}.wgo{display:none}
 }
 @media(prefers-reduced-motion:reduce){.ytv,.ytsub,.ytthumb .pb svg{transition:none}.ytv:hover,.ytsub:hover{transform:none}}
+
+/* ---------- one footer for every page (home page styles, for pages that don't have them) ---------- */
+.site-footer{margin-top:35px;border-top:1px solid var(--line);padding:28px 0 35px;color:var(--muted);font-size:12px;line-height:1.55}
+.site-footer .fcontainer{width:min(1160px,calc(100% - 40px));margin:auto}
+.site-footer .footerrow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.site-footer .brand{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none}
+.site-footer .brandmark{position:relative;isolation:isolate;width:42px;height:42px;flex:0 0 42px;border-radius:14px;display:grid;place-items:center;overflow:hidden;background:linear-gradient(145deg,#10b981 0%,#08754a 52%,#063d2b 100%);box-shadow:0 7px 20px #08754a26;font-size:0}
+.site-footer .brandmark:before{content:"₹";position:relative;z-index:1;font-size:24px;font-weight:850;color:#fff}
+.site-footer .brandmark:after{content:"";position:absolute;inset:auto 0 0 48%;height:36%;background:linear-gradient(135deg,#34d399,#10b981);transform:skewX(-28deg);opacity:.9}
+.site-footer .wordmark{display:inline-flex;align-items:baseline;gap:5px;font-size:22px;font-weight:850;letter-spacing:-1.05px;line-height:1;color:var(--text);white-space:nowrap}
+.site-footer .wordmark span:last-child{color:#08754a}
+[data-theme=dark] .site-footer .wordmark span:first-child{color:#f1f7f3}
+[data-theme=dark] .site-footer .wordmark span:last-child{color:#34d399}
+.site-footer .disclaimer{max-width:760px;margin:15px 0 0}
+@media(max-width:600px){.site-footer .fcontainer{width:calc(100% - 28px)}.site-footer .wordmark{font-size:19px;letter-spacing:-.8px}}
