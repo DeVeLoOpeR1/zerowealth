@@ -8,13 +8,17 @@
 .ytsec{padding:54px 0}
 .ytcard{border:1px solid var(--line);border-radius:28px;background:linear-gradient(160deg,var(--surface),var(--surface2));box-shadow:var(--shadow);padding:30px;overflow:hidden;position:relative}
 .ytcard:before{content:"";position:absolute;right:-90px;top:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,#ff003312,transparent 70%);pointer-events:none}
-.ythead{display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:relative}
-.ytavatar{width:64px;height:64px;flex:none;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#10b981 0%,#08754a 52%,#063d2b 100%);color:#fff;font-size:32px;font-weight:850;box-shadow:0 0 0 4px var(--surface),0 0 0 6px #ff003340}
+.ythead{display:flex;align-items:center;gap:18px;flex-wrap:wrap;position:relative}
+/* same mark as the site logo, just larger */
+.ytlogo{width:64px!important;height:64px!important;flex:0 0 64px!important;border-radius:19px!important;box-shadow:0 10px 24px #08754a2e!important}
+.ytlogo:before{font-size:34px!important}
+.ytkick{display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;font-weight:850;color:var(--muted)}
+.ytkick svg{width:18px;height:18px;flex:none}
 .ytname{flex:1;min-width:200px}
-.ytname h2{margin:4px 0 2px;font-size:clamp(24px,2.6vw,32px);letter-spacing:-1.1px;line-height:1.1;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.ytname h2 svg{width:28px;height:28px}
+.ytname h2{margin:5px 0 3px;font-size:clamp(24px,2.6vw,32px);letter-spacing:-1.1px;line-height:1.1}
 .ytname p{margin:0;color:var(--muted);font-size:14px}
 .ytname .handle{font-weight:800;color:var(--text)}
+.ytname .sep{margin:0 7px;opacity:.6}
 .ytsub{display:inline-flex;align-items:center;gap:8px;border-radius:99px;padding:13px 20px;background:#ff0033;color:#fff!important;font-weight:850;font-size:14px;box-shadow:0 8px 22px #ff003330;text-decoration:none;transition:background-color .2s,transform .2s}
 .ytsub svg{width:22px;height:22px;flex:none}
 .ytsub:hover{background:#e0002d;transform:translateY(-1px)}
@@ -53,8 +57,14 @@
 .ytcalc em{font-style:normal;font-size:10.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
 .ytfoot{display:flex;justify-content:center;margin-top:18px}
 .ytfoot a{font-size:13px;font-weight:800;color:var(--text);border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:10px 18px;text-decoration:none}
-.footyt{display:inline-flex;align-items:center;gap:6px;font-weight:800;color:var(--text);text-decoration:none}
-.footyt svg{width:18px;height:18px}
+.footyt{display:inline-flex;align-items:center;gap:7px;font-weight:800;color:var(--text);text-decoration:none;white-space:nowrap;vertical-align:middle}
+.footyt svg{width:18px;height:18px;flex:none}
+.footyt:hover{color:#e0002d}
+/* home footer: one centred line — brand + tagline left, YouTube + copyright right */
+.footer .footerrow{align-items:center;column-gap:22px;row-gap:12px}
+.footer .foottag{flex:1;min-width:220px}
+.footer .footmeta{display:inline-flex;align-items:center;gap:20px;flex-wrap:wrap}
+.footer .footcopy{white-space:nowrap}
 [data-theme=dark] .ytcard{background:linear-gradient(160deg,#0e1b14,#102318)}
 [data-theme=dark] .ytstat,[data-theme=dark] .ytgoal,[data-theme=dark] .ytv{background:#0b1710}
 [data-theme=dark] .yttabs button.active{color:#06120c}
@@ -81,8 +91,10 @@
  .ytvids .ytv{flex:0 0 min(78%,340px);scroll-snap-align:start}
  .ytvids .ytv:nth-child(n+4){display:flex}
 }
+@media(max-width:700px){.footer .footerrow{flex-direction:column;align-items:flex-start}.footer .foottag{flex:none;min-width:0}}
 @media(max-width:540px){
- .ytcard{padding:20px;border-radius:22px}.ytavatar{width:54px;height:54px;font-size:27px}
+ .ytlogo{width:54px!important;height:54px!important;flex-basis:54px!important;border-radius:16px!important}.ytlogo:before{font-size:29px!important}
+ .ytcard{padding:20px;border-radius:22px}
  .ytsub{width:100%;justify-content:center}
  .ytstat{padding:12px}.ytstat strong{font-size:22px}
  .ytpill [data-yt-subs]{display:none}.ytpill{padding:0 10px}
