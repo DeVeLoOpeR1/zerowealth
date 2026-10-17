@@ -71,13 +71,14 @@ h2{font-size:clamp(24px,2.6vw,30px);letter-spacing:-1px;line-height:1.2;margin:6
 .path button[aria-selected="true"]{color:#fff;background:linear-gradient(135deg,#10b981,#08754a);border-color:transparent}
 .pathbar{height:3px;border-radius:3px;background:var(--line);margin:14px 0 0;overflow:hidden;max-width:620px}
 .pathbar i{display:block;height:100%;width:100%;border-radius:3px;background:linear-gradient(90deg,#34d399,#08754a);transition:width .45s ease}
-.pathdetail{margin-top:14px;max-width:620px;border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:14px 18px;min-height:78px;transition:opacity .2s}
-.pathdetail.swap{opacity:.25}
+.pathdetail{margin-top:14px;max-width:620px;border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:14px 18px;display:grid}
+/* every story sits in the same cell, so the card is always as tall as the longest one and nothing below it moves */
+.pd{grid-area:1/1;visibility:hidden;opacity:0;transition:opacity .25s,visibility 0s .25s}
+.pd.on{visibility:visible;opacity:1;transition:opacity .25s}
 .pathdetail small{display:block;font-size:11px;font-weight:850;letter-spacing:.8px;text-transform:uppercase;color:var(--green)}
 .pathdetail p{margin:3px 0 0;font-size:15px;color:var(--text)}
 .pathdetail a{display:inline-block;margin-top:6px;font-size:13.5px;font-weight:800;color:var(--green)}
-.pathdetail a[hidden]{display:none}
-@media(prefers-reduced-motion:reduce){.pathbar i,.pathdetail,.path button,.path li+li:before{transition:none}}
+@media(prefers-reduced-motion:reduce){.pathbar i,.pd,.path button,.path li+li:before{transition:none}}
 
 /* contact */
 .contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
@@ -148,9 +149,11 @@ h2{font-size:clamp(24px,2.6vw,30px);letter-spacing:-1px;line-height:1.2;margin:6
     </ol>
     <div class="pathbar" aria-hidden="true"><i></i></div>
     <div class="pathdetail" id="pathDetail" role="tabpanel" aria-labelledby="step4" aria-live="polite">
-      <small>Today</small>
-      <p>A wealth management tool where technology meets wealth building.</p>
-      <a href="index.html">Open Zero Wealth →</a>
+      <div class="pd" data-i="0" aria-hidden="true"><small>2017 – 2021</small><p>B.Tech in Computer Science, SKIT Jaipur — where I learned to think in systems.</p></div>
+      <div class="pd" data-i="1" aria-hidden="true"><small>2022 – now</small><p>Java &amp; Spring Boot backends and full-stack web — real-time systems used by 100K+ people daily.</p></div>
+      <div class="pd" data-i="2" aria-hidden="true"><small>Now</small><p>Bringing AI into real products — smarter recommendations and personalisation.</p></div>
+      <div class="pd" data-i="3" aria-hidden="true"><small>YouTube</small><p>Simple, practical videos on saving, investing and building wealth.</p><a href="https://www.youtube.com/channel/UCn2tPHDpXme_rNmy6tBPUNg" target="_blank" rel="noopener" tabindex="-1">Watch on YouTube ↗</a></div>
+      <div class="pd on" data-i="4"><small>Today</small><p>A wealth management tool where technology meets wealth building.</p><a href="index.html">Open Zero Wealth →</a></div>
     </div>
   </section>
 
@@ -160,29 +163,16 @@ h2{font-size:clamp(24px,2.6vw,30px);letter-spacing:-1px;line-height:1.2;margin:6
 <script>
 /* My path: tabs (click, tap or arrow keys), a progress bar, and a one-time walk-through when it first scrolls into view */
 (function(){
-  var steps=[
-    {when:'2017 – 2021',text:'B.Tech in Computer Science, SKIT Jaipur — where I learned to think in systems.'},
-    {when:'2022 – now',text:'Java & Spring Boot backends and full-stack web — real-time systems used by 100K+ people daily.'},
-    {when:'Now',text:'Bringing AI into real products — smarter recommendations and personalisation.'},
-    {when:'YouTube',text:'Simple, practical videos on saving, investing and building wealth.',link:['Watch on YouTube ↗','https://www.youtube.com/channel/UCn2tPHDpXme_rNmy6tBPUNg',true]},
-    {when:'Today',text:'A wealth management tool where technology meets wealth building.',link:['Open Zero Wealth →','index.html',false]}
-  ];
   var list=document.querySelector('.path'); if(!list) return;
   var tabs=[].slice.call(list.querySelectorAll('[role=tab]')), panel=document.getElementById('pathDetail'), bar=document.querySelector('.pathbar i');
-  var when=panel.querySelector('small'), text=panel.querySelector('p'), link=panel.querySelector('a'), timer=null, current=4;
+  var items=[].slice.call(panel.querySelectorAll('.pd')), timer=null, current=4;
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   function select(i,focus){
     current=i;
     tabs.forEach(function(t,k){var on=k===i;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1;t.parentNode.classList.toggle('done',k<i);});
     panel.setAttribute('aria-labelledby',tabs[i].id);
     bar.style.width=(i/(tabs.length-1)*100)+'%';
-    var d=steps[i];
-    panel.classList.add('swap');
-    setTimeout(function(){
-      when.textContent=d.when; text.textContent=d.text;
-      if(d.link){link.hidden=false;link.textContent=d.link[0];link.href=d.link[1];if(d.link[2]){link.target='_blank';link.rel='noopener';}else{link.removeAttribute('target');link.removeAttribute('rel');}}else link.hidden=true;
-      panel.classList.remove('swap');
-    },reduce?0:120);
+    items.forEach(function(el,k){var on=k===i;el.classList.toggle('on',on);if(on)el.removeAttribute('aria-hidden');else el.setAttribute('aria-hidden','true');var a=el.querySelector('a');if(a){if(on)a.removeAttribute('tabindex');else a.tabIndex=-1;}});
     if(focus) tabs[i].focus();
   }
   function stop(){ if(timer){clearInterval(timer);timer=null;} }
