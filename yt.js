@@ -37,6 +37,8 @@
   var FD_EXAMPLE = "principal=500000&return=7.5&senior=0&tenure=5&frequency=4&slab=0";
   var TOPICS = [
     [/monthly income|monthly payout|har mahin/i, "fd", "FD monthly income", FD_EXAMPLE + "&payout=12"],
+    // RD before FD: titles like "RD Top-Up vs FD" mention both
+    [/\brd\b|recurring deposit|top-?up/i, "rd", "RD Calculator", "monthly=5000&return=7&senior=0&months=24&topup=50000&topupMonth=6&slab=0"],
     [/\bfd\b|fixed deposit/i, "fd", "FD Calculator", FD_EXAMPLE + "&payout=0"],
     [/emergency fund|goal/i, "goal", "Goal Planner", ""],
     [/\bswp\b|systematic withdrawal/i, "swp", "SWP Calculator", ""],
