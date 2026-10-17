@@ -9,9 +9,6 @@
 .ytcard{border:1px solid var(--line);border-radius:28px;background:linear-gradient(160deg,var(--surface),var(--surface2));box-shadow:var(--shadow);padding:30px;overflow:hidden;position:relative}
 .ytcard:before{content:"";position:absolute;right:-90px;top:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,#ff003312,transparent 70%);pointer-events:none}
 .ythead{display:flex;align-items:center;gap:18px;flex-wrap:wrap;position:relative}
-/* same mark as the site logo, just larger */
-.ytlogo{width:64px!important;height:64px!important;flex:0 0 64px!important;border-radius:19px!important;box-shadow:0 10px 24px #08754a2e!important}
-.ytlogo:before{font-size:34px!important}
 .ytkick{display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:1.4px;text-transform:uppercase;font-weight:850;color:var(--muted)}
 .ytkick svg{width:18px;height:18px;flex:none}
 .ytname{flex:1;min-width:200px}
@@ -93,7 +90,6 @@
 }
 @media(max-width:700px){.footer .footerrow{flex-direction:column;align-items:flex-start}.footer .foottag{flex:none;min-width:0}}
 @media(max-width:540px){
- .ytlogo{width:54px!important;height:54px!important;flex-basis:54px!important;border-radius:16px!important}.ytlogo:before{font-size:29px!important}
  .ytcard{padding:20px;border-radius:22px}
  .ytsub{width:100%;justify-content:center}
  .ytstat{padding:12px}.ytstat strong{font-size:22px}
