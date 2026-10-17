@@ -1,0 +1,91 @@
+/* Zero Wealth × YouTube — shared by index.html and calculators.html (uses each page's theme tokens) */
+.ytpill{display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 14px 0 11px;border:1px solid var(--line);border-radius:99px;background:var(--surface);font-size:13px;font-weight:800;color:var(--text);text-decoration:none;white-space:nowrap}
+.ytpill svg{width:22px;height:22px;flex:none}
+.ytpill:hover{border-color:#ff003366}
+.trust .yt{display:flex;align-items:center;gap:6px;color:inherit;text-decoration:none}.trust .yt:hover{color:var(--text)}.trust .yt b{color:#ff0033}
+
+/* ---------- home page section ---------- */
+.ytsec{padding:54px 0}
+.ytcard{border:1px solid var(--line);border-radius:28px;background:linear-gradient(160deg,var(--surface),var(--surface2));box-shadow:var(--shadow);padding:30px;overflow:hidden;position:relative}
+.ytcard:before{content:"";position:absolute;right:-90px;top:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,#ff003312,transparent 70%);pointer-events:none}
+.ythead{display:flex;align-items:center;gap:16px;flex-wrap:wrap;position:relative}
+.ytavatar{width:64px;height:64px;flex:none;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#10b981 0%,#08754a 52%,#063d2b 100%);color:#fff;font-size:32px;font-weight:850;box-shadow:0 0 0 4px var(--surface),0 0 0 6px #ff003340}
+.ytname{flex:1;min-width:200px}
+.ytname h2{margin:4px 0 2px;font-size:clamp(24px,2.6vw,32px);letter-spacing:-1.1px;line-height:1.1;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ytname h2 svg{width:28px;height:28px}
+.ytname p{margin:0;color:var(--muted);font-size:14px}
+.ytname .handle{font-weight:800;color:var(--text)}
+.ytsub{display:inline-flex;align-items:center;gap:8px;border-radius:99px;padding:13px 20px;background:#ff0033;color:#fff!important;font-weight:850;font-size:14px;box-shadow:0 8px 22px #ff003330;text-decoration:none;transition:background-color .2s,transform .2s}
+.ytsub svg{width:22px;height:22px;flex:none}
+.ytsub:hover{background:#e0002d;transform:translateY(-1px)}
+.ytsub:focus-visible,.ytpill:focus-visible,.ytv a:focus-visible,.watchcard:focus-visible{outline:3px solid #ff003366;outline-offset:3px}
+.ytstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) 1.3fr;gap:12px;margin:24px 0 8px;position:relative}
+.ytstat{border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:16px 18px;min-width:0}
+.ytstat strong{display:block;font-size:30px;letter-spacing:-1.2px;line-height:1.05}
+.ytstat span{font-size:12px;color:var(--muted);font-weight:700}
+.ytgoal{border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:16px 18px;display:flex;flex-direction:column;justify-content:center;gap:9px;min-width:0}
+.ytgoal .row{display:flex;justify-content:space-between;gap:10px;font-size:12px;font-weight:800}
+.ytgoal .row span:last-child{color:var(--green)}
+.ytbar{height:10px;border-radius:99px;background:var(--surface2);overflow:hidden}
+.ytbar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,#10b981,#08754a)}
+.ytgoal small{font-size:11px;color:var(--muted)}
+.yttabs{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:22px 0 14px;flex-wrap:wrap}
+.yttabs .tabs{display:inline-flex;border:1px solid var(--line);border-radius:99px;padding:3px;background:var(--surface)}
+.yttabs button{border:0;background:transparent;font:inherit;font-size:12px;font-weight:800;padding:7px 14px;border-radius:99px;color:var(--muted);cursor:pointer}
+.yttabs button.active{background:var(--green);color:#fff}
+.yttabs small{font-size:11.5px;color:var(--muted)}
+.ytvids{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.ytvids .ytv:nth-child(n+4){display:none}
+.ytv{border:1px solid var(--line);background:var(--surface);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;min-width:0;transition:border-color .2s,transform .2s,box-shadow .2s}
+.ytv:hover{border-color:#ff003355;transform:translateY(-3px);box-shadow:var(--shadow)}
+.ytthumb{position:relative;display:block;aspect-ratio:16/9;background:#000;overflow:hidden}
+.ytimg{width:100%;height:100%;object-fit:cover;display:block}
+.ytthumb .pb{position:absolute;inset:0;display:grid;place-items:center}
+.ytthumb .pb svg{width:58px;height:58px;filter:drop-shadow(0 4px 10px #0006);transition:transform .2s}
+.ytv:hover .pb svg{transform:scale(1.08)}
+.ytthumb .dur{position:absolute;right:8px;bottom:8px;background:#000c;color:#fff;font-size:11px;font-weight:800;padding:2px 7px;border-radius:5px}
+.ytbody{padding:13px 15px 15px;display:flex;flex-direction:column;gap:6px;flex:1}
+.ytbody h3{margin:0;font-size:14.5px;line-height:1.35;letter-spacing:-.2px}
+.ytbody h3 a{color:inherit;text-decoration:none}
+.ytmeta{font-size:12px;color:var(--muted);font-weight:650}
+.ytcalc{margin-top:auto;padding-top:10px;border-top:1px dashed var(--line);display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12.5px;font-weight:800;color:var(--green);text-decoration:none}
+.ytcalc.muted{color:var(--muted)}
+.ytcalc em{font-style:normal;font-size:10.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.ytfoot{display:flex;justify-content:center;margin-top:18px}
+.ytfoot a{font-size:13px;font-weight:800;color:var(--text);border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:10px 18px;text-decoration:none}
+.footyt{display:inline-flex;align-items:center;gap:6px;font-weight:800;color:var(--text);text-decoration:none}
+.footyt svg{width:18px;height:18px}
+[data-theme=dark] .ytcard{background:linear-gradient(160deg,#0e1b14,#102318)}
+[data-theme=dark] .ytstat,[data-theme=dark] .ytgoal,[data-theme=dark] .ytv{background:#0b1710}
+[data-theme=dark] .yttabs button.active{color:#06120c}
+
+/* ---------- calculators page: watch card ---------- */
+.watchcard{display:flex;align-items:center;gap:14px;margin-top:14px;padding:12px;border:1px solid var(--line);border-radius:16px;background:var(--surface);color:var(--text);text-decoration:none;transition:border-color .2s}
+#sipView .watchcard{margin-top:0;border-color:var(--border)}
+.watchcard:hover{border-color:#ff003366}
+.wthumb{position:relative;flex:none;width:150px;aspect-ratio:16/9;border-radius:10px;overflow:hidden;background:#000;display:grid;place-items:center}
+.wimg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.wthumb>svg{position:relative;width:40px;height:40px;filter:drop-shadow(0 3px 8px #0007)}
+.wtext{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.wkick{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:850;letter-spacing:.8px;text-transform:uppercase;color:#e0002d}
+[data-theme=dark] .wkick{color:#ff5c7a}
+.wkick svg{width:16px;height:16px}
+.wtext b{font-size:14.5px;line-height:1.3}
+.wtext small{font-size:11.5px;color:var(--muted)}
+.wgo{flex:none;font-size:12.5px;font-weight:850;border:1px solid var(--line);border-radius:99px;padding:8px 13px}
+
+@media(max-width:850px){
+ .ytstats{grid-template-columns:repeat(3,minmax(0,1fr))}.ytgoal{grid-column:1/-1}
+ /* phones/tablets: swipe through the videos */
+ .ytvids{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding-bottom:6px;margin:0 -4px;padding-left:4px;padding-right:4px;scrollbar-width:thin}
+ .ytvids .ytv{flex:0 0 min(78%,340px);scroll-snap-align:start}
+ .ytvids .ytv:nth-child(n+4){display:flex}
+}
+@media(max-width:540px){
+ .ytcard{padding:20px;border-radius:22px}.ytavatar{width:54px;height:54px;font-size:27px}
+ .ytsub{width:100%;justify-content:center}
+ .ytstat{padding:12px}.ytstat strong{font-size:22px}
+ .ytpill [data-yt-subs]{display:none}.ytpill{padding:0 10px}
+ .watchcard{flex-wrap:wrap}.wthumb{width:100%}.wgo{display:none}
+}
+@media(prefers-reduced-motion:reduce){.ytv,.ytsub,.ytthumb .pb svg{transition:none}.ytv:hover,.ytsub:hover{transform:none}}
