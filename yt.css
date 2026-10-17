@@ -79,7 +79,7 @@
 .footer .foottag{flex:1;min-width:220px}
 .footer .footmeta{display:inline-flex;align-items:center;gap:20px;flex-wrap:wrap}
 .footer .footcopy{white-space:nowrap}
-.footabout{font-weight:800;color:var(--text);text-decoration:none}.footabout:hover{color:var(--green)}
+
 /* Instagram / WhatsApp buttons */
 .footsocial{display:inline-flex;align-items:center;gap:8px}
 .soc{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:var(--surface);transition:border-color .2s,transform .2s}
