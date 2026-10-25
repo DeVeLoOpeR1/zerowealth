@@ -115,6 +115,6 @@ window.ZW_YT = {
  "subscribersText": "7.47K",
  "videoCount": 277,
  "recentViews": 411739,
- "updated": "2026-10-24",
- "totalViews": 3943368
+ "updated": "2026-10-25",
+ "totalViews": 3944923
 };
