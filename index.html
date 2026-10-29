@@ -100,6 +100,33 @@ body, .nav, .calc, .step, .searchbox, .filter, .sidebar, .panel, .resultcard{tra
 @media(max-width:850px){.nav.container{height:auto;min-height:70px;flex-wrap:wrap;row-gap:4px;padding-top:10px;padding-bottom:8px}.navlinks{display:flex;order:3;width:100%;gap:6px;overflow-x:auto;scrollbar-width:none;font-size:13px;margin:0 -4px}.navlinks::-webkit-scrollbar{display:none}.navlinks a{flex:none;padding:7px 10px;border-radius:99px}.navlinks a:hover{background:var(--surface2);color:var(--text)}}
 .calchead{display:flex;align-items:center;gap:12px;margin-bottom:15px}.calchead .calcicon{margin:0;flex:none}.calcname{font-size:14px;font-weight:850;letter-spacing:-.1px;color:var(--green);line-height:1.25}.calc h3{font-size:16.5px}
 </style><style id="readability-and-chart-fixes">.footnote,#tableNote{display:block;width:100%;max-width:100%;box-sizing:border-box;padding:12px 18px 18px;margin:0;color:var(--muted);font-size:12px;line-height:1.65;white-space:normal;overflow-wrap:anywhere;hyphens:auto}.card,.table-card,.chart-card{min-width:0;max-width:100%}.chart-card{overflow:hidden}canvas{max-width:100%}@media(max-width:540px){.footnote,#tableNote{padding:10px 14px 15px;font-size:11.5px}}</style>
+<style id="mobile-header">
+/* Mobile header: brand + compact icon actions on one row, nav links as a full-width tab strip below. Phones only. */
+@media(max-width:640px){
+ header.nav{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:10px;row-gap:10px;height:auto;min-height:0;padding-top:12px;padding-bottom:12px;flex-wrap:nowrap}
+ header.nav .brand{grid-row:1;grid-column:1;gap:9px;min-width:0}
+ header.nav .brandmark,header.nav .mark{width:36px;height:36px;flex:0 0 36px;border-radius:12px}
+ header.nav .brandmark:before,header.nav .mark:before{font-size:20px}
+ header.nav .wordmark{font-size:18px;letter-spacing:-.7px;gap:4px}
+ header.nav .navright{grid-row:1;grid-column:2;gap:8px;margin:0}
+ header.nav .ytpill,header.nav .iconbtn{width:38px;height:38px;padding:0;display:inline-grid;place-items:center;flex:none}
+ header.nav .ytpill [data-yt-subs]{display:none}
+ header.nav .ytpill svg{width:20px;height:20px}
+ header.nav .navlinks{grid-row:2;grid-column:1/-1;display:flex;justify-content:space-between;gap:2px;width:auto;margin:0;padding:4px;border:1px solid var(--line);border-radius:14px;background:var(--surface);overflow-x:auto;scrollbar-width:none;font-size:13px}
+ header.nav .navlinks::-webkit-scrollbar{display:none}
+ header.nav .navlinks a{flex:1 0 auto;text-align:center;padding:7px 8px;border-radius:10px;white-space:nowrap}
+ header.nav .navlinks a:hover{background:var(--surface2);color:var(--text)}
+ header.nav .navlinks a[aria-current]{background:var(--mint);color:var(--green)}
+ header.nav .navlinks a[aria-current]:after{display:none}
+}
+@media(max-width:360px){
+ header.nav .wordmark{font-size:17px}
+ header.nav .navright{gap:6px}
+ header.nav .navlinks{font-size:12px}
+ header.nav .navlinks a{padding:7px 5px}
+}
+@media(max-width:640px){header.nav .navright .btn{display:none}}
+</style>
 </head>
 <body>
 <header class="container nav"><a class="brand" href="#top" aria-label="Zero Wealth home"><span class="brandmark" aria-hidden="true">₹</span><span class="wordmark"><span>Zero</span><span> Wealth</span></span></a><nav class="navlinks"><a href="#calculators">Calculators</a><a href="#youtube">Videos</a><a href="#how-it-works">How it works</a><a href="about.html">About</a></nav><div class="navright"><a class="ytpill" data-yt-link data-yt-pill href="https://www.youtube.com/channel/UCn2tPHDpXme_rNmy6tBPUNg" target="_blank" rel="noopener" title="Zero Wealth on YouTube" aria-label="Zero Wealth on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5a2.7 2.7 0 0 0-1.9 1.9C2 8.9 2 12 2 12s0 3.1.4 4.8a2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9c.4-1.7.4-4.8.4-4.8s0-3.1-.4-4.8Z" fill="#ff0033"/><path d="m10 15.2 5.2-3.2L10 8.8Z" fill="#fff"/></svg><span data-yt-subs>YouTube</span></a><button class="iconbtn" id="themeBtn" type="button" data-theme-toggle aria-label="Toggle theme">☾</button><a class="btn" href="#calculators">Explore tools <span>↗</span></a></div></header>
