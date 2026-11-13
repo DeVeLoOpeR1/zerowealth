@@ -111,10 +111,10 @@ window.ZW_YT = {
  ],
  "name": "Zero Wealth",
  "source": "api",
- "subscribers": 7500,
+ "subscribers": 7510,
  "subscribersText": "7.47K",
  "videoCount": 277,
  "recentViews": 411739,
- "updated": "2026-11-12",
- "totalViews": 4000168
+ "updated": "2026-11-13",
+ "totalViews": 4002428
 };
