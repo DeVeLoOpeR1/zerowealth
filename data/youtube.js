@@ -7,28 +7,28 @@ window.ZW_YT = {
    "id": "an2qIxvemgE",
    "title": "FD Withdrawal Before Maturity | Stable Money",
    "published": "2026-02-06",
-   "views": 12360,
+   "views": 12392,
    "short": true
   },
   {
    "id": "k9hs69DjG4k",
    "title": "Stable Money App Par FD Booking Kaise Kare?",
    "published": "2026-02-05",
-   "views": 34238,
+   "views": 34267,
    "short": true
   },
   {
    "id": "_QucaJesPU4",
    "title": "How to Withdraw FD Instantly? (Live Demo)",
    "published": "2026-02-03",
-   "views": 837,
+   "views": 845,
    "short": true
   },
   {
    "id": "6OPZ6TFsB4w",
    "title": "RD Top-Up vs FD | Which Is Better for Your Money? | Part 4",
    "published": "2026-01-11",
-   "views": 6637,
+   "views": 6656,
    "short": true
   },
   {
@@ -56,7 +56,7 @@ window.ZW_YT = {
    "id": "ZBeH_oXL8CA",
    "title": "How to Withdraw FD from Stable Money | Live Demo (Part 2)",
    "published": "2026-01-06",
-   "views": 7582,
+   "views": 7608,
    "short": true
   },
   {
@@ -70,14 +70,14 @@ window.ZW_YT = {
    "id": "CNWr9qtB8s0",
    "title": "Stable Money App Par FD Booking (Live App Demo)",
    "published": "2026-01-02",
-   "views": 830,
+   "views": 834,
    "short": true
   },
   {
    "id": "R2BTZON99oU",
    "title": "FD Se Monthly Income? 99% Log Ye Trick Miss Karte Hain",
    "published": "2025-12-30",
-   "views": 81648,
+   "views": 82039,
    "short": true
   },
   {
@@ -91,14 +91,14 @@ window.ZW_YT = {
    "id": "Pi0_dJyn_QQ",
    "title": "How to Withdraw FD from Stable Money (Live Proof) ✅ #tipsandtricks",
    "published": "2025-12-15",
-   "views": 78015,
+   "views": 78202,
    "short": true
   },
   {
    "id": "AtPbzFYsAuk",
    "title": "Stable Money App Se FD Kaise Kare? (₹5 Lakh FD Trick!)",
    "published": "2025-12-14",
-   "views": 245244,
+   "views": 245809,
    "short": true
   },
   {
@@ -114,7 +114,7 @@ window.ZW_YT = {
  "subscribers": 7510,
  "subscribersText": "7.47K",
  "videoCount": 277,
- "recentViews": 469944,
- "updated": "2026-11-17",
- "totalViews": 4013328
+ "recentViews": 471205,
+ "updated": "2026-11-18",
+ "totalViews": 4015758
 };
