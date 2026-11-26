@@ -7,42 +7,42 @@ window.ZW_YT = {
    "id": "an2qIxvemgE",
    "title": "FD Withdrawal Before Maturity | Stable Money",
    "published": "2026-02-06",
-   "views": 12655,
+   "views": 12692,
    "short": true
   },
   {
    "id": "k9hs69DjG4k",
    "title": "Stable Money App Par FD Booking Kaise Kare?",
    "published": "2026-02-05",
-   "views": 34509,
+   "views": 34535,
    "short": true
   },
   {
    "id": "_QucaJesPU4",
    "title": "How to Withdraw FD Instantly? (Live Demo)",
    "published": "2026-02-03",
-   "views": 877,
+   "views": 880,
    "short": true
   },
   {
    "id": "6OPZ6TFsB4w",
    "title": "RD Top-Up vs FD | Which Is Better for Your Money? | Part 4",
    "published": "2026-01-11",
-   "views": 6862,
+   "views": 6890,
    "short": true
   },
   {
    "id": "04kjCsIMd3I",
    "title": "Who Should Use RD Top-Up? Investors Must Know | Part 3",
    "published": "2026-01-10",
-   "views": 344,
+   "views": 345,
    "short": true
   },
   {
    "id": "QZ4T-Ectcio",
    "title": "RD Top-Up Explained in Simple Words | Part 2",
    "published": "2026-01-09",
-   "views": 344,
+   "views": 345,
    "short": true
   },
   {
@@ -56,7 +56,7 @@ window.ZW_YT = {
    "id": "ZBeH_oXL8CA",
    "title": "How to Withdraw FD from Stable Money | Live Demo (Part 2)",
    "published": "2026-01-06",
-   "views": 7801,
+   "views": 7839,
    "short": true
   },
   {
@@ -70,14 +70,14 @@ window.ZW_YT = {
    "id": "CNWr9qtB8s0",
    "title": "Stable Money App Par FD Booking (Live App Demo)",
    "published": "2026-01-02",
-   "views": 915,
+   "views": 935,
    "short": true
   },
   {
    "id": "R2BTZON99oU",
    "title": "FD Se Monthly Income? 99% Log Ye Trick Miss Karte Hain",
    "published": "2025-12-30",
-   "views": 84572,
+   "views": 85007,
    "short": true
   },
   {
@@ -91,21 +91,21 @@ window.ZW_YT = {
    "id": "Pi0_dJyn_QQ",
    "title": "How to Withdraw FD from Stable Money (Live Proof) ✅ #tipsandtricks",
    "published": "2025-12-15",
-   "views": 79550,
+   "views": 79764,
    "short": true
   },
   {
    "id": "AtPbzFYsAuk",
    "title": "Stable Money App Se FD Kaise Kare? (₹5 Lakh FD Trick!)",
    "published": "2025-12-14",
-   "views": 249184,
+   "views": 249779,
    "short": true
   },
   {
    "id": "FbFsHnKLB5s",
    "title": "Stable Money App Se FD Kaise Kare? (₹5 Lakh FD Trick!)",
    "published": "2025-12-13",
-   "views": 786,
+   "views": 787,
    "short": false
   }
  ],
@@ -114,7 +114,7 @@ window.ZW_YT = {
  "subscribers": 7520,
  "subscribersText": "7.47K",
  "videoCount": 277,
- "recentViews": 479535,
- "updated": "2026-11-25",
- "totalViews": 4030172
+ "recentViews": 480934,
+ "updated": "2026-11-26",
+ "totalViews": 4032234
 };
